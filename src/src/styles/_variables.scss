@@ -1,0 +1,79 @@
+:root {
+  --font-sans: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --radius-sm: .375rem;
+  --radius-md: .55rem;
+  --radius-lg: .8rem;
+  --shadow-lg: 0 18px 48px rgb(0 0 0 / .28);
+  --color-accent: #e0447e;
+  --color-accent-strong: #c73468;
+  --color-accent-bright: #ff9dc0;
+  --color-accent-soft: rgb(224 68 126 / .2);
+  --color-success: #39c98a;
+  --color-success-text: #75e2b0;
+  --color-success-soft: rgb(57 201 138 / .14);
+  --color-success-border: rgb(57 201 138 / .32);
+  --color-warning: #e9b949;
+  --color-warning-text: #f2ca6b;
+  --color-warning-soft: rgb(233 185 73 / .14);
+  --color-warning-border: rgb(233 185 73 / .32);
+  --color-danger: #ef6565;
+  --color-danger-text: #ff9a9a;
+  --color-danger-soft: rgb(239 101 101 / .13);
+  --color-danger-border: rgb(239 101 101 / .32);
+  --color-focus: #a996ff;
+}
+
+:root[data-accent="black"] { --color-accent: #5b5f68; --color-accent-strong: #494c54; --color-accent-bright: #9aa0ac; --color-accent-soft: rgb(91 95 104 / .2); --color-focus: #9aa0ac; }
+:root[data-accent="purple"] { --color-accent: #8457e0; --color-accent-strong: #7042cf; --color-accent-bright: #bfa4f5; --color-accent-soft: rgb(132 87 224 / .18); --color-focus: #bfa4f5; }
+:root[data-accent="blue"] { --color-accent: #2f8fe0; --color-accent-strong: #2277c4; --color-accent-bright: #8ec4f5; --color-accent-soft: rgb(47 143 224 / .18); --color-focus: #8ec4f5; }
+:root[data-accent="pink"] { --color-accent: #e0447e; --color-accent-strong: #c73468; --color-accent-bright: #ff9dc0; --color-accent-soft: rgb(224 68 126 / .2); --color-focus: #ff9dc0; }
+:root[data-accent="violet"] { --color-accent: #9750e0; --color-accent-strong: #8138c9; --color-accent-bright: #cba5f7; --color-accent-soft: rgb(151 80 224 / .18); --color-focus: #cba5f7; }
+:root[data-accent="indigo"] { --color-accent: #4a5fd9; --color-accent-strong: #3949bf; --color-accent-bright: #9ba6f2; --color-accent-soft: rgb(74 95 217 / .18); --color-focus: #9ba6f2; }
+:root[data-accent="orange"] { --color-accent: #e2762e; --color-accent-strong: #c9601c; --color-accent-bright: #f7b57f; --color-accent-soft: rgb(226 118 46 / .18); --color-focus: #f7b57f; }
+:root[data-accent="teal"] { --color-accent: #1fa89a; --color-accent-strong: #178c80; --color-accent-bright: #7bd9cd; --color-accent-soft: rgb(31 168 154 / .18); --color-focus: #7bd9cd; }
+:root[data-accent="bronze"] { --color-accent: #a97c62; --color-accent-strong: #8f6550; --color-accent-bright: #d9b8a4; --color-accent-soft: rgb(169 124 98 / .2); --color-focus: #d9b8a4; }
+:root[data-accent="mint"] { --color-accent: #33c48a; --color-accent-strong: #26a473; --color-accent-bright: #8fe9bf; --color-accent-soft: rgb(51 196 138 / .18); --color-focus: #8fe9bf; }
+
+:root[data-theme="dark"] {
+  --color-canvas: #0f1012;
+  --color-sidebar: #151619;
+  --color-topbar: #17181b;
+  --color-surface-1: #17181b;
+  --color-surface-2: #1e2024;
+  --color-surface-3: #282a30;
+  --color-border: #2b2e35;
+  --color-border-strong: #3b3f49;
+  --color-text-primary: #f2f2f5;
+  --color-text-secondary: #a3a7b2;
+  --color-text-muted: #6e727e;
+  --rail-bg: linear-gradient(180deg, color-mix(in srgb, var(--color-accent) 40%, #200f18), color-mix(in srgb, var(--color-accent) 20%, #170b12) 55%, color-mix(in srgb, var(--color-accent) 10%, #110710));
+  --rail-text: rgb(255 255 255 / .78);
+  --rail-text-strong: #ffffff;
+  --rail-item-hover: rgb(255 255 255 / .16);
+}
+
+:root[data-theme="light"] {
+  --color-canvas: #f5f6f8;
+  --color-sidebar: #ffffff;
+  --color-topbar: #ffffff;
+  --color-surface-1: #ffffff;
+  --color-surface-2: #f0f1f5;
+  --color-surface-3: #e8eaf0;
+  --color-border: #e0e3ea;
+  --color-border-strong: #cbd0da;
+  --color-text-primary: #1b1d24;
+  --color-text-secondary: #606674;
+  --color-text-muted: #8b91a0;
+  --shadow-lg: 0 18px 48px rgb(25 29 40 / .13);
+  --rail-bg: linear-gradient(180deg, color-mix(in srgb, var(--color-accent) 22%, #ffffff), color-mix(in srgb, var(--color-accent) 12%, #ffffff) 55%, color-mix(in srgb, var(--color-accent) 8%, #ffffff));
+  --rail-text: color-mix(in srgb, var(--color-accent) 15%, #34343c);
+  --rail-text-strong: #17181b;
+  --rail-item-hover: rgb(0 0 0 / .07);
+}

@@ -1,0 +1,180 @@
+{
+  "allSettings": "All settings",
+  "closeSettings": "Close settings",
+  "logout": "Log out",
+
+  "adminGroup": "Admin",
+  "featuresGroup": "Features",
+  "integrationsGroup": "Integrations & ClickApps",
+  "mySettingsGroup": "My Settings",
+
+  "navGeneral": "General",
+  "navPeople": "People",
+  "navTeams": "Teams",
+  "navUpgrade": "Upgrade",
+  "navBilling": "Billing",
+  "navAiUsage": "AI Usage",
+  "navSecurity": "Security & Permissions",
+  "navAuditLogs": "Audit Logs",
+  "navTrash": "Trash",
+  "navCustomFields": "Custom Field Manager",
+  "navTagManager": "Tag Manager",
+  "navTemplateCenter": "Template Center",
+  "navAutomations": "Automations Manager",
+  "navAiNotetaker": "AI Notetaker",
+  "navEmojis": "Emojis",
+  "navSpaces": "Spaces",
+  "navTaskTypes": "Task Types",
+  "navWorkSchedule": "Work Schedule",
+  "navAppCenter": "App Center",
+  "navImportsExports": "Imports / Exports",
+  "navClickupApi": "ClickUp API",
+  "navEmailIntegration": "Email Integration",
+  "navPreferences": "Preferences",
+  "navNotifications": "Notifications",
+  "navWorkspaces": "Workspaces",
+  "navChat": "Chat",
+  "navReferrals": "Referrals",
+  "navProfile": "Profile",
+
+  "profileTitle": "My Settings",
+  "profileSection": "Profile",
+  "profileDesc": "Your personal information and account security settings.",
+  "changeAvatar": "Change avatar",
+  "fullName": "Full Name",
+  "email": "Email",
+  "password": "Password",
+  "enterNewPassword": "Enter New Password",
+
+  "twoFaTitle": "Two-factor authentication (2FA)",
+  "twoFaDesc": "Keep your account secure by enabling 2FA via SMS or using a temporary one-time passcode (TOTP) from an authenticator app.",
+  "smsTwoFa": "Text Message (SMS)",
+  "smsTwoFaDesc": "Receive a one-time passcode via SMS each time you log in.",
+  "totpTwoFa": "Authenticator App (TOTP)",
+  "totpTwoFaDesc": "Use an app to receive a temporary one-time passcode each time you log in.",
+  "businessBadge": "Business",
+
+  "themeColorTitle": "Theme color",
+  "themeColorDesc": "Choose a preferred theme for the app.",
+  "appearanceLight": "Light",
+  "appearanceDark": "Dark",
+  "appearanceAuto": "Auto",
+
+  "languageRegionTitle": "Language & Region",
+  "languageRegionDesc": "Customize your language and region.",
+  "language": "Language",
+  "timezone": "Timezone",
+  "notifyTimezone": "Notify me of Timezone changes",
+
+  "preferencesTitle": "Preferences",
+  "timeDateTitle": "Time & Date format",
+  "timeDateDesc": "Select the way times & dates are displayed.",
+  "weekStart": "Start of the calendar week",
+  "weekSunday": "Sunday",
+  "weekMonday": "Monday",
+  "timeFormat": "Time format",
+  "time24h": "24 hour",
+  "time12h": "12 hour",
+  "dateFormat": "Date format",
+
+  "preferencesSection": "Preferences",
+  "preferencesDesc": "Manage your in-app preferences.",
+
+  "linkMentionTitle": "Link & Mention Display",
+  "linkMentionDesc": "Manage how links are pasted and displayed across ClickUp.",
+  "externalLinkPreviews": "External Link Previews",
+  "externalLinkPreviewsDesc": "Paste a link and we'll turn it into a preview card. Your choice is remembered per site.",
+  "taskMentions": "Task Mentions",
+  "taskMentionsDesc": "Choose what shows alongside the task name when you mention a task.",
+  "showStatus": "Show Status",
+  "showAssignee": "Show Assignee",
+  "showCustomId": "Show Custom ID",
+
+  "dangerZoneTitle": "Danger zone",
+  "dangerZoneDesc": "Proceed with caution.",
+  "logoutAllSessions": "Log out of all sessions",
+  "logoutAllSessionsDesc": "Log out all sessions including any session on mobile, iPad, and other browsers",
+  "deleteAccount": "Delete account",
+
+  "generalTitle": "General",
+  "workspaceName": "Workspace name",
+  "workspaceNameDesc": "The name used across ClickUp for your workspace.",
+
+  "peopleTitle": "People",
+  "peopleDesc": "Manage members, guests, and permissions for your workspace.",
+
+  "teamsTitle": "Teams",
+  "teamsDesc": "Create and manage teams within your workspace.",
+
+  "securityTitle": "Security & Permissions",
+  "securityDesc": "Configure access control, SSO, and security policies.",
+
+  "auditLogsTitle": "Audit Logs",
+  "auditLogsDesc": "Review a log of actions taken across your workspace.",
+
+  "trashTitle": "Trash",
+  "trashDesc": "Deleted items are kept here for 30 days before being permanently removed.",
+
+  "notificationsTitle": "Notifications",
+  "notificationsDesc": "Choose when and how you receive notifications.",
+
+  "billingTitle": "Billing",
+  "billingDesc": "Manage your subscription and payment methods.",
+
+  "upgradeTitle": "Upgrade",
+  "upgradeDesc": "Explore plans and unlock more features.",
+
+  "aiUsageTitle": "AI Usage",
+  "aiUsageDesc": "Track your AI feature consumption for this billing period.",
+
+  "customFieldsTitle": "Custom Field Manager",
+  "customFieldsDesc": "Create and manage custom fields across your workspace.",
+
+  "tagManagerTitle": "Tag Manager",
+  "tagManagerDesc": "View and edit all tags used in your workspace.",
+
+  "templateCenterTitle": "Template Center",
+  "templateCenterDesc": "Browse and manage templates for tasks, docs, and more.",
+
+  "automationsTitle": "Automations Manager",
+  "automationsDesc": "Build and manage automation rules across your workspace.",
+
+  "aiNotetakerTitle": "AI Notetaker",
+  "aiNotetakerDesc": "Configure AI-powered meeting notes and transcriptions.",
+
+  "emojisTitle": "Emojis",
+  "emojisDesc": "Manage custom emoji for your workspace.",
+
+  "spacesTitle": "Spaces",
+  "spacesDesc": "Manage workspace spaces and their settings.",
+
+  "taskTypesTitle": "Task Types",
+  "taskTypesDesc": "Customize the types of tasks available in your workspace.",
+
+  "workScheduleTitle": "Work Schedule",
+  "workScheduleDesc": "Set working hours and days for your workspace.",
+
+  "appCenterTitle": "App Center",
+  "appCenterDesc": "Connect third-party tools and integrations.",
+
+  "importsExportsTitle": "Imports / Exports",
+  "importsExportsDesc": "Import data from other tools or export your workspace data.",
+
+  "clickupApiTitle": "ClickUp API",
+  "clickupApiDesc": "Manage API keys and OAuth apps.",
+
+  "emailIntegrationTitle": "Email Integration",
+  "emailIntegrationDesc": "Connect email accounts to create and receive tasks by email.",
+
+  "workspacesTitle": "Workspaces",
+  "workspacesDesc": "Switch between or manage the workspaces you belong to.",
+
+  "chatTitle": "Chat",
+  "chatDesc": "Configure your chat notification preferences.",
+
+  "referralsTitle": "Referrals",
+  "referralsDesc": "Invite friends and earn credits.",
+
+  "selectSection": "Select a section from the left.",
+  "saved": "Saved"
+}

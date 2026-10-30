@@ -1,0 +1,180 @@
+{
+  "allSettings": "جميع الإعدادات",
+  "closeSettings": "إغلاق الإعدادات",
+  "logout": "تسجيل الخروج",
+
+  "adminGroup": "المشرف",
+  "featuresGroup": "الميزات",
+  "integrationsGroup": "التكاملات والتطبيقات",
+  "mySettingsGroup": "إعداداتي",
+
+  "navGeneral": "عام",
+  "navPeople": "الأشخاص",
+  "navTeams": "الفرق",
+  "navUpgrade": "الترقية",
+  "navBilling": "الفواتير",
+  "navAiUsage": "استخدام الذكاء الاصطناعي",
+  "navSecurity": "الأمان والأذونات",
+  "navAuditLogs": "سجلات التدقيق",
+  "navTrash": "سلة المحذوفات",
+  "navCustomFields": "مدير الحقول المخصصة",
+  "navTagManager": "مدير الوسوم",
+  "navTemplateCenter": "مركز القوالب",
+  "navAutomations": "مدير الأتمتة",
+  "navAiNotetaker": "مدوّن الذكاء الاصطناعي",
+  "navEmojis": "الرموز التعبيرية",
+  "navSpaces": "المساحات",
+  "navTaskTypes": "أنواع المهام",
+  "navWorkSchedule": "جدول العمل",
+  "navAppCenter": "مركز التطبيقات",
+  "navImportsExports": "الاستيراد / التصدير",
+  "navClickupApi": "واجهة برمجة ClickUp",
+  "navEmailIntegration": "تكامل البريد الإلكتروني",
+  "navPreferences": "التفضيلات",
+  "navNotifications": "الإشعارات",
+  "navWorkspaces": "مساحات العمل",
+  "navChat": "الدردشة",
+  "navReferrals": "الإحالات",
+  "navProfile": "الملف الشخصي",
+
+  "profileTitle": "إعداداتي",
+  "profileSection": "الملف الشخصي",
+  "profileDesc": "معلوماتك الشخصية وإعدادات أمان الحساب.",
+  "changeAvatar": "تغيير الصورة الرمزية",
+  "fullName": "الاسم الكامل",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "enterNewPassword": "أدخل كلمة المرور الجديدة",
+
+  "twoFaTitle": "التحقق بخطوتين (2FA)",
+  "twoFaDesc": "أبقِ حسابك آمناً بتفعيل 2FA عبر الرسائل القصيرة أو استخدام رمز مؤقت من تطبيق المصادقة.",
+  "smsTwoFa": "رسالة نصية (SMS)",
+  "smsTwoFaDesc": "تلقّي رمز مؤقت عبر الرسائل القصيرة في كل تسجيل دخول.",
+  "totpTwoFa": "تطبيق المصادقة (TOTP)",
+  "totpTwoFaDesc": "استخدم تطبيقاً لتلقّي رمز مؤقت في كل تسجيل دخول.",
+  "businessBadge": "للأعمال",
+
+  "themeColorTitle": "لون السمة",
+  "themeColorDesc": "اختر سمة مفضلة للتطبيق.",
+  "appearanceLight": "فاتح",
+  "appearanceDark": "داكن",
+  "appearanceAuto": "تلقائي",
+
+  "languageRegionTitle": "اللغة والمنطقة",
+  "languageRegionDesc": "خصّص لغتك ومنطقتك.",
+  "language": "اللغة",
+  "timezone": "المنطقة الزمنية",
+  "notifyTimezone": "إشعاري بتغييرات المنطقة الزمنية",
+
+  "preferencesTitle": "التفضيلات",
+  "timeDateTitle": "تنسيق الوقت والتاريخ",
+  "timeDateDesc": "اختر طريقة عرض الأوقات والتواريخ.",
+  "weekStart": "بداية أسبوع التقويم",
+  "weekSunday": "الأحد",
+  "weekMonday": "الاثنين",
+  "timeFormat": "تنسيق الوقت",
+  "time24h": "24 ساعة",
+  "time12h": "12 ساعة",
+  "dateFormat": "تنسيق التاريخ",
+
+  "preferencesSection": "التفضيلات",
+  "preferencesDesc": "إدارة تفضيلاتك داخل التطبيق.",
+
+  "linkMentionTitle": "عرض الروابط والإشارات",
+  "linkMentionDesc": "إدارة كيفية لصق الروابط وعرضها.",
+  "externalLinkPreviews": "معاينات الروابط الخارجية",
+  "externalLinkPreviewsDesc": "الصق رابطاً وسنحوّله إلى بطاقة معاينة.",
+  "taskMentions": "إشارات المهام",
+  "taskMentionsDesc": "اختر ما يظهر بجانب اسم المهمة عند الإشارة إليها.",
+  "showStatus": "إظهار الحالة",
+  "showAssignee": "إظهار المُسنَد إليه",
+  "showCustomId": "إظهار المعرّف المخصص",
+
+  "dangerZoneTitle": "منطقة الخطر",
+  "dangerZoneDesc": "تابع بحذر.",
+  "logoutAllSessions": "تسجيل الخروج من جميع الجلسات",
+  "logoutAllSessionsDesc": "تسجيل الخروج من جميع الجلسات بما فيها الجلسات على الهاتف والآيباد والمتصفحات الأخرى",
+  "deleteAccount": "حذف الحساب",
+
+  "generalTitle": "عام",
+  "workspaceName": "اسم مساحة العمل",
+  "workspaceNameDesc": "الاسم المستخدم في جميع أنحاء التطبيق لمساحة عملك.",
+
+  "peopleTitle": "الأشخاص",
+  "peopleDesc": "إدارة الأعضاء والضيوف والأذونات لمساحة عملك.",
+
+  "teamsTitle": "الفرق",
+  "teamsDesc": "إنشاء وإدارة الفرق داخل مساحة عملك.",
+
+  "securityTitle": "الأمان والأذونات",
+  "securityDesc": "تكوين التحكم في الوصول وـSSO وسياسات الأمان.",
+
+  "auditLogsTitle": "سجلات التدقيق",
+  "auditLogsDesc": "مراجعة سجل الإجراءات المتخذة في مساحة عملك.",
+
+  "trashTitle": "سلة المحذوفات",
+  "trashDesc": "تُحفظ العناصر المحذوفة هنا لمدة 30 يوماً قبل إزالتها نهائياً.",
+
+  "notificationsTitle": "الإشعارات",
+  "notificationsDesc": "اختر متى وكيف تتلقى الإشعارات.",
+
+  "billingTitle": "الفواتير",
+  "billingDesc": "إدارة اشتراكك وطرق الدفع.",
+
+  "upgradeTitle": "الترقية",
+  "upgradeDesc": "استكشف الخطط وافتح المزيد من الميزات.",
+
+  "aiUsageTitle": "استخدام الذكاء الاصطناعي",
+  "aiUsageDesc": "تتبع استهلاك ميزات الذكاء الاصطناعي لهذه الفترة.",
+
+  "customFieldsTitle": "مدير الحقول المخصصة",
+  "customFieldsDesc": "إنشاء وإدارة الحقول المخصصة في مساحة عملك.",
+
+  "tagManagerTitle": "مدير الوسوم",
+  "tagManagerDesc": "عرض وتعديل جميع الوسوم المستخدمة في مساحة عملك.",
+
+  "templateCenterTitle": "مركز القوالب",
+  "templateCenterDesc": "تصفح وإدارة قوالب المهام والمستندات والمزيد.",
+
+  "automationsTitle": "مدير الأتمتة",
+  "automationsDesc": "بناء وإدارة قواعد الأتمتة في مساحة عملك.",
+
+  "aiNotetakerTitle": "مدوّن الذكاء الاصطناعي",
+  "aiNotetakerDesc": "تكوين ملاحظات الاجتماعات والنصوص المدعومة بالذكاء الاصطناعي.",
+
+  "emojisTitle": "الرموز التعبيرية",
+  "emojisDesc": "إدارة الرموز التعبيرية المخصصة لمساحة عملك.",
+
+  "spacesTitle": "المساحات",
+  "spacesDesc": "إدارة مساحات العمل وإعداداتها.",
+
+  "taskTypesTitle": "أنواع المهام",
+  "taskTypesDesc": "تخصيص أنواع المهام المتاحة في مساحة عملك.",
+
+  "workScheduleTitle": "جدول العمل",
+  "workScheduleDesc": "تعيين ساعات وأيام العمل لمساحة عملك.",
+
+  "appCenterTitle": "مركز التطبيقات",
+  "appCenterDesc": "ربط الأدوات والتكاملات الخارجية.",
+
+  "importsExportsTitle": "الاستيراد / التصدير",
+  "importsExportsDesc": "استيراد البيانات من أدوات أخرى أو تصدير بيانات مساحة عملك.",
+
+  "clickupApiTitle": "واجهة برمجة ClickUp",
+  "clickupApiDesc": "إدارة مفاتيح API وتطبيقات OAuth.",
+
+  "emailIntegrationTitle": "تكامل البريد الإلكتروني",
+  "emailIntegrationDesc": "ربط حسابات البريد الإلكتروني لإنشاء المهام واستقبالها.",
+
+  "workspacesTitle": "مساحات العمل",
+  "workspacesDesc": "التبديل بين مساحات العمل أو إدارة تلك التي تنتمي إليها.",
+
+  "chatTitle": "الدردشة",
+  "chatDesc": "تكوين تفضيلات إشعارات الدردشة الخاصة بك.",
+
+  "referralsTitle": "الإحالات",
+  "referralsDesc": "ادعُ أصدقاءك واكسب رصيداً.",
+
+  "selectSection": "اختر قسماً من اليسار.",
+  "saved": "تم الحفظ"
+}

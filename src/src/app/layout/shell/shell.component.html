@@ -1,0 +1,172 @@
+<!-- ClickUp reference fidelity: full-width top bar, persistent global rail, contextual sidebar, and theme overlay. -->
+<div class="app-shell" [class.app-shell--collapsed]="sidebarCollapsed()">
+  <app-topbar (settings)="openCustomizer()" (createWorkspace)="openCreateWorkspace()" />
+
+  <div class="app-shell__body">
+    <aside class="global-rail" aria-label="Global navigation">
+      @if (sidebarCollapsed()) {
+        <button nz-button nzType="text" nzShape="circle" class="rail-expand"
+          nz-tooltip nzTooltipTitle="Open sidebar" nzTooltipPlacement="right"
+          aria-label="Open sidebar" (click)="toggleSidebar()">
+          <lucide-icon [img]="PanelLeftOpen" size="17" />
+        </button>
+      }
+      <nav class="rail-nav">
+        @for (item of checkedRailItems(); track item.id) {
+          <a class="rail-item" [routerLink]="item.route" routerLinkActive="rail-item--active"><lucide-icon [img]="item.icon" size="19" /><span>{{ item.label }}</span></a>
+        }
+        <button nz-button nzType="text" class="rail-item"
+          nz-popover [nzPopoverContent]="moreRailTpl" [nzPopoverVisible]="moreRailOpen()"
+          (nzPopoverVisibleChange)="moreRailOpen.set($event)"
+          nzPopoverTrigger="click" nzPopoverPlacement="rightTop" nzPopoverOverlayClassName="rail-more-popover"
+          [class.rail-item--active]="moreRailOpen()">
+          <lucide-icon [img]="Grid2X2" size="19" /><span>More</span>
+        </button>
+      </nav>
+      <div class="rail-footer">
+        <button nz-button nzType="text" class="rail-item" (click)="openInvite()"><lucide-icon [img]="UserPlus" size="18" /><span>Invite</span></button>
+        <button nz-button nzType="text" class="rail-item" (click)="openUpgrade()"><lucide-icon [img]="Sparkles" size="18" /><span>Upgrade</span></button>
+      </div>
+    </aside>
+
+    <ng-template #moreRailTpl>
+      <section class="more-grid" role="menu" aria-label="Workspace apps">
+        <button nz-button nzType="text" routerLink="/all-spaces" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--violet"><lucide-icon [img]="LayoutGrid" size="18" /></span>Spaces</button>
+        <button nz-button nzType="text" routerLink="/chat" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--teal"><lucide-icon [img]="MessageCircle" size="18" /></span>Chat</button>
+        <button nz-button nzType="text" routerLink="/docs" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--blue"><lucide-icon [img]="FileText" size="18" /></span>Docs</button>
+        <button nz-button nzType="text" routerLink="/dashboards/new" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--indigo"><lucide-icon [img]="LayoutDashboard" size="18" /></span>Dashboards</button>
+        <button nz-button nzType="text" routerLink="/whiteboards" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--amber"><lucide-icon [img]="PenLine" size="18" /></span>Whiteboards</button>
+        <button nz-button nzType="text" routerLink="/forms" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--violet"><lucide-icon [img]="ClipboardList" size="18" /></span>Forms</button>
+        <button nz-button nzType="text" routerLink="/clips" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--rose"><lucide-icon [img]="Clapperboard" size="18" /></span>Clips</button>
+        <button nz-button nzType="text" routerLink="/goals" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--gold"><lucide-icon [img]="Target" size="18" /></span>Goals</button>
+        <button nz-button nzType="text" routerLink="/timesheets" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--orange"><lucide-icon [img]="Timer" size="18" /></span>Timesheets</button>
+        <button nz-button nzType="text" (click)="moreRailOpen.set(false)"><span class="more-icon more-icon--muted"><lucide-icon [img]="Grid2X2" size="18" /></span>Apps</button>
+      </section>
+      <button nz-button nzType="text" class="more-footer" (click)="openCustomizer(); moreRailOpen.set(false)"><lucide-icon [img]="Settings2" size="15" />Customize navigation</button>
+    </ng-template>
+
+    @if (!sidebarCollapsed()) {
+      <app-sidebar
+        [collapsed]="false"
+        (collapse)="toggleSidebar()"
+        (settings)="openCustomizer()"
+        (more)="moreRailOpen.set(true)"
+        (addSpace)="openNewSpace()"
+        (addSpaceItem)="openNewSpace()"
+        (addChannel)="channelModal.show()"
+        (createListModal)="openCreateList($event)"
+        (createFolderModal)="openCreateFolder()"
+        (createSprintModal)="openCreateSprint()"
+        (createDocModal)="openCreateDoc()"
+        (createDashboard)="openCreateDashboard()"
+        (createWhiteboard)="openCreateWhiteboard()"
+        (createFormModal)="openCreateForm()"
+        (createFromTemplate)="openTemplates()"
+        (createFromImport)="openImport()" />
+    }
+
+    <div class="app-shell__main">
+      <main class="app-shell__content"><router-outlet /></main>
+    </div>
+  </div>
+
+  @if (customizerOpen()) {
+    <app-customizer (close)="closeCustomizer()" />
+  }
+
+  @if (createWorkspaceOpen()) {
+    <app-create-workspace-wizard (close)="closeCreateWorkspace()" (created)="onWorkspaceCreated($event)" />
+  }
+
+  @if (newSpaceOpen()) {
+    <app-new-space-modal (close)="closeNewSpace()" (created)="closeNewSpace()" />
+  }
+
+  @if (channelModal.open()) {
+    <app-add-channel-modal />
+  }
+
+  <!-- ─── Modals launched from the sidebar / rail — all rendered through nz-modal ─── -->
+  <nz-modal nzClassName="app-modal" [nzVisible]="inviteOpen()" nzTitle="Invite people" [nzFooter]="null" (nzOnCancel)="closeInvite()">
+    <ng-container *nzModalContent>
+      <app-invite-modal (close)="closeInvite()" />
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="upgradeOpen()" nzTitle="Upgrade plan" [nzFooter]="null" (nzOnCancel)="closeUpgrade()">
+    <ng-container *nzModalContent>
+      <app-upgrade-modal (close)="closeUpgrade()" />
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="createListSpaceId() !== null" nzTitle="Create list" [nzFooter]="null" (nzOnCancel)="closeCreateList()">
+    <ng-container *nzModalContent>
+      <app-add-item-modal [spaceId]="createListSpaceId()" (close)="closeCreateList()" (created)="onListCreated($event)" />
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="createFolderOpen()" nzTitle="Create folder" [nzFooter]="null" (nzOnCancel)="closeCreateFolder()">
+    <ng-container *nzModalContent>
+      <app-new-space-modal (close)="closeCreateFolder()" (created)="closeCreateFolder()" />
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="createSprintOpen()" nzTitle="Create sprint" [nzFooter]="null" (nzOnCancel)="closeCreateSprint()">
+    <ng-container *nzModalContent>
+      <app-new-space-modal (close)="closeCreateSprint()" (created)="closeCreateSprint()" />
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="createDocOpen()" nzTitle="Create document" [nzFooter]="null" (nzOnCancel)="closeCreateDoc()">
+    <ng-container *nzModalContent>
+      <app-create-doc-modal (close)="closeCreateDoc()" (created)="closeCreateDoc()" />
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="createDashboardOpen()" nzTitle="Create dashboard" [nzFooter]="null" (nzOnCancel)="closeCreateDashboard()">
+    <ng-container *nzModalContent>
+      <!-- TODO: Create CreateDashboardModalComponent or reuse existing component -->
+      <div class="modal-content" style="padding: 1rem 0;">Create Dashboard — Coming Soon</div>
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="createWhiteboardOpen()" nzTitle="Create whiteboard" [nzFooter]="null" (nzOnCancel)="closeCreateWhiteboard()">
+    <ng-container *nzModalContent>
+      <!-- TODO: Create CreateWhiteboardModalComponent or reuse existing component -->
+      <div class="modal-content" style="padding: 1rem 0;">Create Whiteboard — Coming Soon</div>
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="createFormOpen()" nzTitle="Create form" [nzFooter]="null" (nzOnCancel)="closeCreateForm()">
+    <ng-container *nzModalContent>
+      <!-- TODO: Create CreateFormModalComponent or reuse existing component -->
+      <div class="modal-content" style="padding: 1rem 0;">Create Form — Coming Soon</div>
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="templatesOpen()" nzTitle="Templates" [nzFooter]="null" (nzOnCancel)="closeTemplates()">
+    <ng-container *nzModalContent>
+      <!-- TODO: Create TemplatesModalComponent or reuse existing component -->
+      <div class="modal-content" style="padding: 1rem 0;">Templates — Coming Soon</div>
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal nzClassName="app-modal" [nzVisible]="importOpen()" nzTitle="Import" [nzFooter]="null" (nzOnCancel)="closeImport()">
+    <ng-container *nzModalContent>
+      <!-- TODO: Create ImportModalComponent or reuse existing component -->
+      <div class="modal-content" style="padding: 1rem 0;">Import — Coming Soon</div>
+    </ng-container>
+  </nz-modal>
+
+  <aside class="toast-stack" aria-live="polite" aria-atomic="true">
+    @for (item of notifications.items(); track item.id) {
+      <button class="toast" [class]="'toast toast--' + item.kind" type="button" (click)="notifications.dismiss(item.id)">
+        <span class="toast__mark" aria-hidden="true">
+          <lucide-icon [img]="item.kind === 'success' ? CheckCircle2 : item.kind === 'error' ? XCircle : Info" size="13" />
+        </span>
+        <span class="toast__body"><strong>{{ item.title }}</strong>@if (item.message) { <small>{{ item.message }}</small> }</span>
+        <lucide-icon class="toast__close" [img]="X" size="13" aria-hidden="true" />
+      </button>
+    }
+  </aside>
+</div>

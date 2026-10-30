@@ -1,0 +1,21 @@
+{
+  "title": "Add Channel",
+  "description": "Channels are where your team communicates. They're best organized around a topic — #marketing, for example.",
+  "nameLabel": "Channel name",
+  "namePlaceholder": "e.g. marketing",
+  "topicLabel": "Topic",
+  "topicOptional": "(optional)",
+  "topicPlaceholder": "What's this channel about?",
+  "makePrivate": "Make private",
+  "makePrivateHint": "Only invited members will be able to view this channel.",
+  "in": "in",
+  "cancel": "Cancel",
+  "create": "Create Channel",
+  "creating": "Adding channel…",
+  "close": "Close",
+  "noName": "Give your channel a name to continue.",
+  "noWorkspace": "Select a workspace before creating a channel.",
+  "createError": "Something went wrong creating the channel. Please try again.",
+  "channelCreated": "Channel created",
+  "channelReadyMsg": "is ready to go."
+}

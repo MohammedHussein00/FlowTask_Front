@@ -1,0 +1,95 @@
+/** ClickUp reference fidelity: Home sidebar with a customizable Home widget list, AI Chats, Spaces, Channels, and Direct Messages sections. */
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  LucideAngularModule, Hash, Lock, MessageSquareText, MoreHorizontal, PanelLeftClose, PanelLeftOpen, Plus,
+  SlidersHorizontal, Star,
+} from 'lucide-angular';
+import { SpaceStore } from '../../../core/stores/space.store';
+import { WorkspaceStore } from '../../../core/stores/workspace.store';
+import { WorkspaceCustomizationService } from '../../../core/theme/workspace-customization.service';
+
+@Component({ selector: 'app-sidebar', standalone: true, imports: [RouterLink, RouterLinkActive, LucideAngularModule], changeDetection: ChangeDetectionStrategy.OnPush, template: `
+  <aside class="context-sidebar" [class.context-sidebar--collapsed]="collapsed()">
+    <div class="context-top">
+      <strong>Home</strong>
+      <div>
+        <button type="button" aria-label="Filter your sidebar" data-tooltip="Filter your sidebar"><lucide-icon [img]="SlidersHorizontal" size="15" /></button>
+        <button type="button" class="collapse-toggle" [attr.aria-label]="collapsed() ? 'Open sidebar' : 'Close sidebar'" [attr.data-tooltip]="collapsed() ? 'Open sidebar' : 'Close sidebar'" data-tooltip-kbd="Ctrl \\" (click)="collapse.emit()"><lucide-icon [img]="collapsed() ? PanelLeftOpen : PanelLeftClose" size="16" /></button>
+        <button class="create" type="button" (click)="createRequested.emit()"><lucide-icon [img]="Plus" size="15" />Create</button>
+      </div>
+    </div>
+
+    <nav class="home-list">
+      @for (item of checkedHomeItems(); track item.id) {
+        <a class="context-nav__item" [routerLink]="item.route" routerLinkActive="context-nav__item--active"><lucide-icon [img]="item.icon" size="16" /><span>{{ item.label }}</span></a>
+      }
+    </nav>
+    <button class="more-link" type="button" (click)="more.emit()"><lucide-icon [img]="MoreHorizontal" size="16" /><span>More</span></button>
+
+    <section class="nav-section ai-chats"><p>AI CHATS</p>
+      <a class="context-nav__item" routerLink="/ai-chats/personal-onboarding" routerLinkActive="context-nav__item--active"><lucide-icon [img]="MessageSquareText" size="16" /><span>Personal Onboarding Setup</span></a>
+      <a class="context-nav__item context-nav__item--muted" routerLink="/ai-chats/new"><lucide-icon [img]="Plus" size="16" /><span>Ask, Build, Create</span></a>
+    </section>
+
+    <section class="nav-section spaces"><header><p>SPACES</p><button type="button" aria-label="Add space" (click)="addSpace.emit()"><lucide-icon [img]="Plus" size="16" /></button></header>
+      <a class="context-nav__item" routerLink="/all-tasks"><lucide-icon [img]="Star" size="16" /><span>All Tasks <em>· {{ activeWorkspaceName() }}</em></span></a>
+      @if (spaceStore.loading() && !spaceStore.hasSpaces()) {
+        <p class="space-empty">Loading Spaces…</p>
+      } @else if (!spaceStore.hasSpaces()) {
+        <p class="space-empty">No Spaces yet.</p>
+      } @else {
+        @for (space of spaceStore.spaces(); track space.id) {
+          <a class="space-row" routerLink="/all-spaces" routerLinkActive="space-row--selected">
+            <b class="space-badge" [style.background]="space.color">{{ space.name.charAt(0).toUpperCase() }}</b>
+            <span>{{ space.name }}</span>
+            @if (space.isPrivate) { <lucide-icon [img]="Lock" size="12" class="space-row__lock" /> }
+            <lucide-icon [img]="Plus" size="15" />
+          </a>
+        }
+      }
+      <button class="space-child" type="button" (click)="addSpace.emit()"><lucide-icon [img]="Plus" size="14" />New Space</button>
+    </section>
+
+    <section class="nav-section channels"><p>CHANNELS</p>
+      <a class="context-nav__item" routerLink="/channels/welcome"><lucide-icon [img]="Hash" size="16" /><span>Welcome</span></a>
+      <a class="context-nav__item" routerLink="/channels/general"><b class="channel-dot">f</b><span>General <em>· {{ activeWorkspaceName() }}</em></span></a>
+      <button class="context-nav__item context-nav__item--muted" type="button" (click)="addChannel.emit()"><lucide-icon [img]="Plus" size="16" /><span>Add Channel</span></button>
+    </section>
+
+    <section class="nav-section direct-messages"><p>DIRECT MESSAGES</p>
+      <a class="context-nav__item" routerLink="/messages/mohammed-hussein"><b class="dm-avatar">M</b><span>Mohammed Hussein</span></a>
+      <a class="context-nav__item" routerLink="/messages/muhammad-hussein"><b class="dm-avatar">M</b><span>Muhammad Hussein ...</span></a>
+      <button class="context-nav__item context-nav__item--muted" type="button" (click)="newMessage.emit()"><lucide-icon [img]="Plus" size="16" /><span>New message</span></button>
+    </section>
+
+    <footer class="context-footer"><button type="button" (click)="settings.emit()"><lucide-icon [img]="SlidersHorizontal" size="15" />Customize Sidebar</button></footer>
+  </aside>
+`,
+  styles: [`
+    :host { display: block; height: 100%; }.context-sidebar { position: relative; display: flex; flex-direction: column; width: 15.65rem; height: 100%; min-height: 100%; padding: .7rem .6rem .7rem; color: var(--color-text-secondary); background: var(--color-surface-1); border-inline-end: 1px solid var(--color-border); }.context-top { display: flex; align-items: center; justify-content: space-between; min-height: 2.2rem; padding-inline: .25rem; color: var(--color-text-primary); }.context-top strong { font-size: .96rem; }.context-top > div { display: flex; align-items: center; gap: .25rem; }.context-top button { width: 1.75rem; height: 1.75rem; display: grid; place-items: center; border: 0; border-radius: .35rem; color: var(--color-text-muted); background: transparent; cursor: pointer; }.context-top button:hover { color: var(--color-text-primary); background: var(--color-surface-3); }.context-top .create { width: auto; display: inline-flex; gap: .25rem; padding: 0 .55rem; color: #fff; background: var(--color-accent); font: inherit; font-size: .73rem; font-weight: 750; }.context-top .create:hover { background: var(--color-accent-strong); }.home-list { display: grid; gap: .05rem; margin-top: .2rem; }.more-link { width: 100%; min-height: 1.8rem; display: flex; align-items: center; gap: .5rem; margin-top: .15rem; padding: 0 .55rem; border: 0; border-radius: .35rem; color: var(--color-text-muted); background: transparent; font: inherit; font-size: .72rem; cursor: pointer; }.more-link:hover { color: var(--color-text-primary); background: var(--color-surface-3); }.context-nav__item, .space-row, .space-child { width: 100%; min-height: 1.9rem; display: flex; align-items: center; gap: .55rem; padding: 0 .55rem; border: 0; border-radius: .35rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .75rem; font-weight: 520; text-align: start; text-decoration: none; cursor: pointer; }.context-nav__item:hover, .space-row:hover, .space-child:hover { color: var(--color-text-primary); background: var(--color-surface-3); }.context-nav__item--active { color: var(--color-text-primary); background: var(--color-surface-3); }.context-nav__item em { color: var(--color-text-muted); font-size: .65rem; font-style: normal; }.nav-section { margin: .55rem 0; overflow: hidden; }.nav-section > p, .nav-section header p { margin: 0 0 .35rem .55rem; color: var(--color-text-muted); font-size: .61rem; font-weight: 800; letter-spacing: .08em; }.nav-section header { display: flex; align-items: center; justify-content: space-between; }.nav-section header button { width: 1.55rem; height: 1.55rem; display: grid; place-items: center; margin-inline-end: .22rem; border: 0; border-radius: .3rem; color: var(--color-text-muted); background: var(--color-surface-3); cursor: pointer; }.space-row { min-height: 2rem; }.space-row svg:last-child { margin-inline-start: auto; color: var(--color-text-muted); }.space-row--selected { color: var(--color-text-primary); background: var(--color-surface-3); }.space-badge { width: 1.2rem; height: 1.2rem; display: grid; place-items: center; border-radius: .28rem; color: #fff; background: var(--color-accent); font-size: .62rem; }.space-badge--blue { background: #2c78c5; }.space-row__lock { flex: none; color: var(--color-text-muted); }.space-empty { margin: .1rem 0 .3rem .55rem; color: var(--color-text-muted); font-size: .7rem; }.space-child { min-height: 1.65rem; margin-inline-start: 1.2rem; width: calc(100% - 1.2rem); color: var(--color-text-muted); font-size: .68rem; }.channel-dot, .dm-avatar { width: 1rem; height: 1rem; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #16a883; font-size: .59rem; }.dm-avatar { background: var(--color-accent-strong); }.context-nav__item--muted { color: var(--color-text-muted); }.context-footer { margin-top: auto; padding-top: .5rem; border-top: 1px solid var(--color-border); }.context-footer button { width: 100%; min-height: 1.9rem; display: flex; align-items: center; gap: .5rem; border: 0; border-radius: .35rem; padding: 0 .55rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .72rem; cursor: pointer; }.context-footer button:hover { color: var(--color-text-primary); background: var(--color-surface-3); }.context-sidebar--collapsed { width: 4.3rem; }.context-sidebar--collapsed .context-top strong, .context-sidebar--collapsed .create span, .context-sidebar--collapsed .more-link span, .context-sidebar--collapsed .home-list, .context-sidebar--collapsed .context-nav__item span, .context-sidebar--collapsed .nav-section, .context-sidebar--collapsed .context-footer button span { display: none; }.context-sidebar--collapsed .context-top { justify-content: center; }.context-sidebar--collapsed .context-top > div { flex-direction: column; }.context-sidebar--collapsed .create { width: 2.1rem; padding: 0; } @media (max-width: 720px) { .context-sidebar { display: none; } }
+  `],
+})
+export class AppSidebarComponent {
+  readonly Hash = Hash; readonly Lock = Lock; readonly MessageSquareText = MessageSquareText; readonly MoreHorizontal = MoreHorizontal;
+  readonly PanelLeftClose = PanelLeftClose; readonly PanelLeftOpen = PanelLeftOpen;
+  readonly Plus = Plus; readonly SlidersHorizontal = SlidersHorizontal; readonly Star = Star;
+
+  private readonly workspace = inject(WorkspaceCustomizationService);
+  readonly workspaceStore = inject(WorkspaceStore);
+  readonly spaceStore = inject(SpaceStore);
+
+  /** The Home widget list — driven by the "Home" tab in Customize (see workspace-customization.service.ts). */
+  readonly checkedHomeItems = computed(() => this.workspace.homeItems().filter(item => item.checked));
+  readonly activeWorkspaceName = computed(() => this.workspaceStore.activeWorkspace()?.name ?? '');
+
+  readonly collapsed = input(false);
+  readonly collapse = output<void>();
+  readonly settings = output<void>();
+  readonly more = output<void>();
+  readonly createRequested = output<void>();
+  readonly addSpace = output<void>();
+  readonly addSpaceItem = output<void>();
+  readonly addChannel = output<void>();
+  readonly newMessage = output<void>();
+}

@@ -127,10 +127,10 @@ export interface SidebarSpace {
 
     .space-row-wrap { position: relative; overflow: visible; }
     .space-row {
-      width: 100%; min-height: 2.2rem; display: flex; align-items: center; gap: .5rem;
+      width: 100%; min-height: 2.1rem; display: flex; align-items: center; gap: .5rem;
       padding: 0 .5rem 0 .35rem; border: 0; border-radius: .5rem;
       color: var(--color-text-secondary); background: transparent;
-      font: inherit; font-size: .875rem; font-weight: 500;
+      font: inherit; font-size: .8125rem; font-weight: 500;
       text-align: start; text-decoration: none; cursor: pointer;
     }
     .space-row:hover, .space-row--selected { color: var(--color-text-primary); background: var(--color-surface-3); }
@@ -152,9 +152,9 @@ export interface SidebarSpace {
     }
     .space-action-btn:hover { background: var(--color-border-strong); color: var(--color-text-primary); }
     .space-badge {
-      width: 1.5rem; height: 1.5rem; display: grid; place-items: center;
+      width: 1.35rem; height: 1.35rem; display: grid; place-items: center;
       border-radius: .4rem; color: #fff; background: var(--color-accent);
-      font-size: .78rem; font-weight: 700; flex-shrink: 0;
+      font-size: .7rem; font-weight: 700; flex-shrink: 0;
     }
     .space-row__lock { flex: none; color: var(--color-text-muted); }
     .space-tooltip {
@@ -171,7 +171,7 @@ export interface SidebarSpace {
       width: calc(100% - 1.3rem); min-height: 2.05rem; margin-inline-start: 1.3rem;
       display: flex; align-items: center; gap: .6rem; padding: 0 .6rem;
       border: 0; border-radius: .5rem; color: var(--color-text-secondary);
-      background: transparent; font: inherit; font-size: .84rem; cursor: pointer;
+      background: transparent; font: inherit; font-size: .78rem; cursor: pointer;
     }
     .space-child:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .add-item-row { color: var(--color-text-muted); }

@@ -8,7 +8,7 @@ import { WorkspaceCustomizationService } from '../../../core/theme/workspace-cus
 type CustomizerTab = 'navigation' | 'home' | 'sections' | 'themes';
 
 const ACCENT_SWATCHES: { id: AccentName; label: string }[] = [
-  { id: 'black', label: 'Black' }, { id: 'purple', label: 'Purple' }, { id: 'blue', label: 'Blue' },
+  { id: 'black', label: 'Default' }, { id: 'purple', label: 'Purple' }, { id: 'blue', label: 'Blue' },
   { id: 'pink', label: 'Pink' }, { id: 'violet', label: 'Violet' }, { id: 'indigo', label: 'Indigo' },
   { id: 'orange', label: 'Orange' }, { id: 'teal', label: 'Teal' }, { id: 'bronze', label: 'Bronze' },
   { id: 'mint', label: 'Mint' },
@@ -201,7 +201,7 @@ const ACCENT_SWATCHES: { id: AccentName; label: string }[] = [
     .accent-grid button { display: flex; align-items: center; gap: .5rem; min-height: 2.35rem; padding: 0 .65rem; border: 1.5px solid var(--color-border); border-radius: .5rem; color: var(--color-text-primary); background: var(--color-surface-2); font: inherit; font-size: .80rem; font-weight: 650; cursor: pointer; }
     .accent-grid button.selected { border-color: var(--color-accent); background: var(--color-accent-soft); }
     .accent-dot { flex: none; width: 1.05rem; height: 1.05rem; border-radius: 50%; }
-    .accent-dot--black { background: #5b5f68; } .accent-dot--purple { background: #7b68ee; } .accent-dot--blue { background: #2f8fe0; }
+    .accent-dot--black { background: linear-gradient(135deg, #eeeeee 50%, #7b68ee 50%); } .accent-dot--purple { background: #7b68ee; } .accent-dot--blue { background: #2f8fe0; }
     .accent-dot--pink { background: #e0447e; } .accent-dot--violet { background: #9750e0; } .accent-dot--indigo { background: #4a5fd9; }
     .accent-dot--orange { background: #f76808; } .accent-dot--teal { background: #1fa89a; } .accent-dot--bronze { background: #a97c62; } .accent-dot--mint { background: #33c48a; }
   `],

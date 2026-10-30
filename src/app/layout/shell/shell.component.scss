@@ -21,6 +21,15 @@
 .rail-item--active lucide-icon { color: var(--rail-text-strong); }
 button.rail-item.ant-btn { height: auto; }
 
+/* "Icons only" (Customize → Navigation → Appearance): hide labels and slim the rail */
+.app-shell--icons .app-shell__body { grid-template-columns: 3.5rem minmax(0, 1fr); }
+.app-shell--icons:not(.app-shell--collapsed) .app-shell__body { grid-template-columns: 3.5rem auto minmax(0, 1fr); }
+.app-shell--icons .rail-item { width: 2.7rem; min-height: 2.7rem; padding: .25rem; }
+.app-shell--icons .rail-item span { display: none; }
+.app-shell--icons .rail-item lucide-icon { transform: scale(1.1); }
+.app-shell--icons .global-rail { padding-inline: .35rem; }
+@media (max-width: 720px) { .app-shell--icons .app-shell__body { grid-template-columns: 3.5rem minmax(0,1fr) !important; } }
+
 .more-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .3rem; padding: .4rem; width: 15.2rem; }
 .more-grid button.ant-btn { display: grid; justify-items: center; gap: .32rem; min-height: 3.9rem; height: auto; padding: .4rem 0; border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .72rem; font-weight: 600; text-align: center; }
 .more-grid button.ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }

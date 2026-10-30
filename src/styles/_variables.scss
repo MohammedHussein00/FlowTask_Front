@@ -34,7 +34,7 @@
   --cu-banner: #221b53;
 }
 
-:root[data-accent="black"] { --color-accent: #5b5f68; --color-accent-strong: #494c54; --color-accent-bright: #9aa0ac; --color-accent-soft: rgb(91 95 104 / .2); --color-focus: #9aa0ac; }
+:root[data-accent="black"] { --color-accent: #7b68ee; --color-accent-strong: #6a57dd; --color-accent-bright: #a79bf6; --color-accent-soft: rgb(123 104 238 / .2); --color-focus: #8f80f2; }  /* "Default": ClickUp violet accents with neutral chrome */
 :root[data-accent="purple"] { --color-accent: #7b68ee; --color-accent-strong: #6a57dd; --color-accent-bright: #a79bf6; --color-accent-soft: rgb(123 104 238 / .2); --color-focus: #8f80f2; }
 :root[data-accent="blue"] { --color-accent: #2f8fe0; --color-accent-strong: #2277c4; --color-accent-bright: #8ec4f5; --color-accent-soft: rgb(47 143 224 / .18); --color-focus: #8ec4f5; }
 :root[data-accent="pink"] { --color-accent: #e0447e; --color-accent-strong: #c73468; --color-accent-bright: #ff9dc0; --color-accent-soft: rgb(224 68 126 / .2); --color-focus: #ff9dc0; }
@@ -62,7 +62,7 @@
   --rail-item-hover: color-mix(in srgb, var(--color-accent) 22%, #1c1c1c);
   --rail-text: #ffffff;
   --rail-text-strong: #ffffff;
-  /* Colour themes (anything but the default violet/black): rail, banner and primary actions follow the accent */
+  /* Colour themes (every accent except "Default"): rail, banner and primary actions follow the accent */
   --rail-bg: linear-gradient(180deg, color-mix(in srgb, var(--color-accent) 21%, #0a0a0a), color-mix(in srgb, var(--color-accent) 15%, #0a0a0a));
   --cu-banner: color-mix(in srgb, var(--color-accent) 21%, #0a0a0a);
   --cu-banner-text: #eeeeee;
@@ -76,8 +76,7 @@
   --color-cta-border: transparent;
 }
 
-/* Default ClickUp look (violet / black): neutral rail, white primary buttons, indigo banner */
-:root[data-theme="dark"][data-accent="purple"],
+/* Default ClickUp look ("Default" option): neutral rail, white primary buttons, indigo banner */
 :root[data-theme="dark"][data-accent="black"] {
   --rail-bg: #191919;
   --rail-text: #d0d0d0;
@@ -123,7 +122,6 @@
   --color-cta-border: transparent;
 }
 
-:root[data-theme="light"][data-accent="purple"],
 :root[data-theme="light"][data-accent="black"] {
   --rail-bg: #ffffff;
   --rail-text: #5a6070;

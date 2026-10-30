@@ -37,11 +37,11 @@ import { ChannelSnapshot } from '../../../../core/stores/channel.store';
   styles: [`
     :host { display: block; }
     .nav-section { margin: .7rem 0; }
-    .nav-section p { margin: 0 0 .3rem .6rem; color: var(--color-text-secondary); font-size: .84rem; font-weight: 600; }
-    .context-nav__item { width: 100%; min-height: 2.1rem; display: flex; align-items: center; gap: .65rem; padding: 0 .6rem; border: 0; border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .875rem; font-weight: 500; text-align: start; text-decoration: none; cursor: pointer; }
+    .nav-section p { margin: 0 0 .3rem .6rem; color: var(--color-text-secondary); font-size: .75rem; font-weight: 600; }
+    .context-nav__item { width: 100%; min-height: 2rem; display: flex; align-items: center; gap: .6rem; padding: 0 .6rem; border: 0; border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .8125rem; font-weight: 500; text-align: start; text-decoration: none; cursor: pointer; }
     .context-nav__item:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .context-nav__item--active { color: var(--color-text-primary); background: var(--color-surface-3); }
-    .context-nav__item em { color: var(--color-text-muted); font-size: .78rem; font-style: normal; }
+    .context-nav__item em { color: var(--color-text-muted); font-size: .72rem; font-style: normal; }
     .context-nav__item--muted { color: var(--color-text-muted); }
     .context-nav__item--muted:hover { color: var(--color-text-secondary); }
     .context-nav__item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

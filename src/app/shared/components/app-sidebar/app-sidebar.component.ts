@@ -153,7 +153,7 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
       flex: 0 0 auto; display: flex; align-items: center; gap: .35rem;
       min-height: 2.5rem; padding-inline: .45rem .1rem; margin-bottom: .25rem;
     }
-    .sidebar-home-label { font-size: 1.05rem; font-weight: 700; color: var(--color-text-primary); letter-spacing: -.01em; flex: 1; }
+    .sidebar-home-label { font-size: .95rem; font-weight: 700; color: var(--color-text-primary); letter-spacing: -.01em; flex: 1; }
     .collapse-btn {
       width: 2rem; height: 2rem; display: grid; place-items: center; flex: none; padding: 0;
       border: 0; border-radius: .55rem; color: var(--color-text-secondary); background: var(--color-surface-3);
@@ -161,7 +161,7 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
     .collapse-btn:hover { color: var(--color-text-primary); filter: brightness(1.2); }
     .create.ant-btn {
       display: inline-flex; align-items: center; gap: .3rem;
-      height: 2rem; padding: 0 .8rem 0 .6rem; font-size: .88rem; font-weight: 600; border-radius: .55rem;
+      height: 1.9rem; padding: 0 .75rem 0 .55rem; font-size: .8rem; font-weight: 600; border-radius: .55rem;
     }
 
     /* ── Scroll region ── */
@@ -170,11 +170,11 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
     /* ── Home menu (ant menu re-skinned) ── */
     .home-menu.ant-menu { background: transparent; border-inline-end: 0; color: inherit; }
     .home-menu .ant-menu-item {
-      width: 100%; height: 2.1rem; line-height: 2.1rem;
+      width: 100%; height: 2rem; line-height: 2rem;
       display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important;
       margin: 0 0 .1rem !important; padding: 0 .6rem !important;
       border-radius: .5rem; color: var(--color-text-secondary);
-      background: transparent; font-size: .875rem; font-weight: 500; white-space: nowrap;
+      background: transparent; font-size: .8125rem; font-weight: 500; white-space: nowrap;
     }
     .home-menu .ant-menu-item:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .home-menu .ant-menu-item-selected { color: var(--color-text-primary) !important; background: var(--color-surface-3) !important; }
@@ -192,8 +192,8 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
     /* ── More button ── */
     .more-link.ant-btn {
       display: inline-flex !important; align-items: center !important; justify-content: flex-start !important;
-      gap: .65rem !important; min-height: 2.1rem; height: auto; margin-top: .05rem; padding: 0 .6rem !important;
-      color: var(--color-text-secondary); font-size: .875rem; font-weight: 500; text-align: left; border-radius: .5rem;
+      gap: .65rem !important; min-height: 2rem; height: auto; margin-top: .05rem; padding: 0 .6rem !important;
+      color: var(--color-text-secondary); font-size: .8125rem; font-weight: 500; text-align: left; border-radius: .5rem;
     }
     .more-link.ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .more-link.ant-btn lucide-icon { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 1.15rem; height: 1.15rem; margin: 0; }
@@ -208,7 +208,7 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
       display: flex; align-items: center; gap: 0; width: 100%;
       min-height: 2.15rem; padding: 0 .45rem;
       border: 0; border-radius: .45rem; background: transparent;
-      color: var(--color-text-secondary); font: inherit; font-size: .84rem;
+      color: var(--color-text-secondary); font: inherit; font-size: .8125rem;
       text-align: start; cursor: pointer;
     }
     .sbm-item:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
@@ -222,7 +222,7 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
     .context-footer .ant-btn {
       display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 2.2rem; height: auto; padding: 0 .75rem;
       border-radius: .6rem; color: var(--color-text-primary); background: var(--color-surface-3);
-      font-size: .84rem; font-weight: 600;
+      font-size: .78rem; font-weight: 600;
     }
     .context-footer .ant-btn:hover { background: var(--color-border-strong); color: var(--color-text-primary); }
 

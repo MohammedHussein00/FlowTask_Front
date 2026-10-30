@@ -8,8 +8,8 @@ export type NavDensity = 'icons' | 'icons-labels';
 type ThemePreference = { mode: ThemeMode; accent: AccentName };
 
 // v2: resets saved appearance once so the new ClickUp-style default (violet accent) applies
-const STORAGE_KEY = 'flowtask.appearance.v2';
-const DEFAULT_PREFERENCE: ThemePreference = { mode: 'dark', accent: 'purple' };
+const STORAGE_KEY = 'flowtask.appearance.v3';
+const DEFAULT_PREFERENCE: ThemePreference = { mode: 'dark', accent: 'black' };
 const ACCENTS: readonly AccentName[] = ['black', 'purple', 'blue', 'pink', 'violet', 'indigo', 'orange', 'teal', 'bronze', 'mint'];
 
 @Injectable({ providedIn: 'root' })

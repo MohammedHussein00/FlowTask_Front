@@ -1,54 +1,63 @@
-import { ApplicationConfig, provideZonelessChangeDetection, provideAppInitializer, inject } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, ErrorHandler, Injectable, inject } from '@angular/core';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withInterceptors, withFetch } from '@angular/common/http';
-import { provideTransloco, TranslocoService } from '@ngneat/transloco';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { en_US, provideNzI18n } from 'ng-zorro-antd/i18n';
-import { provideNzIcons } from 'ng-zorro-antd/icon';
-import {
-  CloseOutline,
-  CheckCircleFill,
-  InfoCircleFill,
-  ExclamationCircleFill,
-  CloseCircleFill,
-} from '@ant-design/icons-angular/icons';
+import { APOLLO_OPTIONS, Apollo } from 'apollo-angular';
+import { provideTransloco, TranslocoLoader, Translation } from '@ngneat/transloco';
 import { firstValueFrom } from 'rxjs';
 import { routes } from './app.routes';
-import { authInterceptorFn } from './core/interceptors/auth-interceptor';
-import { TranslocoHttpLoader } from './transloco-loader';
-import { APP_CONFIG } from './core/config/app.config';
+import { authInterceptor } from './core/auth/auth.interceptor';
+import { AuthService } from './core/auth/auth.service';
+import { AuthSessionStore } from './core/auth/auth-session.store';
+import { GlobalErrorHandler } from './core/errors/global-error.handler';
+import { LocaleService } from './core/i18n/locale.service';
+import { apolloOptionsFactory } from './core/graphql/apollo.config';
+import { environment } from '../environments/environment';
 
-const icons = [CloseOutline, CheckCircleFill, InfoCircleFill, ExclamationCircleFill, CloseCircleFill];
+@Injectable({ providedIn: 'root' })
+export class GlobalTranslocoLoader implements TranslocoLoader {
+  private readonly http = inject(HttpClient);
+
+  getTranslation(lang: string) {
+    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+  }
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptorFn]), withFetch()),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideAnimationsAsync(),
-    provideNzI18n(en_US),
-    provideNzIcons(icons),
+    LocaleService,
+    AuthSessionStore,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+
+    // Restores session (including access token) from localStorage before
+    // any route guard or API call runs.
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => {
+        const auth = inject(AuthService);
+        return () => firstValueFrom(auth.restoreSession());
+      },
+      multi: true,
+    },
+
+    // Apollo — single setup via apolloOptionsFactory
+    Apollo,
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: apolloOptionsFactory,
+    },
+
     provideTransloco({
       config: {
-        availableLangs: ['en', 'ar'],
-        defaultLang: 'en',
-        fallbackLang: 'en',
+        availableLangs: ['en', 'ar', 'fr'],
+        defaultLang: 'ar',
         reRenderOnLangChange: true,
-        prodMode: false,
-        missingHandler: { useFallbackTranslation: true, logMissingKey: true },
+        prodMode: environment.production,
       },
-      loader: TranslocoHttpLoader,
+      loader: GlobalTranslocoLoader,
     }),
-    provideAppInitializer(() => {
-      const transloco = inject(TranslocoService);
-      return firstValueFrom(transloco.load('en'));
-    }),
-    {
-      provide: APP_CONFIG,
-      useValue: {
-        baseUrl: 'https://eol-eg1.runasp.net',
-        // baseUrl: 'https://localhost:7091',
-      },
-    },
   ],
 };

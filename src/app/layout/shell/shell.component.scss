@@ -1,0 +1,67 @@
+/* ClickUp reference fidelity: an accent-tinted product rail and a theme-aware workspace canvas. */
+:host { display: block; height: 100%; }
+
+/* The whole shell is pinned to exactly the browser viewport height (not min-height), so
+   nothing inside it can push the page itself into a second, outer scrollbar. Each region
+   below (rail / sidebar / main content) scrolls internally instead. */
+.app-shell { height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; color: var(--color-text-primary); background: var(--color-canvas); }
+.app-shell__body { position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: 3.9rem minmax(0, 1fr); }
+.app-shell:not(.app-shell--collapsed) .app-shell__body { grid-template-columns: 3.9rem auto minmax(0, 1fr); }
+
+.global-rail { position: relative; z-index: 4; height: 100%; min-height: 0; display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; padding: .65rem .38rem .65rem; color: var(--rail-text); background: var(--rail-bg); border-inline-end: 1px solid var(--color-border); transition: background .2s ease, color .2s ease; scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; }
+.global-rail::-webkit-scrollbar { width: .35rem; }
+.global-rail::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: .3rem; }
+.rail-expand.ant-btn { width: 2.4rem; height: 2.05rem; margin: 0 auto .4rem; display: grid; place-items: center; border: 0; border-radius: .5rem; color: var(--rail-text-strong); background: var(--rail-item-hover); }
+.rail-expand.ant-btn:hover { filter: brightness(1.15); background: var(--rail-item-hover); }
+.rail-nav { flex: 1; display: grid; align-content: start; gap: .42rem; }
+.rail-footer { display: grid; gap: .42rem; }
+.rail-item { width: 2.95rem; min-height: 2.92rem; display: grid; place-items: center; align-content: center; gap: .18rem; margin: 0 auto; padding: .25rem; border: 0; border-radius: .5rem; color: var(--rail-text); background: transparent; font: inherit; font-size: .53rem; font-weight: 750; text-decoration: none; cursor: pointer; transition: background .16s ease, color .16s ease; }
+.rail-item:hover, .rail-item--active { color: var(--rail-text-strong); background: var(--rail-item-hover); }
+button.rail-item.ant-btn { height: auto; }
+
+.more-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .3rem; padding: .4rem; width: 15.2rem; }
+.more-grid button.ant-btn { display: grid; justify-items: center; gap: .32rem; min-height: 3.9rem; height: auto; padding: .4rem 0; border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .61rem; font-weight: 600; text-align: center; }
+.more-grid button.ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
+.more-icon { width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: .5rem; color: #fff; }
+.more-icon--violet { background: #6b4de0; }
+.more-icon--teal { background: #16a883; }
+.more-icon--blue { background: #2c78c5; }
+.more-icon--indigo { background: #4756c9; }
+.more-icon--amber { background: #b8860b; }
+.more-icon--rose { background: #d64e79; }
+.more-icon--gold { background: #c99a2e; }
+.more-icon--orange { background: #d5732e; }
+.more-icon--muted { background: #565860; }
+.more-footer.ant-btn { width: calc(100% - .8rem); margin: .15rem .4rem .4rem; height: auto; min-height: 2rem; display: flex; align-items: center; justify-content: center; gap: .4rem; border: 1px solid var(--color-border-strong); border-radius: .4rem; padding: 0 .6rem; color: var(--color-text-secondary); font: inherit; font-size: .68rem; font-weight: 650; }
+.more-footer.ant-btn:hover { background: var(--color-surface-3); }
+
+/* Settings overlay: spans the contextual sidebar + main content columns, sits above them */
+.settings-overlay-host { position: absolute; inset-block: 0; inset-inline-start: 3.9rem; inset-inline-end: 0; z-index: 20; display: flex; overflow: hidden; }
+
+.app-shell__main { min-width: 0; height: 100%; min-height: 0; display: flex; flex-direction: column; }
+.app-shell__content { flex: 1; min-width: 0; min-height: 0; overflow: auto; }
+
+.toast-stack { position: fixed; z-index: 100; inset-inline-end: 1.25rem; inset-block-end: 1.25rem; display: flex; flex-direction: column; gap: .5rem; width: min(22rem, calc(100vw - 2rem)); }
+.toast { display: flex; align-items: flex-start; gap: .65rem; width: 100%; padding: .8rem .85rem; border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); color: var(--color-text-primary); background: var(--color-surface-2); box-shadow: var(--shadow-lg); text-align: start; cursor: pointer; animation: toast-in .2s ease both; }
+.toast--success { border-inline-start: 3px solid var(--color-success); }
+.toast--error { border-inline-start: 3px solid var(--color-danger); }
+.toast--warning { border-inline-start: 3px solid var(--color-warning); }
+.toast__mark { display: grid; place-items: center; width: 1.2rem; height: 1.2rem; border-radius: 50%; color: var(--color-accent-bright); background: var(--color-accent-soft); }
+.toast--error .toast__mark { color: var(--color-danger-text); background: var(--color-danger-soft); }
+.toast__body { flex: 1; display: flex; flex-direction: column; gap: .15rem; }
+.toast__body strong { font-size: .8rem; }
+.toast__body small { color: var(--color-text-secondary); font-size: .72rem; line-height: 1.4; }
+.toast__close { color: var(--color-text-muted); }
+
+/* nz-modal re-skin so the "coming soon" placeholder modals launched from the sidebar match the app chrome */
+::ng-deep .app-modal .ant-modal-content { border: 1px solid var(--color-border-strong); border-radius: .9rem; color: var(--color-text-primary); background: var(--color-surface-1); box-shadow: var(--shadow-lg); }
+::ng-deep .app-modal .ant-modal-header { border-radius: .9rem .9rem 0 0; border-bottom: 1px solid var(--color-border); background: transparent; }
+::ng-deep .app-modal .ant-modal-title { color: var(--color-text-primary); }
+::ng-deep .app-modal .ant-modal-close { color: var(--color-text-muted); }
+::ng-deep .app-modal .ant-modal-body { color: var(--color-text-secondary); }
+::ng-deep .rail-more-popover .ant-popover-inner { padding: 0 !important; background: var(--color-surface-2) !important; border: 1px solid var(--color-border-strong) !important; border-radius: .7rem !important; box-shadow: 0 1.2rem 3rem rgb(0 0 0 / .5) !important; }
+::ng-deep .rail-more-popover .ant-popover-arrow { display: none !important; }
+
+@keyframes toast-in { from { opacity: 0; transform: translateY(.5rem); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 720px) { .app-shell__body { grid-template-columns: 3.85rem minmax(0,1fr) !important; } }
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } }

@@ -1,0 +1,43 @@
+/* ── sb-popover: disable leave animation to prevent jump-to-0,0 bug ──────────
+   When nzPopoverTrigger="click" closes via .hide(), ng-zorro normally runs
+   ant-motion-zoom-big-leave. During that animation Angular's CD can fire and
+   call updatePosition() on a detaching overlay, which returns [0,0] as a
+   fallback and causes the visible "jump to top-left then fade" glitch.
+   Setting animation-duration: 0 makes the leave instant so no CD pass ever
+   catches the overlay in a mid-animation unanchored state.                  */
+.sb-popover {
+  &.ant-popover {
+    /* Kill enter/leave animations on the whole overlay */
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+
+  /* Zoom animation classes ng-zorro adds during open/close */
+  .ant-zoom-big-fast-enter,
+  .ant-zoom-big-fast-leave,
+  .ant-zoom-big-fast-enter-active,
+  .ant-zoom-big-fast-leave-active,
+  .ant-motion-zoom-big-enter,
+  .ant-motion-zoom-big-leave,
+  .ant-motion-zoom-big-enter-active,
+  .ant-motion-zoom-big-leave-active {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+
+  /* Kill arrow */
+  .ant-popover-arrow,
+  .ant-popover-arrow-content { display: none !important; }
+
+  /* Panel chrome */
+  .ant-popover-inner {
+    padding: 0 !important;
+    background: var(--color-surface-1) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: .5rem !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .45) !important;
+    overflow: visible !important;
+  }
+
+  .ant-popover-inner-content { padding: 0 !important; }
+}

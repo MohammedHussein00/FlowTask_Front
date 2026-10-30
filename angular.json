@@ -42,8 +42,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "src/styles.less"
+              "src/styles.scss"
             ],
             "outputMode": "static"
           },

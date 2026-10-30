@@ -1,0 +1,34 @@
+// ── Add this to your global styles.scss ──────────────────────────────────────
+//
+// Strips all nz-popover chrome and makes it look like a bare menu panel.
+// Scoped to .sb-popover so it only affects sidebar menus.
+
+.sb-popover {
+  // Kill the arrow
+  .ant-popover-arrow {
+    display: none !important;
+  }
+
+  // Remove all default popover padding/background — our .sb-menu provides its own
+
+
+  .ant-popover-inner-content {
+    padding: 0 !important;
+  }
+}
+  .ant-popover-inner {
+    padding: 0 !important;
+    background: var(--color-surface-1) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: .5rem !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .45) !important;
+    // Critical: allow the Imports submenu to escape the panel bounds
+    overflow: visible !important;
+  }
+// ── Ensure no ancestor clips the popover portal ───────────────────────────────
+// Add overflow: visible to whatever wraps your sidebar in the layout.
+// Example — adjust selector to match your shell component:
+//
+//   app-shell, .layout-sidebar, .app-sidebar-host {
+//     overflow: visible !important;
+//   }

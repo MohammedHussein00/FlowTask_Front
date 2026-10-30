@@ -1,0 +1,13 @@
+.login-form { /* Flowspace Command Refresh: compact, high-contrast controls for the shared editorial auth shell. */ display: grid; gap: .78rem; }
+.oauth-actions { display: grid; gap: .55rem; }
+.oauth-button { display: flex; align-items: center; justify-content: center; gap: .45rem; min-height: 2.35rem; border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); color: var(--color-text-primary); background: var(--color-surface-2); font: inherit; font-size: .73rem; font-weight: 700; cursor: pointer; transition: background .16s ease, border-color .16s ease, transform .16s ease; }
+.oauth-button:hover:not(:disabled) { transform: translateY(-1px); background: var(--color-surface-3); border-color: var(--color-accent); }
+.oauth-button:disabled { opacity: .55; cursor: not-allowed; }
+.divider { display: flex; align-items: center; gap: .55rem; color: var(--color-text-muted); } .divider span { flex: 1; height: 1px; background: var(--color-border); } .divider small { font-size: .72rem; }
+form { display: flex; flex-direction: column; gap: .8rem; }
+.field { display: flex; flex-direction: column; gap: .32rem; color: var(--color-text-secondary); font-size: .68rem; font-weight: 700; text-align: start; }
+.field input { width: 100%; min-height: 2.35rem; border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); padding: 0 .7rem; color: var(--color-text-primary); background: var(--color-surface-2); outline: 0; font-size: .75rem; transition: border-color .16s ease, box-shadow .16s ease; }
+.field input:hover { border-color: var(--color-accent); } .field input:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-soft); } .field input[aria-invalid="true"] { border-color: var(--color-danger); }
+.password-field { position: relative; } .password-field input { padding-inline-end: 2.35rem; } .password-toggle { position: absolute; inset-inline-end: 0; inset-block: 0; width: 2.3rem; display: grid; place-items: center; border: 0; border-radius: .35rem; color: var(--color-text-muted); background: transparent; cursor: pointer; } .password-toggle:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
+.field__error { color: var(--color-danger-text); font-size: .7rem; font-weight: 500; }
+.forgot-link { display: block; margin-top: .1rem; color: var(--color-accent-bright); font-size: .67rem; font-weight: 700; text-align: center; text-decoration: none; } .forgot-link:hover { text-decoration: underline; }

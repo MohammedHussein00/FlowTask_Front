@@ -1,0 +1,4 @@
+/* Prefer CSS logical properties (margin-inline, inset-inline, padding-inline) so
+   Arabic and left-to-right layouts share the same component styles. */
+:root[dir="rtl"] { --text-direction: rtl; }
+:root[dir="ltr"] { --text-direction: ltr; }

@@ -1,0 +1,21 @@
+{
+  "title": "Ajouter un canal",
+  "description": "Les canaux sont l'endroit où votre équipe communique. Mieux vaut les organiser autour d'un sujet — #marketing, par exemple.",
+  "nameLabel": "Nom du canal",
+  "namePlaceholder": "ex. marketing",
+  "topicLabel": "Sujet",
+  "topicOptional": "(facultatif)",
+  "topicPlaceholder": "De quoi parle ce canal ?",
+  "makePrivate": "Rendre privé",
+  "makePrivateHint": "Seuls les membres invités pourront voir ce canal.",
+  "in": "dans",
+  "cancel": "Annuler",
+  "create": "Créer le canal",
+  "creating": "Ajout du canal…",
+  "close": "Fermer",
+  "noName": "Donnez un nom à votre canal pour continuer.",
+  "noWorkspace": "Sélectionnez un espace de travail avant de créer un canal.",
+  "createError": "Une erreur est survenue lors de la création du canal. Veuillez réessayer.",
+  "channelCreated": "Canal créé",
+  "channelReadyMsg": "est prêt."
+}

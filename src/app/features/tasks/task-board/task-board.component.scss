@@ -1,0 +1,253 @@
+/* ═══════════════════════════════════════════════════════════
+   Task Board — ClickUp-style design system
+   Uses CSS custom properties defined in the global theme.
+   ═══════════════════════════════════════════════════════════ */
+
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-canvas);
+  color: var(--color-text-primary);
+}
+
+/* ── Board header ── */
+.ft-board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3.6rem;
+  padding: 0 .95rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ft-board-header h2 {
+  margin: 0;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.ft-board-actions {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+/* ── Accent button (replaces nz-button) ── */
+.ft-board-actions button,
+.ft-add-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  border: 0;
+  border-radius: .4rem;
+  background: var(--color-accent);
+  color: #fff;
+  font: inherit;
+  font-size: .7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .12s ease;
+}
+.ft-board-actions button:hover,
+.ft-add-card-btn:hover {
+  background: color-mix(in srgb, var(--color-accent) 80%, #000);
+}
+.ft-board-actions button { min-height: 1.85rem; padding: 0 .75rem; }
+
+/* ── Kanban layout ── */
+.ft-kanban {
+  display: flex;
+  gap: .75rem;
+  padding: .75rem;
+  height: calc(100% - 3.6rem);
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+/* ── Column ── */
+.ft-column {
+  flex: none;
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: .75rem;
+  overflow: hidden;
+}
+
+.ft-column-header {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .65rem .75rem .55rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ft-col-dot {
+  width: .55rem;
+  height: .55rem;
+  border-radius: 50%;
+  flex: none;
+}
+
+.ft-col-label {
+  flex: 1;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Column count badge (replaces nz-tag) */
+.ft-col-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  padding: 0 .35rem;
+  border-radius: .65rem;
+  background: var(--color-surface-3);
+  color: var(--color-text-muted);
+  font-size: .6rem;
+  font-weight: 700;
+}
+
+/* ── Column body ── */
+.ft-column-body {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  padding: .5rem .45rem;
+  min-height: 4rem;
+  flex: 1;
+}
+
+/* CDK drag placeholder */
+.cdk-drag-placeholder { opacity: .35; }
+.cdk-drag-animating { transition: transform .22s ease; }
+.ft-column-body.cdk-drop-list-dragging .ft-task-card:not(.cdk-drag-placeholder) {
+  transition: transform .22s ease;
+}
+
+/* ── Task card ── */
+.ft-task-card {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: .6rem .65rem;
+  border: 1px solid var(--color-border);
+  border-radius: .5rem;
+  background: var(--color-canvas);
+  cursor: grab;
+  transition: box-shadow .14s ease, border-color .14s ease;
+}
+.ft-task-card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 2px 8px color-mix(in srgb, #000 20%, transparent);
+}
+.ft-task-card:active { cursor: grabbing; }
+
+.ft-task-header {
+  display: flex;
+  align-items: flex-start;
+  gap: .4rem;
+}
+
+.ft-priority-dot {
+  width: .45rem;
+  height: .45rem;
+  border-radius: 50%;
+  flex: none;
+  margin-top: .18rem;
+}
+.priority-urgent  { background: #ef4444; }
+.priority-high    { background: #f97316; }
+.priority-normal  { background: #3b82f6; }
+.priority-low     { background: #6b7280; }
+
+.ft-task-name {
+  flex: 1;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.ft-task-due {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  font-size: .62rem;
+  color: var(--color-text-muted);
+}
+
+/* ── Task footer ── */
+.ft-task-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .3rem;
+}
+
+/* Avatar group (replaces nz-avatar) */
+.ft-avatar-group {
+  display: flex;
+  align-items: center;
+}
+.ft-avatar-overlap {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: .6rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-accent);
+  border: 2px solid var(--color-canvas);
+  margin-inline-end: -.4rem;
+  flex: none;
+}
+.ft-avatar-extra {
+  background: var(--color-surface-3);
+  color: var(--color-text-muted);
+}
+
+/* Priority tag (replaces nz-tag) */
+.ft-priority-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 1.15rem;
+  padding: 0 .4rem;
+  border-radius: .55rem;
+  font-size: .58rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  border: 0;
+}
+.ft-priority-tag.priority-urgent { background: color-mix(in srgb, #ef4444 20%, transparent); color: #ef4444; }
+.ft-priority-tag.priority-high   { background: color-mix(in srgb, #f97316 20%, transparent); color: #f97316; }
+.ft-priority-tag.priority-normal { background: color-mix(in srgb, #3b82f6 20%, transparent); color: #3b82f6; }
+.ft-priority-tag.priority-low    { background: var(--color-surface-3); color: var(--color-text-muted); }
+
+/* ── Add task button ── */
+.ft-add-card-btn {
+  align-self: flex-start;
+  min-height: 1.7rem;
+  padding: 0 .55rem;
+  border-radius: .35rem;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: .67rem;
+  font-weight: 600;
+  margin-top: .15rem;
+}
+.ft-add-card-btn:hover {
+  background: var(--color-surface-3);
+  color: var(--color-text-primary);
+}

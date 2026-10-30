@@ -1,0 +1,180 @@
+{
+  "allSettings": "Tous les paramètres",
+  "closeSettings": "Fermer les paramètres",
+  "logout": "Se déconnecter",
+
+  "adminGroup": "Admin",
+  "featuresGroup": "Fonctionnalités",
+  "integrationsGroup": "Intégrations et ClickApps",
+  "mySettingsGroup": "Mes paramètres",
+
+  "navGeneral": "Général",
+  "navPeople": "Personnes",
+  "navTeams": "Équipes",
+  "navUpgrade": "Mise à niveau",
+  "navBilling": "Facturation",
+  "navAiUsage": "Utilisation IA",
+  "navSecurity": "Sécurité et autorisations",
+  "navAuditLogs": "Journaux d'audit",
+  "navTrash": "Corbeille",
+  "navCustomFields": "Gestionnaire de champs",
+  "navTagManager": "Gestionnaire de tags",
+  "navTemplateCenter": "Centre de modèles",
+  "navAutomations": "Gestionnaire d'automatisations",
+  "navAiNotetaker": "Preneur de notes IA",
+  "navEmojis": "Emojis",
+  "navSpaces": "Espaces",
+  "navTaskTypes": "Types de tâches",
+  "navWorkSchedule": "Planning de travail",
+  "navAppCenter": "Centre d'applications",
+  "navImportsExports": "Imports / Exports",
+  "navClickupApi": "API ClickUp",
+  "navEmailIntegration": "Intégration e-mail",
+  "navPreferences": "Préférences",
+  "navNotifications": "Notifications",
+  "navWorkspaces": "Espaces de travail",
+  "navChat": "Chat",
+  "navReferrals": "Parrainages",
+  "navProfile": "Profil",
+
+  "profileTitle": "Mes paramètres",
+  "profileSection": "Profil",
+  "profileDesc": "Vos informations personnelles et paramètres de sécurité du compte.",
+  "changeAvatar": "Changer l'avatar",
+  "fullName": "Nom complet",
+  "email": "E-mail",
+  "password": "Mot de passe",
+  "enterNewPassword": "Saisir un nouveau mot de passe",
+
+  "twoFaTitle": "Authentification à deux facteurs (2FA)",
+  "twoFaDesc": "Sécurisez votre compte en activant la 2FA par SMS ou via un code temporaire d'une application d'authentification.",
+  "smsTwoFa": "Message texte (SMS)",
+  "smsTwoFaDesc": "Recevez un code unique par SMS à chaque connexion.",
+  "totpTwoFa": "Application d'authentification (TOTP)",
+  "totpTwoFaDesc": "Utilisez une application pour recevoir un code temporaire à chaque connexion.",
+  "businessBadge": "Business",
+
+  "themeColorTitle": "Couleur du thème",
+  "themeColorDesc": "Choisissez un thème préféré pour l'application.",
+  "appearanceLight": "Clair",
+  "appearanceDark": "Sombre",
+  "appearanceAuto": "Auto",
+
+  "languageRegionTitle": "Langue et région",
+  "languageRegionDesc": "Personnalisez votre langue et votre région.",
+  "language": "Langue",
+  "timezone": "Fuseau horaire",
+  "notifyTimezone": "Me notifier des changements de fuseau horaire",
+
+  "preferencesTitle": "Préférences",
+  "timeDateTitle": "Format de l'heure et de la date",
+  "timeDateDesc": "Sélectionnez la façon dont les heures et dates sont affichées.",
+  "weekStart": "Début de la semaine du calendrier",
+  "weekSunday": "Dimanche",
+  "weekMonday": "Lundi",
+  "timeFormat": "Format de l'heure",
+  "time24h": "24 heures",
+  "time12h": "12 heures",
+  "dateFormat": "Format de la date",
+
+  "preferencesSection": "Préférences",
+  "preferencesDesc": "Gérez vos préférences dans l'application.",
+
+  "linkMentionTitle": "Affichage des liens et mentions",
+  "linkMentionDesc": "Gérez la façon dont les liens sont collés et affichés.",
+  "externalLinkPreviews": "Aperçus de liens externes",
+  "externalLinkPreviewsDesc": "Collez un lien et nous le transformerons en carte d'aperçu.",
+  "taskMentions": "Mentions de tâches",
+  "taskMentionsDesc": "Choisissez ce qui s'affiche à côté du nom de la tâche lors d'une mention.",
+  "showStatus": "Afficher le statut",
+  "showAssignee": "Afficher l'assigné",
+  "showCustomId": "Afficher l'ID personnalisé",
+
+  "dangerZoneTitle": "Zone de danger",
+  "dangerZoneDesc": "Procédez avec prudence.",
+  "logoutAllSessions": "Se déconnecter de toutes les sessions",
+  "logoutAllSessionsDesc": "Déconnectez toutes les sessions, y compris sur mobile, iPad et autres navigateurs",
+  "deleteAccount": "Supprimer le compte",
+
+  "generalTitle": "Général",
+  "workspaceName": "Nom de l'espace de travail",
+  "workspaceNameDesc": "Le nom utilisé dans toute l'application pour votre espace de travail.",
+
+  "peopleTitle": "Personnes",
+  "peopleDesc": "Gérez les membres, invités et autorisations de votre espace de travail.",
+
+  "teamsTitle": "Équipes",
+  "teamsDesc": "Créez et gérez des équipes au sein de votre espace de travail.",
+
+  "securityTitle": "Sécurité et autorisations",
+  "securityDesc": "Configurez le contrôle d'accès, SSO et les politiques de sécurité.",
+
+  "auditLogsTitle": "Journaux d'audit",
+  "auditLogsDesc": "Consultez un journal des actions effectuées dans votre espace de travail.",
+
+  "trashTitle": "Corbeille",
+  "trashDesc": "Les éléments supprimés sont conservés ici pendant 30 jours avant d'être définitivement supprimés.",
+
+  "notificationsTitle": "Notifications",
+  "notificationsDesc": "Choisissez quand et comment vous recevez des notifications.",
+
+  "billingTitle": "Facturation",
+  "billingDesc": "Gérez votre abonnement et vos modes de paiement.",
+
+  "upgradeTitle": "Mise à niveau",
+  "upgradeDesc": "Explorez les plans et débloquez plus de fonctionnalités.",
+
+  "aiUsageTitle": "Utilisation IA",
+  "aiUsageDesc": "Suivez votre consommation de fonctionnalités IA pour cette période.",
+
+  "customFieldsTitle": "Gestionnaire de champs personnalisés",
+  "customFieldsDesc": "Créez et gérez des champs personnalisés dans votre espace de travail.",
+
+  "tagManagerTitle": "Gestionnaire de tags",
+  "tagManagerDesc": "Consultez et modifiez tous les tags utilisés dans votre espace de travail.",
+
+  "templateCenterTitle": "Centre de modèles",
+  "templateCenterDesc": "Parcourez et gérez des modèles pour les tâches, docs et plus.",
+
+  "automationsTitle": "Gestionnaire d'automatisations",
+  "automationsDesc": "Créez et gérez des règles d'automatisation dans votre espace de travail.",
+
+  "aiNotetakerTitle": "Preneur de notes IA",
+  "aiNotetakerDesc": "Configurez les notes de réunion et transcriptions alimentées par l'IA.",
+
+  "emojisTitle": "Emojis",
+  "emojisDesc": "Gérez les emojis personnalisés pour votre espace de travail.",
+
+  "spacesTitle": "Espaces",
+  "spacesDesc": "Gérez les espaces de travail et leurs paramètres.",
+
+  "taskTypesTitle": "Types de tâches",
+  "taskTypesDesc": "Personnalisez les types de tâches disponibles dans votre espace de travail.",
+
+  "workScheduleTitle": "Planning de travail",
+  "workScheduleDesc": "Définissez les heures et jours de travail pour votre espace de travail.",
+
+  "appCenterTitle": "Centre d'applications",
+  "appCenterDesc": "Connectez des outils et intégrations tiers.",
+
+  "importsExportsTitle": "Imports / Exports",
+  "importsExportsDesc": "Importez des données depuis d'autres outils ou exportez les données de votre espace.",
+
+  "clickupApiTitle": "API ClickUp",
+  "clickupApiDesc": "Gérez les clés API et les applications OAuth.",
+
+  "emailIntegrationTitle": "Intégration e-mail",
+  "emailIntegrationDesc": "Connectez des comptes e-mail pour créer et recevoir des tâches par e-mail.",
+
+  "workspacesTitle": "Espaces de travail",
+  "workspacesDesc": "Basculez entre les espaces de travail ou gérez ceux auxquels vous appartenez.",
+
+  "chatTitle": "Chat",
+  "chatDesc": "Configurez vos préférences de notification de chat.",
+
+  "referralsTitle": "Parrainages",
+  "referralsDesc": "Invitez des amis et gagnez des crédits.",
+
+  "selectSection": "Sélectionnez une section à gauche.",
+  "saved": "Enregistré"
+}

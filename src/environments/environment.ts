@@ -1,9 +1,9 @@
 export const environment = {
   production: false,
-  graphqlUrl: 'http://flowtask.runasp.net/graphql',
+  graphqlUrl: 'https://flowtask.runasp.net/graphql',
   oauth: {
     googleClientId: '',
     githubClientId: '',
   },
-  apiUrl:'http://flowtask.runasp.net/api',
+  apiUrl:'https://flowtask.runasp.net/api',
 };

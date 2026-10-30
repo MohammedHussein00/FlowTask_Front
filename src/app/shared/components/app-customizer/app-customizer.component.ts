@@ -203,7 +203,7 @@ const ACCENT_SWATCHES: { id: AccentName; label: string }[] = [
     .accent-dot { flex: none; width: 1.05rem; height: 1.05rem; border-radius: 50%; }
     .accent-dot--black { background: #5b5f68; } .accent-dot--purple { background: #7b68ee; } .accent-dot--blue { background: #2f8fe0; }
     .accent-dot--pink { background: #e0447e; } .accent-dot--violet { background: #9750e0; } .accent-dot--indigo { background: #4a5fd9; }
-    .accent-dot--orange { background: #e2762e; } .accent-dot--teal { background: #1fa89a; } .accent-dot--bronze { background: #a97c62; } .accent-dot--mint { background: #33c48a; }
+    .accent-dot--orange { background: #f76808; } .accent-dot--teal { background: #1fa89a; } .accent-dot--bronze { background: #a97c62; } .accent-dot--mint { background: #33c48a; }
   `],
 })
 export class AppCustomizerComponent {

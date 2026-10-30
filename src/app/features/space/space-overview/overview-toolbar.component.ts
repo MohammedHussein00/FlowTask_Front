@@ -270,11 +270,11 @@ export interface FilterRow {
     .ovt-autorefresh {
       display: inline-flex; align-items: center; gap: .28rem;
       height: 1.65rem; padding: 0 .5rem;
-      border: 1px solid var(--color-border); border-radius: 2rem;
-      background: transparent; color: var(--color-accent-bright, #c4b5fd);
+      border: 1px solid color-mix(in srgb, var(--color-accent) 42%, var(--color-border)); border-radius: 2rem;
+      background: color-mix(in srgb, var(--color-accent) 14%, transparent); color: color-mix(in srgb, var(--color-accent) 65%, var(--color-text-primary));
       font: inherit; font-size: .72rem; white-space: nowrap; cursor: pointer;
     }
-    .ovt-autorefresh:hover { background: var(--color-surface-2); }
+    .ovt-autorefresh:hover { background: color-mix(in srgb, var(--color-accent) 24%, transparent); }
     .ovt-customize {
       border: 0; background: transparent; color: var(--color-text-secondary);
       font: inherit; font-size: .77rem; cursor: pointer; padding: .2rem .3rem;

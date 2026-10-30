@@ -56,14 +56,14 @@ import { AddCardModalComponent } from '../add-card-modal/add-card-modal.componen
       display: flex; align-items: center; justify-content: center; gap: .35rem;
       min-height: 2.6rem; padding: .4rem 3rem;
       background: var(--cu-banner);
-      color: #eeeeee; font-size: .82rem; text-align: center; line-height: 1.5;
+      color: var(--cu-banner-text); font-size: .82rem; text-align: center; line-height: 1.5;
     }
-    .ov-banner a { color: #fff; font-weight: 700; text-decoration: underline; }
+    .ov-banner a { color: inherit; font-weight: 700; text-decoration: underline; }
     .ov-banner a:hover { opacity: .85; }
     .ov-banner__close {
       position: absolute; inset-inline-end: .85rem; inset-block: 0;
       display: grid; place-items: center; width: 1.6rem;
-      border: 0; background: transparent; color: #c4b5fd; cursor: pointer; border-radius: .3rem;
+      border: 0; background: transparent; color: var(--cu-banner-text); opacity: .8; cursor: pointer; border-radius: .3rem;
     }
     .ov-banner__close:hover { background: color-mix(in srgb,#fff 10%,transparent); }
   `],

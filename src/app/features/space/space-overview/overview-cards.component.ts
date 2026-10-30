@@ -155,11 +155,11 @@ import {
     .ovc-outline-btn {
       display: inline-flex; align-items: center; justify-content: center;
       min-height: 1.85rem; padding: 0 .9rem;
-      border: 1px solid var(--color-border-strong); border-radius: .38rem;
-      background: var(--color-surface-2); color: var(--color-text-primary);
-      font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer;
+      border: 1px solid var(--color-cta-border); border-radius: .5rem;
+      background: var(--color-cta-bg); color: var(--color-cta-text);
+      font: inherit; font-size: .84rem; font-weight: 600; cursor: pointer;
     }
-    .ovc-outline-btn:hover { background: var(--color-surface-3); }
+    .ovc-outline-btn:hover { background: var(--color-cta-bg-hover); }
 
     /* Section card (Folders / Lists) */
     .ovc-section {

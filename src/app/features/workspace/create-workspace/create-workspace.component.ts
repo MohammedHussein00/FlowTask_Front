@@ -111,7 +111,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
     .cw-back {
       display: inline-flex; align-items: center; gap: .3rem;
       color: var(--color-text-muted); text-decoration: none;
-      font-size: .78rem;
+      font-size: .90rem;
     }
     .cw-back:hover { color: var(--color-text-primary); }
 
@@ -143,7 +143,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
 
     .cw-label {
       display: flex; flex-direction: column; gap: .35rem;
-      font-size: .78rem; font-weight: 600;
+      font-size: .90rem; font-weight: 600;
       color: var(--color-text-secondary);
     }
     .cw-required { color: var(--color-danger, #e5534b); }
@@ -172,7 +172,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
     }
     .cw-input-icon-wrap:focus-within { border-color: var(--color-accent); }
 
-    .cw-field-error { font-size: .72rem; color: var(--color-danger, #e5534b); font-weight: 400; }
+    .cw-field-error { font-size: .83rem; color: var(--color-danger, #e5534b); font-weight: 400; }
 
     .cw-submit {
       display: flex; align-items: center; justify-content: center; gap: .5rem;

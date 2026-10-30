@@ -182,7 +182,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
       background: transparent;
       color: var(--color-text-muted);
       font: inherit;
-      font-size: .72rem;
+      font-size: .83rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
@@ -226,7 +226,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
       background: var(--color-surface-2);
       color: var(--color-text-secondary);
       font: inherit;
-      font-size: .69rem;
+      font-size: .79rem;
       font-weight: 600;
       cursor: pointer;
     }
@@ -266,7 +266,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
       min-height: 4.5rem;
       position: relative;
       color: var(--color-text-primary);
-      font-size: .76rem;
+      font-size: .87rem;
       line-height: 1.55;
       outline: 0;
       cursor: text;
@@ -279,7 +279,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
       align-items: center;
       gap: .25rem;
       color: var(--color-text-muted);
-      font-size: .76rem;
+      font-size: .87rem;
       pointer-events: none;
     }
     .tcm-desc__placeholder.hidden { display: none; }
@@ -305,7 +305,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
       background: var(--color-surface-2);
       color: var(--color-text-secondary);
       font: inherit;
-      font-size: .68rem;
+      font-size: .78rem;
       font-weight: 600;
       cursor: pointer;
     }
@@ -313,7 +313,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
     .tcm-meta__pill--status {
       background: var(--color-surface-3);
       color: var(--color-text-primary);
-      font-size: .62rem;
+      font-size: .71rem;
       font-weight: 800;
       letter-spacing: .03em;
     }
@@ -339,7 +339,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
       background: transparent;
       color: var(--color-text-secondary);
       font: inherit;
-      font-size: .69rem;
+      font-size: .79rem;
       font-weight: 600;
       cursor: pointer;
     }
@@ -383,7 +383,7 @@ type ModalTab = 'Task' | 'Doc' | 'Reminder' | 'Whiteboard' | 'Dashboard';
       background: var(--color-surface-2);
       color: var(--color-text-primary);
       font: inherit;
-      font-size: .7rem;
+      font-size: .80rem;
       font-weight: 700;
       cursor: pointer;
       border-radius: .38rem 0 0 .38rem;

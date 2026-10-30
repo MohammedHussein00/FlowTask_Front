@@ -55,8 +55,8 @@ import { AddCardModalComponent } from '../add-card-modal/add-card-modal.componen
       position: relative;
       display: flex; align-items: center; justify-content: center; gap: .35rem;
       min-height: 2.6rem; padding: .4rem 3rem;
-      background: color-mix(in srgb, var(--color-accent) 34%, #1a1424);
-      color: #e8e0ff; font-size: .71rem; text-align: center; line-height: 1.5;
+      background: var(--cu-banner);
+      color: #eeeeee; font-size: .82rem; text-align: center; line-height: 1.5;
     }
     .ov-banner a { color: #fff; font-weight: 700; text-decoration: underline; }
     .ov-banner a:hover { opacity: .85; }

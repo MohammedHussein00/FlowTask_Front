@@ -85,8 +85,8 @@ const SPEEDS = [1, 1.5, 2] as const;
     .vp__wave:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: .25rem; }
     .vp__wave i { flex: 1 1 0; min-width: 0; max-width: 3px; border-radius: 1px; background: var(--color-border-strong); transition: background .1s; }
     .vp__wave i.vp__bar--on { background: var(--color-text-primary); }
-    .vp__time { flex: none; min-width: 2.4rem; margin-inline-start: .15rem; font-size: .72rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
-    .vp__speed, .vp__more { flex: none; height: 1.5rem; min-width: 1.5rem; padding: 0 .35rem; border: 0; border-radius: .35rem; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .7rem; font-weight: 650; cursor: pointer; display: inline-grid; place-items: center; }
+    .vp__time { flex: none; min-width: 2.4rem; margin-inline-start: .15rem; font-size: .83rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+    .vp__speed, .vp__more { flex: none; height: 1.5rem; min-width: 1.5rem; padding: 0 .35rem; border: 0; border-radius: .35rem; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .80rem; font-weight: 650; cursor: pointer; display: inline-grid; place-items: center; }
     /* Speed is only revealed on hover / keyboard focus (space is reserved so nothing jumps) */
     .vp__speed { opacity: 0; pointer-events: none; transition: opacity .12s; }
     .vp:hover .vp__speed, .vp:focus-within .vp__speed, .vp__speed--shown { opacity: 1; pointer-events: auto; }
@@ -94,7 +94,7 @@ const SPEEDS = [1, 1.5, 2] as const;
     .vp__menu-wrap { flex: none; }
     /* position: fixed so neither the composer nor the scrolling message list can clip it */
     .vp__menu { position: fixed; z-index: 1000; min-width: 13rem; padding: .3rem; background: var(--color-surface-1); border: 1px solid var(--color-border-strong); border-radius: .6rem; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
-    .vp__item { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .5rem .6rem; border: 0; border-radius: .4rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .78rem; text-align: start; cursor: pointer; }
+    .vp__item { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .5rem .6rem; border: 0; border-radius: .4rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .90rem; text-align: start; cursor: pointer; }
     .vp__item:hover { background: var(--color-surface-3); }
     .vp__sep { height: 1px; margin: .25rem -.3rem; background: var(--color-border); }
   `],

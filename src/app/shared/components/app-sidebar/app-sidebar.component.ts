@@ -4,7 +4,7 @@ import {
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   LucideAngularModule,
-  AtSign, Grid2X2, ListChecks, MoreHorizontal, PanelLeftClose, PanelLeftOpen, Plus,
+  AtSign, ChevronsLeft, Grid2X2, ListChecks, MoreHorizontal, PanelLeftClose, PanelLeftOpen, Plus,
   Rss, Search, Send, Settings2, SlidersHorizontal,
 } from 'lucide-angular';
 import { NzButtonModule }  from 'ng-zorro-antd/button';
@@ -39,6 +39,11 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
     <!-- ── Top bar: workspace label + +Create ── -->
     <div class="context-top">
       <span class="sidebar-home-label">Home</span>
+      <button type="button" class="collapse-btn"
+        nz-tooltip nzTooltipTitle="Close sidebar" nzTooltipPlacement="bottom"
+        aria-label="Close sidebar" (click)="collapse.emit()">
+        <lucide-icon [img]="ChevronsLeft" size="16"/>
+      </button>
       <button nz-button nzType="primary" nzSize="small" class="create" (click)="createRequested.emit()">
         <lucide-icon [img]="Plus" size="15"/><span>{{ 'create' | componentT:'sidebar' }}</span>
       </button>
@@ -134,201 +139,99 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
   `,
   styles: [`
     :host { display: block; height: 100%; min-height: 0; }
+
+    /* ClickUp: sidebar is its own rounded, bordered panel */
     .context-sidebar {
       position: relative; display: flex; flex-direction: column;
-      width: 15.65rem; height: 100%; max-height: 100%; padding: .5rem .6rem .7rem;
+      width: 16rem; height: 100%; max-height: 100%; padding: .55rem .5rem .55rem;
       color: var(--color-text-secondary); background: var(--color-surface-1);
-      border-inline-end: 1px solid var(--color-border); overflow: hidden;
+      border: 1px solid var(--panel-border); border-radius: var(--radius-panel); overflow: hidden;
     }
-/* ── ant menu re-skinned ── */
-.home-menu.ant-menu {
-  background: transparent;
-  border-inline-end: 0;
-}
 
-.home-menu .ant-menu-item {
-  width: 100%;
-  height: 2rem;
-  line-height: 2rem;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  margin: 0 0 .1rem !important;
-  padding: 0 .5rem !important;
-  border-radius: .35rem;
-  color: var(--color-text-secondary);
-  background: transparent;
-  font-size: .78rem;
-  font-weight: 520;
-  white-space: nowrap;
-}
-
-.home-menu .ant-menu-item:hover {
-  color: var(--color-text-primary);
-  background: var(--color-surface-3);
-}
-
-.home-menu .ant-menu-item-selected {
-  color: var(--color-text-primary) !important;
-  background: var(--color-surface-3) !important;
-}
-
-.home-menu .ant-menu-item::after { display: none; }
-
-/* Icon: fixed box, no external margins, spaced from text */
-.home-menu .ant-menu-item lucide-icon,
-.home-menu .ant-menu-item .anticon {
-  flex: 0 0 auto !important;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 1.1rem !important;
-  height: 1.1rem !important;
-  margin: 0 .55rem 0 0 !important;  /* <-- the gap you were missing */
-  padding: 0 !important;
-  font-size: 1rem !important;
-  line-height: 1 !important;
-  vertical-align: middle;
-}
-
-/* Make sure lucide's inner svg doesn't add its own margins */
-.home-menu .ant-menu-item lucide-icon svg {
-  display: block;
-  margin: 0;
-}
-
-/* Text label */
-.home-menu .ant-menu-item span:not(.ant-menu-title-content) {
-  flex: 1 1 auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0;
-  margin: 0;
-}
-
-/* Ant wraps content in this — neutralize its padding */
-.home-menu .ant-menu-title-content {
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex;
-  align-items: center;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-/* ── More button ── */
-.more-link.ant-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: .55rem !important;
-  min-height: 2rem;
-  height: auto;
-  margin-top: .1rem;
-  padding: 0 .5rem !important;
-  color: var(--color-text-muted);
-  font-size: .75rem;
-  text-align: left;
-}
-
-.more-link.ant-btn:hover {
-  color: var(--color-text-primary);
-  background: var(--color-surface-3);
-}
-
-.more-link.ant-btn lucide-icon {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.1rem;
-  height: 1.1rem;
-  margin: 0;
-}
-
-.more-link.ant-btn span {
-  flex: 1 1 auto;
-  text-align: left;
-}
-    /* ── Top bar: "Home" bold label + +Create button (matches image 2) ── */
+    /* ── Header: "Home" · collapse · + Create ── */
     .context-top {
-      flex: 0 0 auto; display: flex; align-items: center;
-      min-height: 2.25rem; padding-inline: .45rem; margin-bottom: .3rem;
+      flex: 0 0 auto; display: flex; align-items: center; gap: .35rem;
+      min-height: 2.5rem; padding-inline: .45rem .1rem; margin-bottom: .25rem;
     }
-    .sidebar-home-label {
-      font-size: .9rem; font-weight: 800; color: var(--color-text-primary);
-      letter-spacing: -.01em; flex: 1;
+    .sidebar-home-label { font-size: 1.05rem; font-weight: 700; color: var(--color-text-primary); letter-spacing: -.01em; flex: 1; }
+    .collapse-btn {
+      width: 2rem; height: 2rem; display: grid; place-items: center; flex: none; padding: 0;
+      border: 0; border-radius: .55rem; color: var(--color-text-secondary); background: var(--color-surface-3);
     }
-    /* + Create pushed to the far right */
-    .create {
-      margin-inline-start: auto;
-      display: inline-flex; align-items: center; gap: .25rem;
-      padding: 0 .55rem; font-size: .73rem; font-weight: 750; height: 1.75rem;
+    .collapse-btn:hover { color: var(--color-text-primary); filter: brightness(1.2); }
+    .create.ant-btn {
+      display: inline-flex; align-items: center; gap: .3rem;
+      height: 2rem; padding: 0 .8rem 0 .6rem; font-size: .88rem; font-weight: 600; border-radius: .55rem;
     }
 
     /* ── Scroll region ── */
-    .context-scroll {
-      flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
-      scrollbar-width: thin; scrollbar-color: var(--color-border) transparent;
-    }
-    .context-scroll::-webkit-scrollbar { width: .4rem; }
-    .context-scroll::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: .3rem; }
-    .context-scroll::-webkit-scrollbar-track { background: transparent; }
+    .context-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-inline-end: .15rem; }
 
-    /* ant menu re-skinned */
-    .home-menu.ant-menu { background: transparent; border-inline-end: 0; }
+    /* ── Home menu (ant menu re-skinned) ── */
+    .home-menu.ant-menu { background: transparent; border-inline-end: 0; color: inherit; }
     .home-menu .ant-menu-item {
-      width: 100%; height: 1.9rem; line-height: 1.9rem;
-      display: flex; align-items: center; gap: .55rem;
-      margin: 0 0 .05rem; padding: 0 .55rem !important;
-      border-radius: .35rem; color: var(--color-text-secondary);
-      background: transparent; font-size: .75rem; font-weight: 520;
+      width: 100%; height: 2.1rem; line-height: 2.1rem;
+      display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important;
+      margin: 0 0 .1rem !important; padding: 0 .6rem !important;
+      border-radius: .5rem; color: var(--color-text-secondary);
+      background: transparent; font-size: .875rem; font-weight: 500; white-space: nowrap;
     }
     .home-menu .ant-menu-item:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .home-menu .ant-menu-item-selected { color: var(--color-text-primary) !important; background: var(--color-surface-3) !important; }
     .home-menu .ant-menu-item::after { display: none; }
-    .home-menu .ant-menu-item .anticon,
-    .home-menu .ant-menu-item lucide-icon { flex: 0 0 auto; }
+    .home-menu .ant-menu-item lucide-icon,
+    .home-menu .ant-menu-item .anticon {
+      flex: 0 0 auto !important; display: inline-flex !important; align-items: center; justify-content: center;
+      width: 1.15rem !important; height: 1.15rem !important; margin: 0 .65rem 0 0 !important; padding: 0 !important;
+      font-size: 1rem !important; line-height: 1 !important; vertical-align: middle; color: var(--color-text-secondary);
+    }
+    .home-menu .ant-menu-item lucide-icon svg { display: block; margin: 0; }
+    .home-menu .ant-menu-item span:not(.ant-menu-title-content) { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0; margin: 0; }
+    .home-menu .ant-menu-title-content { margin: 0 !important; padding: 0 !important; display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
 
-    /* More button */
+    /* ── More button ── */
     .more-link.ant-btn {
-      justify-content: flex-start; gap: .5rem; min-height: 1.8rem; height: auto;
-      margin-top: .05rem; padding: 0 .55rem;
-      color: var(--color-text-muted); font-size: .72rem;
+      display: inline-flex !important; align-items: center !important; justify-content: flex-start !important;
+      gap: .65rem !important; min-height: 2.1rem; height: auto; margin-top: .05rem; padding: 0 .6rem !important;
+      color: var(--color-text-secondary); font-size: .875rem; font-weight: 500; text-align: left; border-radius: .5rem;
     }
     .more-link.ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
+    .more-link.ant-btn lucide-icon { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 1.15rem; height: 1.15rem; margin: 0; }
+    .more-link.ant-btn span { flex: 1 1 auto; text-align: left; }
+
+    /* thin divider between the home links and the AI Chats / Spaces sections, as in ClickUp */
+    app-ai-chats-section { display: block; margin-top: .45rem; padding-top: .15rem; border-top: 1px solid var(--color-border); }
 
     /* ── More popover contents ── */
-    .sb-more-menu { width: 13.5rem; padding: .35rem; }
+    .sb-more-menu { width: 14.5rem; padding: .4rem; }
     .sbm-item {
       display: flex; align-items: center; gap: 0; width: 100%;
-      min-height: 1.95rem; padding: 0 .4rem;
-      border: 0; border-radius: .35rem; background: transparent;
-      color: var(--color-text-secondary); font: inherit; font-size: .74rem;
+      min-height: 2.15rem; padding: 0 .45rem;
+      border: 0; border-radius: .45rem; background: transparent;
+      color: var(--color-text-secondary); font: inherit; font-size: .84rem;
       text-align: start; cursor: pointer;
     }
     .sbm-item:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
-    .sbm-item__icon {
-      flex: none; width: 1.75rem; height: 1.75rem;
-      display: grid; place-items: center; margin-inline-end: .45rem;
-      color: var(--color-text-muted);
-    }
+    .sbm-item__icon { flex: none; width: 1.75rem; height: 1.75rem; display: grid; place-items: center; margin-inline-end: .45rem; color: var(--color-text-muted); }
     .sbm-item:hover .sbm-item__icon { color: var(--color-text-secondary); }
     .sbm-item__pin { margin-inline-start: auto; color: var(--color-text-muted); opacity: .55; flex: none; }
     .sbm-divider { height: 1px; margin: .3rem 0; background: var(--color-border); }
 
-    /* Footer */
-    .context-footer { flex: 0 0 auto; margin-top: auto; padding-top: .5rem; border-top: 1px solid var(--color-border); }
-    .context-footer .ant-btn { justify-content: flex-start; gap: .5rem; min-height: 1.9rem; height: auto; padding: 0 .55rem; color: var(--color-text-secondary); font-size: .72rem; }
-    .context-footer .ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
+    /* ── Footer: bordered "Customize Sidebar" button ── */
+    .context-footer { flex: 0 0 auto; margin-top: auto; padding-top: .5rem; }
+    .context-footer .ant-btn {
+      display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 2.2rem; height: auto; padding: 0 .75rem;
+      border-radius: .6rem; color: var(--color-text-primary); background: var(--color-surface-3);
+      font-size: .84rem; font-weight: 600;
+    }
+    .context-footer .ant-btn:hover { background: var(--color-border-strong); color: var(--color-text-primary); }
 
     /* Collapsed state */
     .context-sidebar--collapsed { width: 4.3rem; }
     .context-sidebar--collapsed .create span,
     .context-sidebar--collapsed .more-link span,
     .context-sidebar--collapsed .context-footer .ant-btn span,
+    .context-sidebar--collapsed .collapse-btn,
     .context-sidebar--collapsed app-ai-chats-section,
     .context-sidebar--collapsed app-spaces-section,
     .context-sidebar--collapsed app-channels-section,
@@ -345,10 +248,10 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
     ::ng-deep .sb-popover .ant-popover-inner-content { padding: 0 !important; }
     ::ng-deep .sb-popover .ant-popover-inner {
       padding: 0 !important;
-      background: var(--color-surface-1) !important;
+      background: var(--color-surface-2) !important;
       border: 1px solid var(--color-border-strong) !important;
-      border-radius: .55rem !important;
-      box-shadow: 0 8px 28px rgba(0,0,0,.48) !important;
+      border-radius: .75rem !important;
+      box-shadow: 0 12px 32px rgba(0,0,0,.5) !important;
       overflow: hidden !important;
     }
   `],
@@ -356,6 +259,7 @@ import { SpacesSectionComponent }         from './sub-components/spaces-section.
 export class AppSidebarComponent {
   readonly Search            = Search;
   readonly SlidersHorizontal = SlidersHorizontal;
+  readonly ChevronsLeft      = ChevronsLeft;
   readonly PanelLeftClose    = PanelLeftClose;
   readonly PanelLeftOpen     = PanelLeftOpen;
   readonly Plus              = Plus;

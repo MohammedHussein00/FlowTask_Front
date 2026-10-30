@@ -4,7 +4,7 @@ import {
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {
   LucideAngularModule,
-  BrainCircuit, Calendar, ChevronDown, ChartGantt,
+  BrainCircuit, Calendar, ChevronDown, ChartGantt, Hash, Info,
   LayoutDashboard, Link2, ListTodo, Phone, Plus,
   Share2, Star, Users, Workflow,
 } from 'lucide-angular';
@@ -31,28 +31,32 @@ import { ChannelModalService } from '../../../core/services/channel-modal.servic
           </button>
 
           <nav class="ss-tabs">
-            <button type="button" class="ss-tab ss-tab--channel" (click)="channelModal.show()">Add Channel</button>
+            <button type="button" class="ss-tab" (click)="channelModal.show()">
+              <span class="ss-chip ss-chip--plum"><lucide-icon [img]="Hash" size="11" /></span>Channel
+            </button>
 
             <a class="ss-tab" routerLink="overview" routerLinkActive="ss-tab--active">
-              Overview
+              <span class="ss-chip ss-chip--gray"><lucide-icon [img]="Info" size="11" /></span>Overview
             </a>
+            <span class="ss-tabs__sep" aria-hidden="true"></span>
             <a class="ss-tab" routerLink="list" routerLinkActive="ss-tab--active">
-              <lucide-icon [img]="ListTodo" size="13" />List
+              <span class="ss-chip ss-chip--gray"><lucide-icon [img]="ListTodo" size="11" /></span>List
             </a>
             <a class="ss-tab" routerLink="board" routerLinkActive="ss-tab--active">
-              <lucide-icon [img]="LayoutDashboard" size="13" />Board
+              <span class="ss-chip ss-chip--blue"><lucide-icon [img]="LayoutDashboard" size="11" /></span>Board
             </a>
             <a class="ss-tab" routerLink="calendar" routerLinkActive="ss-tab--active">
-              <lucide-icon [img]="Calendar" size="13" />Calendar
+              <span class="ss-chip ss-chip--orange"><lucide-icon [img]="Calendar" size="11" /></span>Calendar
             </a>
             <a class="ss-tab" routerLink="gantt" routerLinkActive="ss-tab--active">
-              <lucide-icon [img]="Gantt" size="13" />Gantt
+              <span class="ss-chip ss-chip--red"><lucide-icon [img]="Gantt" size="11" /></span>Gantt
             </a>
             <a class="ss-tab" routerLink="team" routerLinkActive="ss-tab--active">
-              <lucide-icon [img]="Users" size="13" />Team
+              <span class="ss-chip ss-chip--plum"><lucide-icon [img]="Users" size="11" /></span>Team
             </a>
-            <button type="button" class="ss-tab">
-              <lucide-icon [img]="Plus" size="13" />View
+            <span class="ss-tabs__sep" aria-hidden="true"></span>
+            <button type="button" class="ss-tab ss-tab--add">
+              <lucide-icon [img]="Plus" size="14" />View
             </button>
           </nav>
         </div>
@@ -90,79 +94,83 @@ import { ChannelModalService } from '../../../core/services/channel-modal.servic
       background: var(--color-canvas); color: var(--color-text-primary);
     }
 
-    /* Tab bar */
+    /* Tab bar: no divider line, like ClickUp's header */
     .ss-tabbar {
       display: flex; align-items: center; justify-content: space-between;
-      min-height: 3.6rem; padding: 0 .95rem;
-      border-bottom: 1px solid var(--color-border);
+      min-height: 4.4rem; padding: 0 1rem 0 .75rem;
       flex: none; gap: .5rem;
     }
-    .ss-tabbar__left {
-      display: flex; align-items: flex-end;
-      flex: 1; min-width: 0; overflow: hidden;
-    }
+    .ss-tabbar__left { display: flex; flex-direction: column; justify-content: center; gap: .15rem; flex: 1; min-width: 0; align-self: stretch; padding-top: .45rem; }
 
     /* Space name button */
     .ss-space-btn {
-      display: inline-flex; align-items: center; gap: .32rem; flex: none;
-      height: 2.1rem; padding: 0 .4rem 0 .2rem;
+      display: inline-flex; align-items: center; gap: .4rem; align-self: flex-start; flex: none;
+      height: 2rem; padding: 0 .5rem 0 .25rem;
       border: 0; background: transparent;
       color: var(--color-text-primary); font: inherit;
-      font-size: .74rem; font-weight: 700;
-      cursor: pointer; border-radius: .35rem; margin-bottom: .15rem;
+      font-size: .9rem; font-weight: 600;
+      cursor: pointer; border-radius: .5rem;
     }
     .ss-space-btn:hover { background: var(--color-surface-3); }
+    .ss-space-btn b { font-weight: 600; }
     .ss-space-btn__badge {
-      width: 1.15rem; height: 1.15rem;
+      width: 1.35rem; height: 1.35rem;
       display: grid; place-items: center;
-      border-radius: .3rem; color: #fff;
-      font-size: .6rem; font-weight: 800; flex: none;
+      border-radius: .35rem; color: #fff;
+      font-size: .72rem; font-weight: 700; flex: none;
     }
-    .ss-space-btn__star { color: var(--color-text-muted); }
+    .ss-space-btn lucide-icon { color: var(--color-text-secondary); }
+    .ss-space-btn__star { color: var(--color-text-secondary); margin-inline-start: .15rem; }
 
     /* Tabs */
-    .ss-tabs { display: flex; align-items: flex-end; overflow: hidden; }
+    .ss-tabs { display: flex; align-items: flex-end; overflow: hidden; gap: .05rem; }
+    .ss-tabs__sep { width: 1px; height: 1.1rem; align-self: center; margin: 0 .35rem; background: var(--color-border-strong); flex: none; }
     .ss-tab {
-      display: inline-flex; align-items: center; gap: .3rem;
-      height: 2.05rem; padding: 0 .5rem;
+      display: inline-flex; align-items: center; gap: .4rem;
+      height: 2.1rem; padding: 0 .5rem;
       border: 0; border-bottom: 2px solid transparent;
-      background: transparent; color: var(--color-text-muted);
-      font: inherit; font-size: .69rem; font-weight: 600;
+      background: transparent; color: var(--color-text-secondary);
+      font: inherit; font-size: .8rem; font-weight: 500;
       white-space: nowrap; cursor: pointer;
       text-decoration: none;
       transition: color .12s;
     }
     .ss-tab:hover { color: var(--color-text-primary); }
-    .ss-tab--channel {
-      align-self: flex-start; height: 1.8rem; margin-top: .5rem;
-      padding: 0 .4rem; border: 1px solid var(--color-border-strong);
-      border-radius: .32rem; margin-inline-end: .25rem; font-size: .67rem;
-    }
     .ss-tab--active {
       color: var(--color-text-primary) !important;
-      border-bottom-color: var(--color-accent) !important;
+      border-bottom-color: var(--color-text-primary) !important;
     }
+    .ss-tab--add lucide-icon { color: var(--color-text-secondary); }
 
-    /* Right actions */
-    .ss-tabbar__right { flex: none; display: flex; align-items: center; gap: .2rem; }
+    /* Coloured icon chips in front of each view */
+    .ss-chip { width: 1.1rem; height: 1.1rem; display: inline-grid; place-items: center; flex: none; border-radius: .3rem; color: #fff; }
+    .ss-chip--gray   { background: var(--cu-gray); }
+    .ss-chip--plum   { background: var(--cu-plum); }
+    .ss-chip--blue   { background: var(--cu-blue); }
+    .ss-chip--orange { background: var(--cu-orange); }
+    .ss-chip--red    { background: var(--cu-red); }
+
+    /* Right actions: plain text buttons, no accent-filled Share */
+    .ss-tabbar__right { flex: none; display: flex; align-items: center; gap: .1rem; align-self: flex-start; padding-top: .45rem; }
     .ss-action {
-      height: 1.8rem; display: inline-flex; align-items: center; gap: .28rem;
-      padding: 0 .5rem; border: 0; border-radius: .35rem;
-      background: transparent; color: var(--color-text-muted);
-      font: inherit; font-size: .68rem; font-weight: 600;
+      height: 2rem; display: inline-flex; align-items: center; gap: .4rem;
+      padding: 0 .6rem; border: 0; border-radius: .5rem;
+      background: transparent; color: var(--color-text-secondary);
+      font: inherit; font-size: .82rem; font-weight: 600;
       white-space: nowrap; cursor: pointer;
     }
     .ss-action:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
-    .ss-action--icon { width: 1.8rem; padding: 0; }
-    .ss-action--share { color: #fff; background: var(--color-accent); }
-    .ss-action--share:hover { background: color-mix(in srgb, var(--color-accent) 80%, #000); }
-    .ss-action sup { font-size: .55rem; }
+    .ss-action--icon { width: 2rem; padding: 0; justify-content: center; }
+    .ss-action--share { color: var(--color-text-primary); }
+    .ss-action lucide-icon { color: var(--color-text-secondary); }
+    .ss-action:hover lucide-icon { color: var(--color-text-primary); }
+    .ss-action sup { font-size: .6rem; margin-inline-start: -.2rem; }
 
     .ss-content { flex: 1; overflow: hidden; position: relative; }
 
     @media (max-width: 1024px) { .ss-tabbar__right { display: none; } }
     @media (max-width: 700px) {
-      .ss-tabbar { min-height: 3rem; overflow-x: auto; padding-inline: .65rem; }
+      .ss-tabbar { min-height: 3.6rem; overflow-x: auto; padding-inline: .65rem; }
     }
   `],
 })
@@ -174,6 +182,7 @@ export class SpaceShellComponent {
   readonly Phone = Phone; readonly Link2 = Link2;
   readonly Workflow = Workflow; readonly BrainCircuit = BrainCircuit;
   readonly Share2 = Share2;
+  readonly Hash = Hash; readonly Info = Info;
 
   private readonly ctx = inject(SpaceContextService);
   readonly channelModal = inject(ChannelModalService);

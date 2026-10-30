@@ -106,16 +106,16 @@ const ACCENT_SWATCHES: { id: AccentName; label: string }[] = [
     .customizer { width: min(27rem, 100%); max-height: min(38rem, calc(100vh - 3rem)); overflow-y: auto; border: 1px solid var(--color-border-strong); border-radius: .9rem; color: var(--color-text-primary); background: var(--color-surface-1); box-shadow: var(--shadow-lg); }
     .customizer header { position: sticky; inset-block-start: 0; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; padding: 1.05rem 1.05rem .55rem; background: var(--color-surface-1); }
     .customizer header h2 { margin: 0 0 .2rem; font-size: 1rem; }
-    .customizer header p { margin: 0; color: var(--color-text-secondary); font-size: .72rem; }
+    .customizer header p { margin: 0; color: var(--color-text-secondary); font-size: .83rem; }
     .customizer header > button { width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border: 0; border-radius: .4rem; color: var(--color-text-secondary); background: transparent; cursor: pointer; }
     .customizer header > button:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .customizer-tabs { display: flex; gap: .2rem; padding: 0 1.05rem .65rem; border-bottom: 1px solid var(--color-border); }
-    .customizer-tabs button { min-height: 1.9rem; padding: 0 .65rem; border: 0; border-radius: .4rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer; }
+    .customizer-tabs button { min-height: 1.9rem; padding: 0 .65rem; border: 0; border-radius: .4rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .83rem; font-weight: 700; cursor: pointer; }
     .customizer-tabs button:hover { color: var(--color-text-primary); }
     .customizer-tabs button.selected { color: var(--color-surface-1); background: var(--color-text-primary); }
-    :root[data-theme="dark"] .customizer-tabs button.selected { color: #17181b; }
+    :root[data-theme="dark"] .customizer-tabs button.selected { color: #191919; }
     .customizer-body { padding: .8rem 1.05rem 1.3rem; }
-    .customizer-label { margin: .35rem 0 .6rem; color: var(--color-text-secondary); font-size: .64rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+    .customizer-label { margin: .35rem 0 .6rem; color: var(--color-text-secondary); font-size: .74rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
     .theme-label { margin-top: 1.1rem; }
     .check-list { display: grid; gap: .1rem; max-height: 20rem; overflow-y: auto; }
     .check-list--tall { max-height: 26rem; }
@@ -123,8 +123,8 @@ const ACCENT_SWATCHES: { id: AccentName; label: string }[] = [
     .check-row:hover { background: var(--color-surface-2); }
     .check-row.disabled { cursor: default; }
     .check-row__body { display: flex; flex-direction: column; gap: .1rem; }
-    .check-row strong { color: var(--color-text-primary); font-size: .76rem; font-weight: 650; }
-    .check-row small { color: var(--color-text-muted); font-size: .62rem; }
+    .check-row strong { color: var(--color-text-primary); font-size: .87rem; font-weight: 650; }
+    .check-row small { color: var(--color-text-muted); font-size: .71rem; }
 
     /* ── Checkbox: centered checkmark, theme-accurate colors ── */
     .checkbox {
@@ -151,7 +151,7 @@ const ACCENT_SWATCHES: { id: AccentName; label: string }[] = [
       display: grid; justify-items: center; gap: .5rem; padding: .8rem .5rem;
       border: 1.5px solid var(--color-border); border-radius: .55rem;
       color: var(--color-text-secondary); background: var(--color-surface-2);
-      font: inherit; font-size: .68rem; font-weight: 650; cursor: pointer;
+      font: inherit; font-size: .78rem; font-weight: 650; cursor: pointer;
     }
     .density-options button:hover { border-color: var(--color-border-strong); color: var(--color-text-primary); }
     .density-options button.selected {
@@ -174,34 +174,34 @@ const ACCENT_SWATCHES: { id: AccentName; label: string }[] = [
     }
 
     .section-list { display: grid; gap: .3rem; }
-    .section-row { display: flex; align-items: center; gap: .55rem; min-height: 2.15rem; padding: 0 .6rem; border: 1px solid var(--color-border); border-radius: .5rem; color: var(--color-text-primary); background: var(--color-surface-2); font-size: .74rem; font-weight: 650; cursor: grab; }
+    .section-row { display: flex; align-items: center; gap: .55rem; min-height: 2.15rem; padding: 0 .6rem; border: 1px solid var(--color-border); border-radius: .5rem; color: var(--color-text-primary); background: var(--color-surface-2); font-size: .85rem; font-weight: 650; cursor: grab; }
     .section-row lucide-icon { color: var(--color-text-muted); }
-    .section-create { display: flex; align-items: center; gap: .5rem; min-height: 2.15rem; padding: 0 .6rem; border: 1px dashed var(--color-border-strong); border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .74rem; font-weight: 650; cursor: pointer; }
+    .section-create { display: flex; align-items: center; gap: .5rem; min-height: 2.15rem; padding: 0 .6rem; border: 1px dashed var(--color-border-strong); border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .85rem; font-weight: 650; cursor: pointer; }
     .section-create:hover { color: var(--color-text-primary); border-color: var(--color-accent); }
-    .section-hint { margin: 0; color: var(--color-text-muted); font-size: .68rem; }
+    .section-hint { margin: 0; color: var(--color-text-muted); font-size: .78rem; }
     .appearance-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .6rem; }
     .appearance-options button { display: grid; justify-items: center; gap: .5rem; padding: .5rem; border: 2px solid transparent; border-radius: .6rem; background: transparent; font: inherit; cursor: pointer; }
     .appearance-options button.selected { border-color: var(--color-accent); }
-    .appearance-options strong { color: var(--color-text-primary); font-size: .68rem; font-weight: 650; }
+    .appearance-options strong { color: var(--color-text-primary); font-size: .78rem; font-weight: 650; }
     .appearance-preview { position: relative; display: block; width: 100%; height: 3.6rem; overflow: hidden; border-radius: .4rem; border: 1px solid var(--color-border); }
     .appearance-preview i, .appearance-preview b, .appearance-preview em { position: absolute; border-radius: .12rem; }
     .appearance-preview--light { background: #f0f1f5; }
     .appearance-preview--light i { inset-inline-start: 0; inset-block: 0; width: 28%; background: #fff; border-inline-end: 1px solid #e2e4ea; }
     .appearance-preview--light b { inset-inline-start: 38%; inset-block-start: .4rem; width: 50%; height: .18rem; background: #cfd2db; }
     .appearance-preview--light em { inset-inline-start: 38%; inset-block-start: .8rem; width: 30%; height: .18rem; background: var(--color-accent); }
-    .appearance-preview--dark { background: #17181b; }
+    .appearance-preview--dark { background: #191919; }
     .appearance-preview--dark i { inset-inline-start: 0; inset-block: 0; width: 28%; background: #202226; border-inline-end: 1px solid #2b2d32; }
     .appearance-preview--dark b { inset-inline-start: 38%; inset-block-start: .4rem; width: 50%; height: .18rem; background: #3a3c42; }
     .appearance-preview--dark em { inset-inline-start: 38%; inset-block-start: .8rem; width: 30%; height: .18rem; background: var(--color-accent); }
-    .appearance-preview--auto { background: linear-gradient(90deg, #f0f1f5 50%, #17181b 50%); }
+    .appearance-preview--auto { background: linear-gradient(90deg, #f0f1f5 50%, #191919 50%); }
     .appearance-preview--auto i { inset-inline-start: 0; inset-block: 0; width: 28%; background: #fff; border-inline-end: 1px solid #e2e4ea; }
     .appearance-preview--auto b { inset-inline-start: 38%; inset-block-start: .4rem; width: 25%; height: .18rem; background: #cfd2db; }
     .appearance-preview--auto em { inset-inline-start: 66%; inset-block-start: .8rem; width: 20%; height: .18rem; background: var(--color-accent); }
     .accent-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .5rem; }
-    .accent-grid button { display: flex; align-items: center; gap: .5rem; min-height: 2.35rem; padding: 0 .65rem; border: 1.5px solid var(--color-border); border-radius: .5rem; color: var(--color-text-primary); background: var(--color-surface-2); font: inherit; font-size: .7rem; font-weight: 650; cursor: pointer; }
+    .accent-grid button { display: flex; align-items: center; gap: .5rem; min-height: 2.35rem; padding: 0 .65rem; border: 1.5px solid var(--color-border); border-radius: .5rem; color: var(--color-text-primary); background: var(--color-surface-2); font: inherit; font-size: .80rem; font-weight: 650; cursor: pointer; }
     .accent-grid button.selected { border-color: var(--color-accent); background: var(--color-accent-soft); }
     .accent-dot { flex: none; width: 1.05rem; height: 1.05rem; border-radius: 50%; }
-    .accent-dot--black { background: #5b5f68; } .accent-dot--purple { background: #8457e0; } .accent-dot--blue { background: #2f8fe0; }
+    .accent-dot--black { background: #5b5f68; } .accent-dot--purple { background: #7b68ee; } .accent-dot--blue { background: #2f8fe0; }
     .accent-dot--pink { background: #e0447e; } .accent-dot--violet { background: #9750e0; } .accent-dot--indigo { background: #4a5fd9; }
     .accent-dot--orange { background: #e2762e; } .accent-dot--teal { background: #1fa89a; } .accent-dot--bronze { background: #a97c62; } .accent-dot--mint { background: #33c48a; }
   `],

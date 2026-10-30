@@ -120,7 +120,7 @@ import { ComponentI18nService }   from '../../../../core/i18n/component-i18n.ser
       border-bottom: 1px solid var(--color-border);
     }
     header h2 { margin: 0 0 .3rem; font-size: 1.02rem; font-weight: 800; }
-    header p { margin: 0; color: var(--color-text-secondary); font-size: .78rem; line-height: 1.45; }
+    header p { margin: 0; color: var(--color-text-secondary); font-size: .90rem; line-height: 1.45; }
     .acm-close {
       flex: none; width: 1.8rem; height: 1.8rem; display: grid; place-items: center;
       border: 0; border-radius: .4rem; color: var(--color-text-muted);
@@ -133,7 +133,7 @@ import { ComponentI18nService }   from '../../../../core/i18n/component-i18n.ser
 
     .acm-label {
       display: flex; align-items: baseline; justify-content: space-between; gap: .5rem;
-      margin: 0 0 .35rem; color: var(--color-text-secondary); font-size: .74rem; font-weight: 650;
+      margin: 0 0 .35rem; color: var(--color-text-secondary); font-size: .85rem; font-weight: 650;
     }
     .acm-label--spaced { margin-top: .9rem; }
     .acm-label span { color: var(--color-text-muted); font-weight: 520; }
@@ -165,7 +165,7 @@ import { ComponentI18nService }   from '../../../../core/i18n/component-i18n.ser
       margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--color-border);
     }
     .acm-row__label { display: block; color: var(--color-text-primary); font-size: .8rem; font-weight: 650; }
-    .acm-row__hint { margin: .2rem 0 0; color: var(--color-text-muted); font-size: .71rem; line-height: 1.4; }
+    .acm-row__hint { margin: .2rem 0 0; color: var(--color-text-muted); font-size: .82rem; line-height: 1.4; }
     .acm-toggle {
       flex: none; width: 2.35rem; height: 1.3rem; padding: .15rem;
       border: 0; border-radius: 1rem; background: var(--color-border-strong); cursor: pointer;
@@ -179,7 +179,7 @@ import { ComponentI18nService }   from '../../../../core/i18n/component-i18n.ser
     :root[dir='rtl'] .acm-toggle--on span { transform: translateX(-1.05rem); }
     .acm-toggle:disabled { opacity: .6; cursor: not-allowed; }
 
-    .acm-error { margin: .9rem 0 0; color: var(--color-danger, #e5534b); font-size: .78rem; font-weight: 600; }
+    .acm-error { margin: .9rem 0 0; color: var(--color-danger, #e5534b); font-size: .90rem; font-weight: 600; }
 
     footer {
       display: flex; align-items: center; justify-content: flex-end; gap: .5rem;
@@ -197,7 +197,7 @@ import { ComponentI18nService }   from '../../../../core/i18n/component-i18n.ser
       display: inline-flex; align-items: center; gap: .45rem;
       min-height: 2.15rem; min-width: 8.4rem; justify-content: center;
       padding: 0 1.1rem; border: 0; border-radius: .5rem;
-      color: #17181b; background: #fff; font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer;
+      color: #191919; background: #fff; font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer;
     }
     .acm-create:disabled { opacity: .55; cursor: not-allowed; }
     .acm-create:not(:disabled):hover { filter: brightness(.94); }

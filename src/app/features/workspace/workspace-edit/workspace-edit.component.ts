@@ -85,7 +85,7 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
     .we-page { min-height: 100%; display: grid; place-items: start center; padding: 2rem; background: var(--color-surface-1); }
     .we-card { width: 100%; max-width: 26rem; padding: 2.4rem 2rem; background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: .75rem; display: flex; flex-direction: column; gap: 1rem; }
 
-    .we-back { display: inline-flex; align-items: center; gap: .3rem; color: var(--color-text-muted); text-decoration: none; font-size: .78rem; }
+    .we-back { display: inline-flex; align-items: center; gap: .3rem; color: var(--color-text-muted); text-decoration: none; font-size: .90rem; }
     .we-back:hover { color: var(--color-text-primary); }
 
     .we-title { margin: 0; font-size: 1.15rem; font-weight: 750; color: var(--color-text-primary); }
@@ -95,14 +95,14 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
     .we-error { padding: .6rem .85rem; background: rgba(229,83,75,.12); border: 1px solid rgba(229,83,75,.3); border-radius: .4rem; color: #e5534b; font-size: .8rem; }
 
     .we-form { display: flex; flex-direction: column; gap: 1rem; margin-top: .4rem; }
-    .we-label { display: flex; flex-direction: column; gap: .35rem; font-size: .78rem; font-weight: 600; color: var(--color-text-secondary); }
+    .we-label { display: flex; flex-direction: column; gap: .35rem; font-size: .90rem; font-weight: 600; color: var(--color-text-secondary); }
     .we-required { color: var(--color-danger, #e5534b); }
     .we-optional { font-weight: 400; color: var(--color-text-muted); }
 
     .we-input { padding: .55rem .75rem; border: 1px solid var(--color-border-strong); border-radius: .4rem; background: var(--color-surface-1); color: var(--color-text-primary); font: inherit; font-size: .84rem; outline: none; transition: border-color .15s; }
     .we-input:focus { border-color: var(--color-accent); }
     .we-input--invalid { border-color: var(--color-danger, #e5534b); }
-    .we-field-error { font-size: .72rem; color: var(--color-danger, #e5534b); font-weight: 400; }
+    .we-field-error { font-size: .83rem; color: var(--color-danger, #e5534b); font-weight: 400; }
 
     .we-submit { display: flex; align-items: center; justify-content: center; gap: .45rem; padding: .62rem 1.2rem; border: 0; border-radius: .42rem; background: var(--color-accent); color: #fff; font: inherit; font-size: .85rem; font-weight: 650; cursor: pointer; transition: opacity .15s; }
     .we-submit:disabled { opacity: .6; cursor: not-allowed; }

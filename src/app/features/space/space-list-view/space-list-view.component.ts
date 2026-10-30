@@ -944,7 +944,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       background: transparent;
       color: var(--color-text-secondary);
       font: inherit;
-      font-size: .68rem;
+      font-size: .78rem;
       font-weight: 600;
       cursor: pointer;
     }
@@ -968,7 +968,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       background: transparent;
       color: var(--color-text-muted);
       font: inherit;
-      font-size: .68rem;
+      font-size: .78rem;
       font-weight: 600;
       white-space: nowrap;
       cursor: pointer;
@@ -989,24 +989,24 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .slv-add-task {
       height: 1.9rem;
       padding: 0 .7rem;
-      border: 1px solid var(--color-border);
-      background: var(--color-surface-2);
-      color: var(--color-text-primary);
+      border: 0;
+      background: var(--color-btn-primary-bg);
+      color: var(--color-btn-primary-text);
       font: inherit;
-      font-size: .69rem;
+      font-size: .79rem;
       font-weight: 700;
       cursor: pointer;
-      border-radius: .38rem 0 0 .38rem;
+      border-radius: .5rem 0 0 .5rem;
       white-space: nowrap;
     }
-    .slv-add-task:hover { background: var(--color-surface-3); }
+    .slv-add-task:hover { background: var(--color-btn-primary-bg-hover); }
     .slv-add-task--caret {
-      padding: 0 .38rem;
-      border-left: 0;
-      border-radius: 0 .38rem .38rem 0;
+      padding: 0 .45rem;
+      border-left: 1px solid color-mix(in srgb, var(--color-btn-primary-text) 22%, transparent);
+      border-radius: 0 .5rem .5rem 0;
       display: grid;
       place-items: center;
-      color: var(--color-text-muted);
+      color: var(--color-btn-primary-text);
     }
 
     /* ── Task type dropdown ── */
@@ -1033,7 +1033,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       border: 0;
       background: transparent;
       font: inherit;
-      font-size: .76rem;
+      font-size: .87rem;
       font-weight: 600;
       color: var(--color-text-muted);
       cursor: pointer;
@@ -1051,7 +1051,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       background: var(--color-canvas);
       color: var(--color-text-primary);
       font: inherit;
-      font-size: .74rem;
+      font-size: .85rem;
       box-sizing: border-box;
     }
     .slv-tdd-search::placeholder { color: var(--color-text-muted); }
@@ -1071,7 +1071,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       gap: .6rem;
       padding: .5rem .4rem;
       border-radius: .4rem;
-      font-size: .78rem;
+      font-size: .90rem;
       font-weight: 600;
       color: var(--color-text-primary);
       cursor: pointer;
@@ -1110,8 +1110,8 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       width: .55rem; height: .55rem; border-radius: 50%;
       background: var(--color-text-muted); flex: none;
     }
-    .slv-group__title { font-size: .72rem; font-weight: 800; letter-spacing: .03em; color: var(--color-text-secondary); }
-    .slv-group__count { font-size: .72rem; color: var(--color-text-muted); margin-inline-start: .1rem; }
+    .slv-group__title { font-size: .83rem; font-weight: 800; letter-spacing: .03em; color: var(--color-text-secondary); }
+    .slv-group__count { font-size: .83rem; color: var(--color-text-muted); margin-inline-start: .1rem; }
     .slv-group__icon-btn {
       width: 1.5rem; height: 1.5rem; display: grid; place-items: center; margin-inline-start: .1rem;
       border: 0; border-radius: .3rem; background: transparent; color: var(--color-text-muted);
@@ -1122,7 +1122,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .slv-cols {
       display: grid; grid-template-columns: 1fr 9rem 7rem 6rem 2.2rem;
       align-items: center; gap: .4rem; padding: 0 1rem; min-height: 1.9rem;
-      color: var(--color-text-muted); font-size: .68rem; font-weight: 600;
+      color: var(--color-text-muted); font-size: .78rem; font-weight: 600;
       border-bottom: 1px solid var(--color-border);
     }
     .slv-cols__add {
@@ -1138,21 +1138,21 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     }
     .slv-row:hover { background: var(--color-surface-2); }
     .slv-row__dot { width: .5rem; height: .5rem; border-radius: 50%; border: 1.5px solid var(--color-text-muted); flex: none; }
-    .slv-row__name { font-size: .73rem; color: var(--color-text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .slv-row__name { font-size: .84rem; color: var(--color-text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .slv-row__assignees { display: flex; gap: .2rem; }
-    .slv-row__due { font-size: .7rem; color: var(--color-text-secondary); }
+    .slv-row__due { font-size: .80rem; color: var(--color-text-secondary); }
 
     .slv-avatar {
       width: 1.35rem; height: 1.35rem; border-radius: 50%; display: grid; place-items: center;
-      color: #fff; font-size: .62rem; font-weight: 700; flex: none;
+      color: #fff; font-size: .71rem; font-weight: 700; flex: none;
     }
-    .slv-avatar--sm { width: 1.15rem; height: 1.15rem; font-size: .58rem; }
+    .slv-avatar--sm { width: 1.15rem; height: 1.15rem; font-size: .67rem; }
 
     /* ── Idle "Add Task" placeholder row ── */
     .slv-add-row {
       display: flex; align-items: center; gap: .6rem; width: 100%;
       padding: .6rem 1rem; border: 0; background: transparent; cursor: pointer;
-      font: inherit; font-size: .73rem; color: var(--color-text-muted); text-align: start;
+      font: inherit; font-size: .84rem; color: var(--color-text-muted); text-align: start;
     }
     .slv-add-row:hover { background: var(--color-surface-2); color: var(--color-text-secondary); }
     .slv-add-row__dot { width: .5rem; height: .5rem; border-radius: 50%; border: 1.5px dashed var(--color-text-muted); flex: none; }
@@ -1168,7 +1168,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     }
     .slv-inline-row__input {
       flex: 1; min-width: 0; height: 1.9rem; border: 0; background: transparent;
-      color: var(--color-text-primary); font: inherit; font-size: .76rem; outline: 0;
+      color: var(--color-text-primary); font: inherit; font-size: .87rem; outline: 0;
     }
     .slv-inline-row__input::placeholder { color: var(--color-text-muted); }
     .slv-inline-row__icons { display: flex; align-items: center; gap: .15rem; flex: none; }
@@ -1179,10 +1179,10 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       cursor: pointer; padding: 0;
     }
     .slv-inline-icon:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
-    .slv-inline-icon__date { font-size: .66rem; font-weight: 600; color: var(--color-text-primary); padding: 0 .1rem; }
+    .slv-inline-icon__date { font-size: .76rem; font-weight: 600; color: var(--color-text-primary); padding: 0 .1rem; }
     .slv-inline-row__save {
       flex: none; height: 1.9rem; padding: 0 .85rem; border: 0; border-radius: .35rem;
-      background: var(--color-accent); color: #fff; font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer;
+      background: var(--color-accent); color: #fff; font: inherit; font-size: .83rem; font-weight: 700; cursor: pointer;
     }
     .slv-inline-row__save:disabled { opacity: .45; cursor: default; }
     .slv-inline-row__save:hover:not(:disabled) { background: color-mix(in srgb, var(--color-accent) 85%, #000); }
@@ -1200,14 +1200,14 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       border: 1px solid var(--color-border-strong); border-radius: .4rem; margin-bottom: .5rem;
     }
     .slv-assignee-search-icon { color: var(--color-text-muted); flex: none; }
-    .slv-assignee-search { flex: 1; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .72rem; outline: 0; }
+    .slv-assignee-search { flex: 1; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .83rem; outline: 0; }
     .slv-assignee-search::placeholder { color: var(--color-text-muted); }
     .slv-assignee-section { padding: .2rem 0; }
-    .slv-assignee-section__label { display: block; padding: .2rem .35rem; font-size: .64rem; font-weight: 700; color: var(--color-text-muted); }
+    .slv-assignee-section__label { display: block; padding: .2rem .35rem; font-size: .74rem; font-weight: 700; color: var(--color-text-muted); }
     .slv-assignee-item {
       display: flex; align-items: center; gap: .5rem; width: 100%; padding: .35rem .4rem;
       border: 0; border-radius: .4rem; background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .74rem; text-align: start; cursor: pointer;
+      font: inherit; font-size: .85rem; text-align: start; cursor: pointer;
     }
     .slv-assignee-item:hover { background: var(--color-surface-3); }
     .slv-assignee-item__check { margin-inline-start: auto; color: var(--color-accent); }
@@ -1223,7 +1223,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .slv-date-field {
       flex: 1; display: flex; align-items: center; gap: .35rem; height: 1.85rem; padding: 0 .55rem;
       border: 1px solid var(--color-border-strong); border-radius: .4rem; background: transparent;
-      color: var(--color-text-muted); font: inherit; font-size: .68rem; cursor: pointer;
+      color: var(--color-text-muted); font: inherit; font-size: .78rem; cursor: pointer;
     }
     .slv-date-field--active { color: var(--color-text-primary); border-color: var(--color-accent); }
     .slv-date-dropdown__body { display: flex; gap: 0; padding: .5rem; }
@@ -1231,22 +1231,22 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .slv-date-quick__item {
       display: flex; align-items: center; justify-content: space-between; gap: .3rem;
       padding: .32rem .4rem; border: 0; border-radius: .35rem; background: transparent;
-      color: var(--color-text-primary); font: inherit; font-size: .7rem; cursor: pointer; text-align: start;
+      color: var(--color-text-primary); font: inherit; font-size: .80rem; cursor: pointer; text-align: start;
     }
     .slv-date-quick__item:hover { background: var(--color-surface-3); }
-    .slv-date-quick__day { color: var(--color-text-muted); font-size: .65rem; }
+    .slv-date-quick__day { color: var(--color-text-muted); font-size: .75rem; }
     .slv-date-quick__divider { height: 1px; background: var(--color-border); margin: .3rem .2rem; }
     .slv-date-cal { flex: 1; padding-inline-start: .5rem; border-inline-start: 1px solid var(--color-border); }
-    .slv-date-cal__head { display: flex; align-items: center; gap: .4rem; padding: .2rem .3rem .5rem; font-size: .74rem; font-weight: 700; color: var(--color-text-primary); }
-    .slv-date-cal__today { margin-inline-start: auto; color: var(--color-accent); font-size: .68rem; font-weight: 600; cursor: pointer; }
+    .slv-date-cal__head { display: flex; align-items: center; gap: .4rem; padding: .2rem .3rem .5rem; font-size: .85rem; font-weight: 700; color: var(--color-text-primary); }
+    .slv-date-cal__today { margin-inline-start: auto; color: var(--color-accent); font-size: .78rem; font-weight: 600; cursor: pointer; }
     .slv-date-cal__head button { width: 1.4rem; height: 1.4rem; display: grid; place-items: center; border: 0; border-radius: .3rem; background: transparent; color: var(--color-text-muted); cursor: pointer; padding: 0; }
     .slv-date-cal__head button:hover { background: var(--color-surface-3); }
     .slv-date-cal__dow { display: grid; grid-template-columns: repeat(7, 1fr); padding: 0 .3rem; margin-bottom: .2rem; }
-    .slv-date-cal__dow span { text-align: center; font-size: .62rem; color: var(--color-text-muted); }
+    .slv-date-cal__dow span { text-align: center; font-size: .71rem; color: var(--color-text-muted); }
     .slv-date-cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .1rem; padding: 0 .3rem; }
     .slv-date-cal__cell {
       aspect-ratio: 1; display: grid; place-items: center; border: 0; border-radius: .35rem;
-      background: transparent; color: var(--color-text-primary); font: inherit; font-size: .68rem; cursor: pointer;
+      background: transparent; color: var(--color-text-primary); font: inherit; font-size: .78rem; cursor: pointer;
     }
     .slv-date-cal__cell:hover { background: var(--color-surface-3); }
     .slv-date-cal__cell--muted { color: var(--color-text-muted); opacity: .5; }
@@ -1258,8 +1258,8 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       border-top: 1px solid var(--color-border);
     }
     .slv-date-banner__icon { font-size: 1.1rem; flex: none; }
-    .slv-date-banner__text { flex: 1; display: flex; flex-direction: column; font-size: .66rem; color: var(--color-text-secondary); }
-    .slv-date-banner__text b { font-size: .7rem; color: var(--color-text-primary); }
+    .slv-date-banner__text { flex: 1; display: flex; flex-direction: column; font-size: .76rem; color: var(--color-text-secondary); }
+    .slv-date-banner__text b { font-size: .80rem; color: var(--color-text-primary); }
     .slv-date-banner button { flex: none; width: 1.3rem; height: 1.3rem; display: grid; place-items: center; border: 0; border-radius: .3rem; background: transparent; color: var(--color-text-muted); cursor: pointer; padding: 0; }
     .slv-date-banner button:hover { background: var(--color-surface-3); }
 
@@ -1278,7 +1278,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       height: 1.75rem; padding: 0 .65rem;
       border: 0; border-radius: .35rem 0 0 .35rem;
       background: var(--color-accent); color: #fff;
-      font: inherit; font-size: .68rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer;
     }
     .slv-saveview:hover { background: color-mix(in srgb, var(--color-accent) 82%, #000); }
     .slv-saveview-caret {
@@ -1299,7 +1299,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       display: block; width: 100%; text-align: left;
       min-height: 1.9rem; padding: 0 .5rem; border: 0; border-radius: .3rem;
       background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .7rem; cursor: pointer;
+      font: inherit; font-size: .80rem; cursor: pointer;
     }
     .slv-saveview-menu button:hover { background: var(--color-surface-2); }
 
@@ -1311,13 +1311,13 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       border-bottom: 1px solid var(--color-border);
     }
     .slv-filterbar__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .7rem; }
-    .slv-filterbar__head h3 { margin: 0; font-size: .78rem; font-weight: 700; color: var(--color-text-primary); }
+    .slv-filterbar__head h3 { margin: 0; font-size: .90rem; font-weight: 700; color: var(--color-text-primary); }
     .slv-savedfilters {
       display: inline-flex; align-items: center; gap: .3rem;
       height: 1.8rem; padding: 0 .6rem;
       border: 1px solid var(--color-border); border-radius: .35rem;
       background: transparent; color: var(--color-text-secondary);
-      font: inherit; font-size: .68rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer;
     }
     .slv-savedfilters:hover { background: var(--color-surface-2); color: var(--color-text-primary); }
 
@@ -1327,7 +1327,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       height: 1.65rem; padding: 0 .45rem;
       border: 1px solid var(--color-border); border-radius: .32rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
-      font: inherit; font-size: .65rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .75rem; font-weight: 700; cursor: pointer;
       align-self: flex-start;
     }
     .slv-frow__wrap { position: relative; display: flex; align-items: center; gap: .35rem; flex: 1; }
@@ -1336,7 +1336,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       height: 2rem; padding: 0 .6rem;
       border: 1px solid var(--color-border); border-radius: .4rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
-      font: inherit; font-size: .7rem; cursor: pointer; gap: .4rem;
+      font: inherit; font-size: .80rem; cursor: pointer; gap: .4rem;
     }
     .slv-fselect > span { flex: 1; text-align: left; }
     .slv-fselect:hover { border-color: var(--color-border-strong); }
@@ -1360,17 +1360,17 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       display: block; width: 100%; box-sizing: border-box;
       padding: .42rem .65rem; border: 0; border-bottom: 1px solid var(--color-border);
       background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .7rem; outline: 0;
+      font: inherit; font-size: .80rem; outline: 0;
     }
     .slv-fsearch::placeholder { color: var(--color-text-muted); }
     .slv-flist { list-style: none; margin: 0; padding: .2rem 0 .3rem; max-height: 13rem; overflow-y: auto; }
-    .slv-fopt { padding: .35rem .65rem; font-size: .7rem; color: var(--color-text-secondary); cursor: pointer; }
+    .slv-fopt { padding: .35rem .65rem; font-size: .80rem; color: var(--color-text-secondary); cursor: pointer; }
     .slv-fopt:hover { background: var(--color-surface-2); color: var(--color-text-primary); }
     .slv-fopt--active { color: var(--color-accent); font-weight: 600; }
     .slv-nested {
       border: 0; background: transparent;
       color: var(--color-accent-bright, var(--color-accent));
-      font: inherit; font-size: .64rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .74rem; font-weight: 600; cursor: pointer;
       padding: .12rem .2rem; border-radius: .22rem; align-self: flex-start;
     }
     .slv-nested:hover { text-decoration: underline; }
@@ -1379,7 +1379,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       min-height: 1.65rem; padding: 0 .5rem; margin-top: .15rem;
       border: 1px solid var(--color-border); border-radius: .35rem;
       background: transparent; color: var(--color-text-secondary);
-      font: inherit; font-size: .67rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .77rem; font-weight: 600; cursor: pointer;
     }
     .slv-addfilterrow:hover { background: var(--color-surface-2); }
 
@@ -1400,7 +1400,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       background: var(--color-surface-1);
     }
     .slv-cz__header--fields { padding-left: .5rem; gap: .3rem; }
-    .slv-cz__header h3 { margin: 0; font-size: .78rem; font-weight: 700; color: var(--color-text-primary); }
+    .slv-cz__header h3 { margin: 0; font-size: .90rem; font-weight: 700; color: var(--color-text-primary); }
     .slv-cz-header__spacer { flex: 1; }
     .slv-cz-close, .slv-cz-back {
       display: grid; place-items: center;
@@ -1424,7 +1424,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       flex: 1; height: 1.9rem; padding: 0 .5rem;
       border: 1px solid var(--color-border); border-radius: .35rem;
       background: var(--color-surface-2); color: var(--color-text-primary);
-      font: inherit; font-size: .74rem; font-weight: 600;
+      font: inherit; font-size: .85rem; font-weight: 600;
     }
     .slv-cz-viewname__input:focus { outline: 0; border-color: var(--color-accent); }
 
@@ -1435,11 +1435,11 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       display: flex; align-items: center; justify-content: space-between;
       width: 100%; min-height: 2.15rem; padding: 0 .9rem;
       border: 0; background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .74rem; text-align: left; cursor: pointer;
+      font: inherit; font-size: .85rem; text-align: left; cursor: pointer;
     }
     .cz-row:hover { background: var(--color-surface-2); }
     .cz-row--nested { padding-left: 1.3rem; }
-    .cz-row__val { display: inline-flex; align-items: center; gap: .3rem; color: var(--color-text-muted); font-size: .72rem; }
+    .cz-row__val { display: inline-flex; align-items: center; gap: .3rem; color: var(--color-text-muted); font-size: .83rem; }
     .cz-row__icontext { display: inline-flex; align-items: center; gap: .5rem; }
     .cz-chevron { color: var(--color-text-muted); transition: transform .12s; }
     .cz-chevron--open { transform: rotate(90deg); }
@@ -1470,7 +1470,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     }
     .cz-group-select select {
       flex: 1; border: 0; background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .7rem; cursor: pointer;
+      font: inherit; font-size: .80rem; cursor: pointer;
     }
     .cz-group-select select:focus { outline: 0; }
     .cz-group-select--order { flex: none; width: 7rem; }
@@ -1487,19 +1487,19 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       background: var(--color-surface-2); border: 1px solid var(--color-border);
       border-radius: .5rem; box-shadow: 0 6px 18px color-mix(in srgb,#000 25%,transparent);
     }
-    .cz-flyout__label { padding: .3rem .8rem .35rem; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--color-text-muted); }
+    .cz-flyout__label { padding: .3rem .8rem .35rem; font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--color-text-muted); }
     .cz-flyout__item {
       display: flex; align-items: center; justify-content: space-between; gap: .5rem;
       width: 100%; min-height: 2.2rem; padding: 0 .8rem;
       border: 0; background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .72rem; text-align: left; cursor: pointer;
+      font: inherit; font-size: .83rem; text-align: left; cursor: pointer;
     }
     .cz-flyout__item:hover { background: var(--color-surface-3); }
     .cz-flyout__item--action { justify-content: flex-start; gap: .6rem; font-weight: 600; }
     .cz-flyout__item--action lucide-icon { color: var(--color-text-muted); }
     .cz-flyout__body { display: flex; flex-direction: column; gap: .05rem; }
-    .cz-flyout__body strong { font-size: .72rem; font-weight: 650; }
-    .cz-flyout__body small { font-size: .62rem; color: var(--color-text-muted); }
+    .cz-flyout__body strong { font-size: .83rem; font-weight: 650; }
+    .cz-flyout__body small { font-size: .71rem; color: var(--color-text-muted); }
 
     /* Favorite panel */
     .cz-favpanel { padding: .3rem .9rem .6rem; }
@@ -1508,7 +1508,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       display: grid; justify-items: center; gap: .4rem; padding: .5rem .3rem;
       border: 1.5px solid var(--color-border); border-radius: .5rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
-      font: inherit; font-size: .66rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .76rem; font-weight: 600; cursor: pointer;
     }
     .cz-layout-opt:hover { border-color: var(--color-border-strong); color: var(--color-text-primary); }
     .cz-layout-opt--selected { border-color: var(--color-accent); color: var(--color-accent); background: var(--color-accent-soft); }
@@ -1527,7 +1527,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .cz-sections-head {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: .4rem;
-      font-size: .64rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+      font-size: .74rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
       color: var(--color-text-muted);
     }
     .cz-addsection {
@@ -1538,7 +1538,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .cz-fav-item {
       display: flex; align-items: center; gap: .5rem;
       min-height: 1.9rem; padding: 0 .5rem; border-radius: .35rem;
-      color: var(--color-text-secondary); font-size: .72rem;
+      color: var(--color-text-secondary); font-size: .83rem;
     }
     .cz-fav-item:hover { background: var(--color-surface-2); color: var(--color-text-primary); }
 
@@ -1553,33 +1553,33 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .cz-export-field { display: flex; flex-direction: column; gap: .35rem; }
     .cz-export-field label {
       display: flex; align-items: center; gap: .3rem;
-      font-size: .68rem; font-weight: 700; color: var(--color-text-secondary);
+      font-size: .78rem; font-weight: 700; color: var(--color-text-secondary);
     }
-    .cz-info { opacity: .6; font-size: .62rem; }
+    .cz-info { opacity: .6; font-size: .71rem; }
     .cz-export-toggle2 { display: flex; gap: .4rem; }
     .cz-export-toggle2 button {
       flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: .3rem;
       height: 1.9rem; border: 1px solid var(--color-border); border-radius: .35rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
-      font: inherit; font-size: .68rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer;
     }
     .cz-export-toggle2 button.selected { border-color: var(--color-accent); color: var(--color-accent); background: var(--color-accent-soft); }
-    .cz-radio { display: flex; align-items: center; gap: .45rem; font-size: .7rem; color: var(--color-text-primary); cursor: pointer; }
+    .cz-radio { display: flex; align-items: center; gap: .45rem; font-size: .80rem; color: var(--color-text-primary); cursor: pointer; }
     .cz-export-select {
       display: flex; align-items: center; gap: .3rem;
       height: 1.9rem; padding: 0 .55rem;
       border: 1px solid var(--color-border); border-radius: .35rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
     }
-    .cz-export-select select { flex: 1; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .7rem; }
+    .cz-export-select select { flex: 1; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .80rem; }
     .cz-export-select select:focus { outline: 0; }
     .cz-export-download {
       min-height: 2rem; border: 0; border-radius: .4rem;
       background: var(--color-surface-3); color: var(--color-text-primary);
-      font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .83rem; font-weight: 700; cursor: pointer;
     }
     .cz-export-download:hover { background: var(--color-border-strong); }
-    .cz-export-hint { margin: -.4rem 0 0; text-align: center; font-size: .6rem; color: var(--color-text-muted); }
+    .cz-export-hint { margin: -.4rem 0 0; text-align: center; font-size: .69rem; color: var(--color-text-muted); }
 
     /* ══════════ Fields panel ══════════ */
     .cz-fields-search { padding: 0 .9rem .6rem; }
@@ -1587,13 +1587,13 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       width: 100%; box-sizing: border-box; height: 2rem; padding: 0 .6rem;
       border: 1px solid var(--color-border); border-radius: .4rem;
       background: var(--color-surface-2); color: var(--color-text-primary);
-      font: inherit; font-size: .72rem;
+      font: inherit; font-size: .83rem;
     }
     .cz-fields-search input:focus { outline: 0; border-color: var(--color-accent); }
     .cz-fields-tabs { display: flex; gap: 1rem; padding: 0 .9rem .5rem; border-bottom: 1px solid var(--color-border); }
     .cz-fields-tabs button {
       border: 0; background: transparent; color: var(--color-text-muted);
-      font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .83rem; font-weight: 700; cursor: pointer;
       padding: 0 0 .5rem; border-bottom: 2px solid transparent;
     }
     .cz-fields-tab--active { color: var(--color-text-primary); border-bottom-color: var(--color-text-primary); }
@@ -1604,12 +1604,12 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       height: 2rem; padding: 0 .55rem;
       border: 1px solid var(--color-border); border-radius: .4rem;
       background: var(--color-surface-2); color: var(--color-text-primary);
-      font: inherit; font-size: .72rem;
+      font: inherit; font-size: .83rem;
     }
     .cz-fields-create__btn {
       height: 2rem; border: 0; border-radius: .4rem;
       background: var(--color-accent); color: #fff;
-      font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .83rem; font-weight: 700; cursor: pointer;
     }
     .cz-fields-create__btn:hover { background: color-mix(in srgb, var(--color-accent) 82%, #000); }
 
@@ -1618,10 +1618,10 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       display: flex; align-items: center; gap: .3rem;
       width: 100%; min-height: 1.9rem; padding: 0 .9rem;
       border: 0; background: transparent; color: var(--color-text-muted);
-      font: inherit; font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+      font: inherit; font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
       cursor: pointer;
     }
-    .cz-fields-group__count { margin-left: auto; color: var(--color-text-muted); font-size: .66rem; font-weight: 600; text-transform: none; letter-spacing: 0; }
+    .cz-fields-group__count { margin-left: auto; color: var(--color-text-muted); font-size: .76rem; font-weight: 600; text-transform: none; letter-spacing: 0; }
     .cz-field-row {
       display: flex; align-items: center; gap: .55rem;
       min-height: 2.1rem; padding: 0 .9rem;
@@ -1630,9 +1630,9 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .cz-field-row--locked { opacity: .85; }
     .cz-field-row__icon {
       display: grid; place-items: center; width: 1.3rem; flex: none;
-      color: var(--color-text-muted); font-size: .74rem; font-weight: 700;
+      color: var(--color-text-muted); font-size: .85rem; font-weight: 700;
     }
-    .cz-field-row__label { flex: 1; font-size: .73rem; color: var(--color-text-primary); }
+    .cz-field-row__label { flex: 1; font-size: .84rem; color: var(--color-text-primary); }
   `],
 })
 export class SpaceListViewComponent {

@@ -256,13 +256,13 @@ export interface FilterRow {
       min-height: 1.75rem; padding: 0 .65rem;
       border: 1px solid var(--color-border-strong); border-radius: 2rem;
       background: transparent; color: var(--color-text-muted);
-      font: inherit; font-size: .68rem; cursor: pointer;
+      font: inherit; font-size: .78rem; cursor: pointer;
     }
     .ovt-filter-btn:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
 
     .ovt-refresh {
       display: inline-flex; align-items: center; gap: .28rem;
-      color: var(--color-text-muted); font-size: .63rem; white-space: nowrap;
+      color: var(--color-text-muted); font-size: .72rem; white-space: nowrap;
     }
     .spin { animation: spin 1s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -272,22 +272,22 @@ export interface FilterRow {
       height: 1.65rem; padding: 0 .5rem;
       border: 1px solid var(--color-border); border-radius: 2rem;
       background: transparent; color: var(--color-accent-bright, #c4b5fd);
-      font: inherit; font-size: .63rem; white-space: nowrap; cursor: pointer;
+      font: inherit; font-size: .72rem; white-space: nowrap; cursor: pointer;
     }
     .ovt-autorefresh:hover { background: var(--color-surface-2); }
     .ovt-customize {
       border: 0; background: transparent; color: var(--color-text-secondary);
-      font: inherit; font-size: .67rem; cursor: pointer; padding: .2rem .3rem;
+      font: inherit; font-size: .77rem; cursor: pointer; padding: .2rem .3rem;
     }
     .ovt-customize:hover { color: var(--color-text-primary); }
     .btn-accent {
       display: inline-flex; align-items: center; gap: .28rem;
       min-height: 1.85rem; padding: 0 .75rem;
-      border: 0; border-radius: .4rem;
-      background: var(--color-accent); color: #fff;
-      font: inherit; font-size: .68rem; font-weight: 700; cursor: pointer;
+      border: 0; border-radius: .5rem;
+      background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text);
+      font: inherit; font-size: .84rem; font-weight: 600; cursor: pointer;
     }
-    .btn-accent:hover { background: color-mix(in srgb, var(--color-accent) 80%, #000); }
+    .btn-accent:hover { background: var(--color-btn-primary-bg-hover); }
 
     /* ── Filters panel ── */
     .ovt-filters {
@@ -303,7 +303,7 @@ export interface FilterRow {
     }
     .ovt-filters__title {
       margin: 0 0 .75rem;
-      font-size: .76rem; font-weight: 700;
+      font-size: .87rem; font-weight: 700;
       color: var(--color-text-primary);
     }
 
@@ -313,7 +313,7 @@ export interface FilterRow {
       height: 1.65rem; padding: 0 .45rem;
       border: 1px solid var(--color-border); border-radius: .32rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
-      font: inherit; font-size: .65rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .75rem; font-weight: 700; cursor: pointer;
       align-self: flex-start;
     }
     .ovt-frow__wrap { position: relative; display: flex; align-items: center; gap: .35rem; }
@@ -323,7 +323,7 @@ export interface FilterRow {
       height: 2rem; padding: 0 .6rem;
       border: 1px solid var(--color-border); border-radius: .4rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
-      font: inherit; font-size: .7rem; cursor: pointer; gap: .4rem;
+      font: inherit; font-size: .80rem; cursor: pointer; gap: .4rem;
     }
     .ovt-fselect > span { flex: 1; text-align: left; }
     .ovt-fselect:hover { border-color: var(--color-border-strong); }
@@ -351,18 +351,18 @@ export interface FilterRow {
       padding: .42rem .65rem;
       border: 0; border-bottom: 1px solid var(--color-border);
       background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .7rem; outline: 0;
+      font: inherit; font-size: .80rem; outline: 0;
     }
     .ovt-dsearch::placeholder { color: var(--color-text-muted); }
     .ovt-dclear {
       position: absolute; top: .42rem; right: .45rem;
       border: 0; background: transparent;
       color: var(--color-danger, #e5534b);
-      font: inherit; font-size: .63rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer;
     }
     .ovt-dgroup {
       padding: .4rem .65rem .18rem;
-      font-size: .6rem; font-weight: 600;
+      font-size: .69rem; font-weight: 600;
       color: var(--color-text-muted);
       text-transform: uppercase; letter-spacing: .04em;
     }
@@ -372,7 +372,7 @@ export interface FilterRow {
     }
     .ovt-dopt {
       padding: .35rem .65rem;
-      font-size: .7rem; color: var(--color-text-secondary); cursor: pointer;
+      font-size: .80rem; color: var(--color-text-secondary); cursor: pointer;
     }
     .ovt-dopt:hover { background: var(--color-surface-2); color: var(--color-text-primary); }
     .ovt-dopt--active { color: var(--color-accent); font-weight: 600; }
@@ -380,7 +380,7 @@ export interface FilterRow {
     .ovt-nested {
       border: 0; background: transparent;
       color: var(--color-accent-bright, var(--color-accent));
-      font: inherit; font-size: .64rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .74rem; font-weight: 600; cursor: pointer;
       padding: .12rem .2rem; border-radius: .22rem; align-self: flex-start;
     }
     .ovt-nested:hover { text-decoration: underline; }
@@ -390,7 +390,7 @@ export interface FilterRow {
       min-height: 1.65rem; padding: 0 .5rem; margin-top: .15rem;
       border: 1px solid var(--color-border); border-radius: .35rem;
       background: transparent; color: var(--color-text-secondary);
-      font: inherit; font-size: .67rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .77rem; font-weight: 600; cursor: pointer;
     }
     .ovt-addrow:hover { background: var(--color-surface-2); }
 
@@ -410,7 +410,7 @@ export interface FilterRow {
       display: flex; align-items: center; justify-content: space-between;
       padding: .7rem .5rem .55rem .9rem;
     }
-    .ovc-header h3 { margin: 0; font-size: .78rem; font-weight: 700; color: var(--color-text-primary); }
+    .ovc-header h3 { margin: 0; font-size: .90rem; font-weight: 700; color: var(--color-text-primary); }
     .ovc-close {
       display: grid; place-items: center;
       width: 1.7rem; height: 1.7rem; flex: none;
@@ -425,7 +425,7 @@ export interface FilterRow {
       display: flex; align-items: center; justify-content: space-between;
       width: 100%; min-height: 2.15rem; padding: 0 .9rem;
       border: 0; background: transparent; color: var(--color-text-primary);
-      font: inherit; font-size: .74rem; text-align: left; cursor: pointer;
+      font: inherit; font-size: .85rem; text-align: left; cursor: pointer;
     }
     .ovc-row:hover { background: var(--color-surface-2); }
     .ovc-row--danger { color: var(--color-danger, #e5534b); }
@@ -433,7 +433,7 @@ export interface FilterRow {
 
     .ovc-row__val {
       display: inline-flex; align-items: center; gap: .3rem;
-      color: var(--color-text-muted); font-size: .72rem;
+      color: var(--color-text-muted); font-size: .83rem;
     }
     .ovc-row__icontext {
       display: inline-flex; align-items: center; gap: .5rem;
@@ -471,7 +471,7 @@ export interface FilterRow {
       border-radius: .6rem;
       box-shadow: 0 8px 28px color-mix(in srgb, #000 30%, transparent);
     }
-    .ovc-dashfilters__title { margin: 0 0 .6rem; font-size: .74rem; font-weight: 700; color: var(--color-text-primary); }
+    .ovc-dashfilters__title { margin: 0 0 .6rem; font-size: .85rem; font-weight: 700; color: var(--color-text-primary); }
     .ovc-dfrow { display: flex; align-items: center; gap: .35rem; }
     .ovc-dfrow__wrap { flex: 1; }
 
@@ -481,7 +481,7 @@ export interface FilterRow {
       display: block; width: 100%; text-align: left;
       min-height: 1.9rem; padding: 0 .9rem 0 1.6rem;
       border: 0; background: transparent; color: var(--color-text-secondary);
-      font: inherit; font-size: .7rem; cursor: pointer;
+      font: inherit; font-size: .80rem; cursor: pointer;
     }
     .ovc-subitem:hover { background: var(--color-surface-2); color: var(--color-text-primary); }
 
@@ -492,7 +492,7 @@ export interface FilterRow {
       display: grid; justify-items: center; gap: .4rem; padding: .5rem .3rem;
       border: 1.5px solid var(--color-border); border-radius: .5rem;
       background: var(--color-surface-2); color: var(--color-text-secondary);
-      font: inherit; font-size: .66rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .76rem; font-weight: 600; cursor: pointer;
     }
     .ovc-layout-opt:hover { border-color: var(--color-border-strong); color: var(--color-text-primary); }
     .ovc-layout-opt--selected { border-color: var(--color-accent); color: var(--color-accent); background: var(--color-accent-soft); }
@@ -513,7 +513,7 @@ export interface FilterRow {
     .ovc-sections-head {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: .4rem;
-      font-size: .64rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+      font-size: .74rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
       color: var(--color-text-muted);
     }
     .ovc-addsection {
@@ -527,7 +527,7 @@ export interface FilterRow {
       display: flex; align-items: center; gap: .5rem;
       min-height: 1.9rem; padding: 0 .5rem;
       border-radius: .35rem;
-      color: var(--color-text-secondary); font-size: .72rem;
+      color: var(--color-text-secondary); font-size: .83rem;
     }
     .ovc-fav-item:hover { background: var(--color-surface-2); color: var(--color-text-primary); }
 

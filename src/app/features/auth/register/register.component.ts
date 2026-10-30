@@ -3,19 +3,18 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AppError } from '../../../core/errors/app-error';
-import { AuthService, OAUTH_PROVIDER_GRAPHQL_NAME } from '../../../core/auth/auth.service';
-import { SocialAuthService, OAuthProvider } from '../../../core/auth/social-auth.service';
+import { AuthService } from '../../../core/auth/auth.service';
 import { ComponentTranslatePipe } from '../../../core/i18n/component-translate.pipe';
 import { AppAlertComponent } from '../../../shared/components/app-alert/app-alert.component';
 import { AppButtonComponent } from '../../../shared/components/app-button/app-button.component';
 import { AuthLayoutComponent } from '../../../shared/components/auth-layout/auth-layout.component';
-import { OauthIconComponent } from '../../../shared/components/oauth-icon/oauth-icon.component';
+import { environment } from '../../../../environments/environment';
 import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, ComponentTranslatePipe, AppAlertComponent, AppButtonComponent, AuthLayoutComponent, OauthIconComponent, LucideAngularModule],
+  imports: [ReactiveFormsModule, RouterLink, ComponentTranslatePipe, AppAlertComponent, AppButtonComponent, AuthLayoutComponent, LucideAngularModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +22,6 @@ import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
 export class RegisterComponent {
   private readonly fb = inject(FormBuilder);
   private readonly auth = inject(AuthService);
-  private readonly social = inject(SocialAuthService);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -34,7 +32,6 @@ export class RegisterComponent {
   });
   showPassword = false;
   loading = false;
-  oauthLoading: OAuthProvider | null = null;
   providerError = '';
   generalError = '';
   readonly Eye = Eye;
@@ -56,7 +53,7 @@ export class RegisterComponent {
 
   submit(): void {
     this.form.markAllAsTouched();
-    if (this.form.invalid || this.loading || this.oauthLoading) return;
+    if (this.form.invalid || this.loading) return;
     this.loading = true;
     this.generalError = '';
     this.clearBackendErrors();
@@ -66,25 +63,10 @@ export class RegisterComponent {
     });
   }
 
-  signUpWith(provider: OAuthProvider): void {
-    if (this.loading || this.oauthLoading) return;
-    this.generalError = '';
-    this.providerError = '';
-    this.oauthLoading = provider;
-    this.social.start(provider).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next: code => this.completeOAuth(provider, code),
-      error: (key: string) => { this.oauthLoading = null; this.providerError = key || 'oauthFailed'; },
-    });
-  }
-
-  private completeOAuth(provider: OAuthProvider, code: string): void {
-    this.auth.oauthLogin(OAUTH_PROVIDER_GRAPHQL_NAME[provider], code).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next: () => { this.oauthLoading = null; void this.router.navigateByUrl('/dashboard'); },
-      error: error => {
-        this.oauthLoading = null;
-        this.providerError = (error instanceof AppError ? error.publicMessage : '') || 'oauthFailed';
-      },
-    });
+  signUpWith(provider: 'google' | 'github'): void {
+    this.providerError = !environment.oauth[`${provider}ClientId` as 'googleClientId' | 'githubClientId']
+      ? 'oauthFailed'
+      : 'oauthFailed';
   }
 
   private applyError(error: unknown): void {

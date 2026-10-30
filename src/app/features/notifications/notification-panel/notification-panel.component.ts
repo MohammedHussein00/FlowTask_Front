@@ -98,7 +98,7 @@ import { Notification } from '../../../models/notification.model';
       background: transparent;
       color: var(--color-text-muted);
       font: inherit;
-      font-size: .7rem;
+      font-size: .80rem;
       font-weight: 600;
       cursor: pointer;
     }
@@ -130,7 +130,7 @@ import { Notification } from '../../../models/notification.model';
       padding: 2rem;
       color: var(--color-text-muted);
     }
-    .ft-notif-empty p { margin: 0; font-size: .72rem; }
+    .ft-notif-empty p { margin: 0; font-size: .83rem; }
 
     /* List */
     .ft-notif-list {
@@ -153,13 +153,13 @@ import { Notification } from '../../../models/notification.model';
 
     .ft-notif-body { display: flex; flex-direction: column; gap: .18rem; width: 100%; }
     .ft-notif-top { display: flex; justify-content: space-between; align-items: center; }
-    .ft-notif-item-title { font-weight: 600; font-size: .72rem; color: var(--color-text-primary); }
+    .ft-notif-item-title { font-weight: 600; font-size: .83rem; color: var(--color-text-primary); }
     .ft-unread-dot {
       width: .45rem; height: .45rem; border-radius: 50%;
       background: var(--color-accent); flex: none;
     }
     .ft-notif-message {
-      font-size: .67rem;
+      font-size: .77rem;
       color: var(--color-text-secondary);
       margin: 0;
       white-space: nowrap;
@@ -167,7 +167,7 @@ import { Notification } from '../../../models/notification.model';
       text-overflow: ellipsis;
       max-width: 270px;
     }
-    .ft-notif-time { font-size: .63rem; color: var(--color-text-muted); }
+    .ft-notif-time { font-size: .72rem; color: var(--color-text-muted); }
 
     /* Link button */
     .ft-link-btn {
@@ -175,7 +175,7 @@ import { Notification } from '../../../models/notification.model';
       background: transparent;
       color: var(--color-accent-bright, var(--color-accent));
       font: inherit;
-      font-size: .68rem;
+      font-size: .78rem;
       font-weight: 600;
       cursor: pointer;
       padding: .2rem .35rem;

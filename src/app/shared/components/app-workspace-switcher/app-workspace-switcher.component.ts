@@ -56,25 +56,25 @@ import { WorkspaceSnapshot } from '../../../core/stores/workspace.store';
     .ws-avatar { flex: none; width: 2.4rem; height: 2.4rem; display: grid; place-items: center; overflow: hidden; border-radius: .55rem; color: #08341f; background: #35bd7d; font-size: 1rem; font-weight: 800; }
     .ws-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .ws-panel header strong { display: block; font-size: .9rem; }
-    .ws-panel header small { display: block; margin-top: .1rem; color: var(--color-text-muted); font-size: .68rem; }
+    .ws-panel header small { display: block; margin-top: .1rem; color: var(--color-text-muted); font-size: .78rem; }
     .ws-plan-bar { height: .3rem; margin: 0 1rem .85rem; border-radius: .2rem; background: linear-gradient(90deg, #ff8a5c, #ff5c8a, #c15cff, #5c8aff, #35d0c7); }
     .ws-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: 0 1rem .7rem; }
-    .ws-actions button { min-height: 2.05rem; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: 1px solid var(--color-border-strong); border-radius: .45rem; color: var(--color-text-primary); background: transparent; font: inherit; font-size: .72rem; font-weight: 650; cursor: pointer; }
+    .ws-actions button { min-height: 2.05rem; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: 1px solid var(--color-border-strong); border-radius: .45rem; color: var(--color-text-primary); background: transparent; font: inherit; font-size: .83rem; font-weight: 650; cursor: pointer; }
     .ws-actions button:hover { background: var(--color-surface-3); }
-    .ws-label { margin: .3rem 1rem .3rem; color: var(--color-text-muted); font-size: .6rem; font-weight: 800; letter-spacing: .08em; }
+    .ws-label { margin: .3rem 1rem .3rem; color: var(--color-text-muted); font-size: .69rem; font-weight: 800; letter-spacing: .08em; }
     .ws-list { max-height: 11rem; overflow-y: auto; margin-bottom: .3rem; }
-    .ws-empty { margin: 0 1rem .4rem; color: var(--color-text-muted); font-size: .72rem; }
-    .ws-item { position: relative; width: calc(100% - 1.2rem); margin-inline: .6rem; min-height: 2.15rem; display: flex; align-items: center; gap: .55rem; padding: 0 .5rem; border: 0; border-radius: .4rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .76rem; font-weight: 550; text-align: start; cursor: pointer; }
+    .ws-empty { margin: 0 1rem .4rem; color: var(--color-text-muted); font-size: .83rem; }
+    .ws-item { position: relative; width: calc(100% - 1.2rem); margin-inline: .6rem; min-height: 2.15rem; display: flex; align-items: center; gap: .55rem; padding: 0 .5rem; border: 0; border-radius: .4rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .87rem; font-weight: 550; text-align: start; cursor: pointer; }
     .ws-item:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .ws-item--active { color: var(--color-text-primary); background: var(--color-surface-3); }
-    .ws-item__avatar { flex: none; width: 1.5rem; height: 1.5rem; display: grid; place-items: center; overflow: hidden; border-radius: .35rem; color: #fff; background: var(--color-accent); font-size: .66rem; font-weight: 750; }
+    .ws-item__avatar { flex: none; width: 1.5rem; height: 1.5rem; display: grid; place-items: center; overflow: hidden; border-radius: .35rem; color: #fff; background: var(--color-accent); font-size: .76rem; font-weight: 750; }
     .ws-item__avatar img { width: 100%; height: 100%; object-fit: cover; }
     .ws-item__name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .ws-item__check { flex: none; color: var(--color-accent); }
-    .ws-panel > button:not(.ws-create) { position: relative; width: calc(100% - 1.2rem); margin-inline: .6rem; min-height: 2rem; display: flex; align-items: center; gap: .55rem; padding: 0 .5rem; border: 0; border-radius: .4rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .74rem; font-weight: 550; text-align: start; cursor: pointer; }
+    .ws-panel > button:not(.ws-create) { position: relative; width: calc(100% - 1.2rem); margin-inline: .6rem; min-height: 2rem; display: flex; align-items: center; gap: .55rem; padding: 0 .5rem; border: 0; border-radius: .4rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .85rem; font-weight: 550; text-align: start; cursor: pointer; }
     .ws-panel > button:not(.ws-create):hover { color: var(--color-text-primary); background: var(--color-surface-3); }
-    .ws-badge { margin-inline-start: auto; padding: .1rem .4rem; border-radius: .25rem; color: #fff; background: var(--color-accent); font-size: .58rem; font-weight: 750; }
-    .ws-create { width: calc(100% - 2rem); margin: .8rem 1rem 1rem; min-height: 2.15rem; display: flex; align-items: center; justify-content: center; gap: .4rem; border: 1px dashed var(--color-border-strong); border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .74rem; font-weight: 650; cursor: pointer; }
+    .ws-badge { margin-inline-start: auto; padding: .1rem .4rem; border-radius: .25rem; color: #fff; background: var(--color-accent); font-size: .67rem; font-weight: 750; }
+    .ws-create { width: calc(100% - 2rem); margin: .8rem 1rem 1rem; min-height: 2.15rem; display: flex; align-items: center; justify-content: center; gap: .4rem; border: 1px dashed var(--color-border-strong); border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .85rem; font-weight: 650; cursor: pointer; }
     .ws-create:hover { color: var(--color-text-primary); border-color: var(--color-accent); }
   `],
 })

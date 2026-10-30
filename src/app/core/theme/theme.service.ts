@@ -1,6 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
-import { AppStorage } from '../storage/app-storage';
 
 export type ThemeMode = 'system' | 'light' | 'dark';
 export type AccentName = 'black' | 'purple' | 'blue' | 'pink' | 'violet' | 'indigo' | 'orange' | 'teal' | 'bronze' | 'mint';
@@ -8,8 +7,9 @@ export type NavDensity = 'icons' | 'icons-labels';
 
 type ThemePreference = { mode: ThemeMode; accent: AccentName };
 
-const STORAGE_KEY = 'appearance';
-const DEFAULT_PREFERENCE: ThemePreference = { mode: 'dark', accent: 'pink' };
+// v2: resets saved appearance once so the new ClickUp-style default (violet accent) applies
+const STORAGE_KEY = 'flowtask.appearance.v2';
+const DEFAULT_PREFERENCE: ThemePreference = { mode: 'dark', accent: 'purple' };
 const ACCENTS: readonly AccentName[] = ['black', 'purple', 'blue', 'pink', 'violet', 'indigo', 'orange', 'teal', 'bronze', 'mint'];
 
 @Injectable({ providedIn: 'root' })
@@ -50,7 +50,7 @@ export class ThemeService {
   private update(preference: ThemePreference): void {
     this.preference.set(preference);
     this.apply(preference);
-    if (this.browser) AppStorage.setJSON(STORAGE_KEY, preference);
+    if (this.browser) localStorage.setItem(STORAGE_KEY, JSON.stringify(preference));
   }
 
   private apply(preference: ThemePreference): void {
@@ -64,9 +64,13 @@ export class ThemeService {
   }
 
   private readPreference(): ThemePreference {
-    const parsed = AppStorage.getJSON<Partial<ThemePreference>>(STORAGE_KEY) ?? {};
-    const mode = ['system', 'light', 'dark'].includes(parsed.mode ?? '') ? parsed.mode as ThemeMode : DEFAULT_PREFERENCE.mode;
-    const accent = ACCENTS.includes(parsed.accent as AccentName) ? parsed.accent as AccentName : DEFAULT_PREFERENCE.accent;
-    return { mode, accent };
+    try {
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}') as Partial<ThemePreference>;
+      const mode = ['system', 'light', 'dark'].includes(parsed.mode ?? '') ? parsed.mode as ThemeMode : DEFAULT_PREFERENCE.mode;
+      const accent = ACCENTS.includes(parsed.accent as AccentName) ? parsed.accent as AccentName : DEFAULT_PREFERENCE.accent;
+      return { mode, accent };
+    } catch {
+      return DEFAULT_PREFERENCE;
+    }
   }
 }

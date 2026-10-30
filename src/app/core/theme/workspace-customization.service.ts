@@ -4,7 +4,6 @@ import {
   LayoutDashboard, LayoutGrid, ListChecks, ListTodo, MessageCircle, MessageSquare, PenLine, Reply, Rss, Send,
   Target, Timer, UserPlus, Video, Zap, type LucideIconData,
 } from 'lucide-angular';
-import { AppStorage } from '../storage/app-storage';
 
 export type NavDensity = 'icons' | 'icons-labels';
 
@@ -24,7 +23,7 @@ export interface CustomizeSection {
   hidden: boolean;
 }
 
-const STORAGE_KEY = 'customize';
+const STORAGE_KEY = 'flowtask.customize';
 
 interface StoredState {
   navDensity: NavDensity;
@@ -107,20 +106,25 @@ export class WorkspaceCustomizationService {
   }
 
   private persist(): void {
-    const state: StoredState = {
-      navDensity: this.navDensity(),
-      railItems: Object.fromEntries(this.railItems().map(item => [item.id, item.checked])),
-      homeItems: Object.fromEntries(this.homeItems().map(item => [item.id, item.checked])),
-      sectionOrder: this.sections().map(section => section.id),
-      hiddenSections: this.sections().filter(section => section.hidden).map(section => section.id),
-    };
-    AppStorage.setJSON(STORAGE_KEY, state);
+    try {
+      const state: StoredState = {
+        navDensity: this.navDensity(),
+        railItems: Object.fromEntries(this.railItems().map(item => [item.id, item.checked])),
+        homeItems: Object.fromEntries(this.homeItems().map(item => [item.id, item.checked])),
+        sectionOrder: this.sections().map(section => section.id),
+        hiddenSections: this.sections().filter(section => section.hidden).map(section => section.id),
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch {
+      /* Storage may be unavailable (SSR, private mode) — customization simply won't persist. */
+    }
   }
 
   private restore(): void {
     try {
-      const parsed = AppStorage.getJSON<Partial<StoredState>>(STORAGE_KEY);
-      if (!parsed) return;
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Partial<StoredState>;
       if (parsed.navDensity) this.navDensity.set(parsed.navDensity);
       if (parsed.railItems) this.railItems.update(items => items.map(item => ({ ...item, checked: parsed.railItems?.[item.id] ?? item.checked })));
       if (parsed.homeItems) this.homeItems.update(items => items.map(item => ({ ...item, checked: parsed.homeItems?.[item.id] ?? item.checked })));

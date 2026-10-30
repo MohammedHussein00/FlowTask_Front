@@ -44,7 +44,7 @@ import { LucideAngularModule, List } from 'lucide-angular';
       width: 2.1rem; height: 2.1rem; display: grid; place-items: center;
       border-radius: .5rem; background: var(--color-accent); color: #fff; margin-bottom: .3rem;
     }
-    .aim-label { font-size: .72rem; font-weight: 700; color: var(--color-text-secondary); }
+    .aim-label { font-size: .83rem; font-weight: 700; color: var(--color-text-secondary); }
     .aim-input {
       width: 100%; box-sizing: border-box; height: 2.3rem; padding: 0 .65rem;
       border: 1px solid var(--color-border-strong); border-radius: .4rem;
@@ -55,7 +55,7 @@ import { LucideAngularModule, List } from 'lucide-angular';
     .aim-footer { display: flex; justify-content: flex-end; gap: .5rem; padding-top: .6rem; border-top: 1px solid var(--color-border); }
     .aim-btn {
       height: 2rem; padding: 0 .9rem; border-radius: .4rem; border: 1px solid transparent;
-      font: inherit; font-size: .74rem; font-weight: 700; cursor: pointer;
+      font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer;
     }
     .aim-btn--ghost { background: transparent; border-color: var(--color-border-strong); color: var(--color-text-secondary); }
     .aim-btn--ghost:hover { background: var(--color-surface-3); color: var(--color-text-primary); }

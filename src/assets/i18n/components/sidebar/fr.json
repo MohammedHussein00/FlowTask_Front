@@ -7,11 +7,11 @@
   "more": "Plus",
   "customizeSidebar": "Personnaliser la barre latérale",
 
-  "aiChats": "CHATS IA",
+  "aiChats": "Chats IA",
   "personalOnboarding": "Configuration d'intégration personnelle",
   "askBuildCreate": "Demandez, Construisez, Créez",
 
-  "spaces": "ESPACES",
+  "spaces": "Espaces",
   "allTasks": "Toutes les tâches",
   "addSpace": "Ajouter un espace",
   "newSpace": "Nouvel espace",
@@ -19,12 +19,12 @@
   "loadingSpaces": "Chargement des espaces…",
   "noSpaces": "Aucun espace pour l'instant.",
 
-  "channels": "CANAUX",
+  "channels": "Canaux",
   "welcome": "Bienvenue",
   "general": "Général",
   "addChannel": "Ajouter un canal",
 
-  "directMessages": "MESSAGES DIRECTS",
+  "directMessages": "Messages directs",
   "newMessage": "Nouveau message",
 
   "favorite": "Favori",

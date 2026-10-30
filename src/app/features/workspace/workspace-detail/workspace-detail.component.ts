@@ -123,7 +123,7 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
     }
     .wd-spin { animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .wd-btn { padding: .4rem .9rem; border: 1px solid var(--color-border); border-radius: .35rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .78rem; cursor: pointer; }
+    .wd-btn { padding: .4rem .9rem; border: 1px solid var(--color-border); border-radius: .35rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .90rem; cursor: pointer; }
 
     /* header */
     .wd-header { display: flex; align-items: center; gap: .75rem; padding-bottom: .3rem; }
@@ -134,7 +134,7 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
       font-size: 1rem; font-weight: 700; flex-shrink: 0;
     }
     .wd-name { margin: 0; font-size: .95rem; font-weight: 700; color: var(--color-text-primary); }
-    .wd-plan { font-size: .72rem; color: var(--color-text-muted); }
+    .wd-plan { font-size: .83rem; color: var(--color-text-muted); }
 
     /* quick actions */
     .wd-actions { display: flex; gap: .4rem; }
@@ -145,7 +145,7 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
       border-radius: .35rem;
       background: var(--color-surface-3);
       color: var(--color-text-secondary);
-      font: inherit; font-size: .74rem; font-weight: 500;
+      font: inherit; font-size: .85rem; font-weight: 500;
       text-decoration: none; cursor: pointer;
     }
     .wd-action-btn:hover { color: var(--color-text-primary); }
@@ -154,7 +154,7 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
     .wd-divider { border: 0; border-top: 1px solid var(--color-border); margin: .2rem 0; }
     .wd-section-label {
       margin: .1rem 0 .15rem;
-      font-size: .61rem; font-weight: 800;
+      font-size: .70rem; font-weight: 800;
       letter-spacing: .07em; text-transform: uppercase;
       color: var(--color-text-muted);
     }
@@ -165,14 +165,14 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
       display: flex; align-items: center; gap: .5rem;
       padding: .38rem .3rem;
       color: var(--color-text-secondary);
-      font-size: .79rem; text-decoration: none;
+      font-size: .91rem; text-decoration: none;
       border-radius: .3rem;
     }
     .wd-manage-item:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
     .wd-badge-new {
       margin-left: auto; padding: .08rem .35rem;
       border-radius: .25rem; background: var(--color-accent);
-      color: #fff; font-size: .6rem; font-weight: 700;
+      color: #fff; font-size: .69rem; font-weight: 700;
     }
 
     /* spaces */
@@ -181,21 +181,21 @@ import { WorkspaceStore } from '../../../core/stores/workspace.store';
     .wd-icon-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .wd-spaces-empty {
       display: flex; align-items: center; justify-content: space-between;
-      padding: .3rem 0; font-size: .78rem; color: var(--color-text-muted);
+      padding: .3rem 0; font-size: .90rem; color: var(--color-text-muted);
     }
-    .wd-link { color: var(--color-accent); text-decoration: none; font-size: .76rem; }
+    .wd-link { color: var(--color-accent); text-decoration: none; font-size: .87rem; }
     .wd-link:hover { text-decoration: underline; }
 
     /* channels */
     .wd-channel-item {
       display: flex; align-items: center; gap: .45rem;
       padding: .38rem .3rem;
-      color: var(--color-text-secondary); font-size: .79rem;
+      color: var(--color-text-secondary); font-size: .91rem;
       text-decoration: none; border-radius: .3rem;
       border: 0; background: transparent; font: inherit; cursor: pointer; width: 100%; text-align: start;
     }
     .wd-channel-item:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
-    .wd-channel-ws { font-size: .72rem; color: var(--color-text-muted); }
+    .wd-channel-ws { font-size: .83rem; color: var(--color-text-muted); }
     .wd-channel-item--add { color: var(--color-text-muted); }
   `],
 })

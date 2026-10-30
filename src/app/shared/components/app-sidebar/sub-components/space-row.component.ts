@@ -127,13 +127,14 @@ export interface SidebarSpace {
 
     .space-row-wrap { position: relative; overflow: visible; }
     .space-row {
-      width: 100%; min-height: 2rem; display: flex; align-items: center; gap: .4rem;
-      padding: 0 .4rem 0 .3rem; border: 0; border-radius: .35rem;
+      width: 100%; min-height: 2.2rem; display: flex; align-items: center; gap: .5rem;
+      padding: 0 .5rem 0 .35rem; border: 0; border-radius: .5rem;
       color: var(--color-text-secondary); background: transparent;
-      font: inherit; font-size: .75rem; font-weight: 520;
+      font: inherit; font-size: .875rem; font-weight: 500;
       text-align: start; text-decoration: none; cursor: pointer;
     }
     .space-row:hover, .space-row--selected { color: var(--color-text-primary); background: var(--color-surface-3); }
+    .space-row--selected { font-weight: 600; }
     .space-chevron {
       width: 1rem; height: 1rem; display: grid; place-items: center;
       border: 0; background: transparent; cursor: pointer;
@@ -145,32 +146,32 @@ export interface SidebarSpace {
     .space-row:hover .space-row-actions,
     .space-row-wrap:hover .space-row .space-row-actions { display: flex; }
     .space-action-btn {
-      width: 1.4rem; height: 1.4rem; display: grid; place-items: center;
-      border: 0; border-radius: .28rem; background: transparent;
+      width: 1.6rem; height: 1.6rem; display: grid; place-items: center;
+      border: 0; border-radius: .4rem; background: transparent;
       color: var(--color-text-muted); cursor: pointer; padding: 0;
     }
-    .space-action-btn:hover { background: var(--color-surface-2); color: var(--color-text-primary); }
+    .space-action-btn:hover { background: var(--color-border-strong); color: var(--color-text-primary); }
     .space-badge {
-      width: 1.2rem; height: 1.2rem; display: grid; place-items: center;
-      border-radius: .28rem; color: #fff; background: var(--color-accent);
-      font-size: .62rem; flex-shrink: 0;
+      width: 1.5rem; height: 1.5rem; display: grid; place-items: center;
+      border-radius: .4rem; color: #fff; background: var(--color-accent);
+      font-size: .78rem; font-weight: 700; flex-shrink: 0;
     }
     .space-row__lock { flex: none; color: var(--color-text-muted); }
     .space-tooltip {
       position: absolute; top: -2rem; left: 0; z-index: 1000;
-      padding: .28rem .6rem; background: #333; color: #fff;
-      font-size: .68rem; border-radius: .3rem; white-space: nowrap;
+      padding: .3rem .65rem; background: #3a3a3a; color: #eee;
+      font-size: .75rem; border-radius: .4rem; white-space: nowrap;
       pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,.35);
     }
     .space-tooltip::after {
       content: ''; position: absolute; top: 100%; left: 1rem;
-      border: 5px solid transparent; border-top-color: #333;
+      border: 5px solid transparent; border-top-color: #3a3a3a;
     }
     .space-child {
-      width: calc(100% - 1.2rem); min-height: 1.65rem; margin-inline-start: 1.2rem;
-      display: flex; align-items: center; gap: .55rem; padding: 0 .55rem;
-      border: 0; border-radius: .35rem; color: var(--color-text-muted);
-      background: transparent; font: inherit; font-size: .68rem; cursor: pointer;
+      width: calc(100% - 1.3rem); min-height: 2.05rem; margin-inline-start: 1.3rem;
+      display: flex; align-items: center; gap: .6rem; padding: 0 .6rem;
+      border: 0; border-radius: .5rem; color: var(--color-text-secondary);
+      background: transparent; font: inherit; font-size: .84rem; cursor: pointer;
     }
     .space-child:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .add-item-row { color: var(--color-text-muted); }

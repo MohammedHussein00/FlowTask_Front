@@ -6,7 +6,7 @@
 /* Lightweight CSS-only tooltip: add [data-tooltip] (label) and optional [data-tooltip-kbd] (shortcut). */
 [data-tooltip] { position: relative; }
 [data-tooltip]::after, [data-tooltip]::before { position: absolute; z-index: 60; inset-block-start: calc(100% + .45rem); inset-inline-start: 50%; opacity: 0; pointer-events: none; transition: opacity .12s ease .35s, transform .12s ease .35s; transform: translate(-50%, -.2rem); }
-[data-tooltip]::after { content: attr(data-tooltip); display: flex; align-items: center; gap: .35rem; min-height: 1.55rem; padding: .18rem .5rem; border-radius: .3rem; color: #f2f2f5; background: #3a3b3f; box-shadow: 0 .35rem 1rem rgb(0 0 0 / .35); font-size: .62rem; font-weight: 650; white-space: nowrap; }
+[data-tooltip]::after { content: attr(data-tooltip); display: flex; align-items: center; gap: .35rem; min-height: 1.55rem; padding: .18rem .5rem; border-radius: .3rem; color: #eeeeee; background: #3a3a3a; box-shadow: 0 .35rem 1rem rgb(0 0 0 / .35); font-size: .62rem; font-weight: 650; white-space: nowrap; }
 [data-tooltip][data-tooltip-kbd]::after { content: attr(data-tooltip) " " attr(data-tooltip-kbd); }
-[data-tooltip]::before { content: ""; inset-block-start: calc(100% + .2rem); width: .5rem; height: .5rem; background: #3a3b3f; transform: translate(-50%, -.2rem) rotate(45deg); }
+[data-tooltip]::before { content: ""; inset-block-start: calc(100% + .2rem); width: .5rem; height: .5rem; background: #3a3a3a; transform: translate(-50%, -.2rem) rotate(45deg); }
 [data-tooltip]:hover::after, [data-tooltip]:hover::before, [data-tooltip]:focus-visible::after, [data-tooltip]:focus-visible::before { opacity: 1; transform: translate(-50%, 0); }

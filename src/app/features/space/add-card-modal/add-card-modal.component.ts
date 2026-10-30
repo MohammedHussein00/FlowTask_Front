@@ -176,7 +176,7 @@ const CARD_TEMPLATES: CardTemplate[] = [
       background: transparent;
       color: var(--color-text-secondary);
       font: inherit;
-      font-size: .72rem;
+      font-size: .83rem;
       text-align: left;
       cursor: pointer;
       border-radius: .35rem;
@@ -212,7 +212,7 @@ const CARD_TEMPLATES: CardTemplate[] = [
       background: transparent;
       color: var(--color-text-muted);
       font: inherit;
-      font-size: .68rem;
+      font-size: .78rem;
       cursor: pointer;
       border-radius: .32rem;
       margin: 0;
@@ -238,7 +238,7 @@ const CARD_TEMPLATES: CardTemplate[] = [
       display: flex;
       align-items: center;
       gap: .35rem;
-      font-size: .78rem;
+      font-size: .90rem;
       font-weight: 700;
       color: var(--color-text-primary);
       white-space: nowrap;
@@ -267,7 +267,7 @@ const CARD_TEMPLATES: CardTemplate[] = [
       background: var(--color-surface-2);
       color: var(--color-text-primary);
       font: inherit;
-      font-size: .72rem;
+      font-size: .83rem;
       outline: 0;
     }
     .acm-main__search:focus { border-color: var(--color-accent); }
@@ -333,7 +333,7 @@ const CARD_TEMPLATES: CardTemplate[] = [
       right: .5rem;
       padding: .18rem .5rem;
       border-radius: .28rem;
-      font-size: .6rem;
+      font-size: .69rem;
       font-weight: 700;
       color: #fff;
     }
@@ -343,14 +343,14 @@ const CARD_TEMPLATES: CardTemplate[] = [
     .acm-card__body { padding: .6rem .75rem .75rem; }
     .acm-card__title {
       display: block;
-      font-size: .72rem;
+      font-size: .83rem;
       font-weight: 700;
       color: var(--color-text-primary);
       margin-bottom: .25rem;
     }
     .acm-card__desc {
       margin: 0;
-      font-size: .65rem;
+      font-size: .75rem;
       color: var(--color-text-secondary);
       line-height: 1.5;
     }

@@ -22,10 +22,6 @@
   "showPassword": "Show password",
   "hidePassword": "Hide password",
   "oauthFailed": "Sign-up failed. Please try again.",
-  "googleLoadError": "Google Sign-Up failed to load. Please refresh the page.",
-  "googleNotConfigured": "Google sign-up isn't set up for this app yet.",
-  "oauthNotConfigured": "This sign-up method isn't set up for this app yet.",
-  "oauthCancelled": "Sign-up was cancelled or blocked. Please allow popups and try again.",
   "popupBlocked": "Popup blocked. Please allow popups for this site and try again.",
   "oauthTimeout": "Sign-up timed out. Please try again.",
   "unexpectedError": "An unexpected error occurred. Please try again."

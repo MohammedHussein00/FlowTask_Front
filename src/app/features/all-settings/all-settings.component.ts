@@ -284,8 +284,8 @@ interface NavGroup { headingKey: string | null; items: NavItem[]; }
     .settings-nav__title { font-size: .92rem; font-weight: 700; color: var(--color-text-primary); }
     .settings-nav__close { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border: 0; border-radius: .35rem; color: var(--color-text-muted); background: transparent; cursor: pointer; }
     .settings-nav__close:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
-    .settings-nav__group-label { margin: .65rem 0 .2rem .5rem; color: var(--color-text-muted); font-size: .61rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
-    .settings-nav__item { width: 100%; min-height: 1.95rem; display: flex; align-items: center; gap: .55rem; padding: 0 .55rem; border: 0; border-radius: .35rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .76rem; font-weight: 500; text-align: start; cursor: pointer; }
+    .settings-nav__group-label { margin: .65rem 0 .2rem .5rem; color: var(--color-text-muted); font-size: .70rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .settings-nav__item { width: 100%; min-height: 1.95rem; display: flex; align-items: center; gap: .55rem; padding: 0 .55rem; border: 0; border-radius: .35rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .87rem; font-weight: 500; text-align: start; cursor: pointer; }
     .settings-nav__item:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .settings-nav__item--active { color: var(--color-text-primary); background: var(--color-surface-3); font-weight: 650; }
     .settings-nav__item--danger { color: var(--color-danger, #e5534b); margin-top: .4rem; }
@@ -298,13 +298,13 @@ interface NavGroup { headingKey: string | null; items: NavItem[]; }
     .settings-section { display: grid; grid-template-columns: 18rem 1fr; gap: 1.6rem; padding: 1.4rem 0; border-bottom: 1px solid var(--color-border); }
     .settings-section:last-child { border-bottom: 0; }
     .settings-section__label h2 { margin: 0 0 .35rem; font-size: .88rem; font-weight: 700; color: var(--color-text-primary); }
-    .settings-section__label p { margin: 0; font-size: .76rem; color: var(--color-text-secondary); line-height: 1.5; }
+    .settings-section__label p { margin: 0; font-size: .87rem; color: var(--color-text-secondary); line-height: 1.5; }
     .settings-section__fields { display: flex; flex-direction: column; gap: .9rem; }
     .avatar-row { display: flex; align-items: center; gap: 1rem; }
     .avatar-circle { width: 3.5rem; height: 3.5rem; display: grid; place-items: center; border-radius: 50%; background: var(--color-surface-3); color: var(--color-text-primary); font-size: 1rem; font-weight: 700; }
     .avatar-name { margin: 0 0 .25rem; font-size: .83rem; font-weight: 650; color: var(--color-text-primary); }
-    .link-btn { border: 0; background: transparent; color: var(--color-accent); font: inherit; font-size: .75rem; cursor: pointer; padding: 0; }
-    .field-label { display: flex; flex-direction: column; gap: .35rem; font-size: .76rem; font-weight: 600; color: var(--color-text-secondary); }
+    .link-btn { border: 0; background: transparent; color: var(--color-accent); font: inherit; font-size: .86rem; cursor: pointer; padding: 0; }
+    .field-label { display: flex; flex-direction: column; gap: .35rem; font-size: .87rem; font-weight: 600; color: var(--color-text-secondary); }
     .field-input-wrap { display: flex; align-items: center; gap: .5rem; padding: 0 .75rem; border: 1px solid var(--color-border-strong); border-radius: .4rem; background: var(--color-surface-2); color: var(--color-text-muted); }
     .field-input { flex: 1; padding: .55rem 0; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .8rem; outline: none; }
     .field-input::placeholder { color: var(--color-text-muted); }
@@ -313,7 +313,7 @@ interface NavGroup { headingKey: string | null; items: NavItem[]; }
     .toggle-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: .25rem 0; }
     .toggle-info { display: flex; flex-direction: column; gap: .2rem; }
     .toggle-info strong { font-size: .8rem; color: var(--color-text-primary); }
-    .toggle-info span { font-size: .73rem; color: var(--color-text-secondary); line-height: 1.4; }
+    .toggle-info span { font-size: .84rem; color: var(--color-text-secondary); line-height: 1.4; }
     .toggle { flex-shrink: 0; width: 2.2rem; height: 1.2rem; border: 0; border-radius: 99px; background: var(--color-surface-3); cursor: pointer; position: relative; transition: background .18s; }
     .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: calc(1.2rem - 4px); height: calc(1.2rem - 4px); border-radius: 50%; background: #fff; transition: left .18s; }
     .toggle--on { background: var(--color-accent); }
@@ -322,7 +322,7 @@ interface NavGroup { headingKey: string | null; items: NavItem[]; }
     .swatch { width: 1.7rem; height: 1.7rem; border-radius: .38rem; border: 2px solid transparent; cursor: pointer; transition: border-color .15s; }
     .swatch--active { border-color: var(--color-text-primary); }
     .appearance-row { display: flex; gap: .7rem; }
-    .appearance-btn { display: flex; flex-direction: column; align-items: center; gap: .4rem; padding: .4rem .5rem; border: 2px solid var(--color-border); border-radius: .5rem; background: transparent; cursor: pointer; color: var(--color-text-secondary); font: inherit; font-size: .72rem; }
+    .appearance-btn { display: flex; flex-direction: column; align-items: center; gap: .4rem; padding: .4rem .5rem; border: 2px solid var(--color-border); border-radius: .5rem; background: transparent; cursor: pointer; color: var(--color-text-secondary); font: inherit; font-size: .83rem; }
     .appearance-btn--active { border-color: var(--color-accent); }
     .appearance-preview { width: 4.2rem; height: 2.8rem; border-radius: .3rem; overflow: hidden; display: flex; flex-direction: column; gap: .3rem; padding: .35rem; }
     .appearance-preview--light { background: #f5f5f5; }
@@ -331,13 +331,13 @@ interface NavGroup { headingKey: string | null; items: NavItem[]; }
     .appearance-preview span { display: block; height: .4rem; border-radius: 2px; background: var(--color-accent); opacity: .7; }
     .appearance-preview span:last-child { width: 60%; }
     .radio-group { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
-    .radio-group legend { font-size: .75rem; font-weight: 700; color: var(--color-text-secondary); margin-bottom: .35rem; }
+    .radio-group legend { font-size: .86rem; font-weight: 700; color: var(--color-text-secondary); margin-bottom: .35rem; }
     .radio-group label { display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: var(--color-text-primary); cursor: pointer; }
     .checkbox-label { display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: var(--color-text-primary); cursor: pointer; }
-    .badge--business { display: inline-block; padding: .1rem .42rem; border-radius: .28rem; background: #be185d; color: #fff; font-size: .65rem; font-weight: 700; }
+    .badge--business { display: inline-block; padding: .1rem .42rem; border-radius: .28rem; background: #be185d; color: #fff; font-size: .75rem; font-weight: 700; }
     .danger-zone { gap: 1rem; }
     .danger-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: .8rem; color: var(--color-text-secondary); }
-    .btn { padding: .45rem 1rem; border: 0; border-radius: .38rem; font: inherit; font-size: .78rem; font-weight: 650; cursor: pointer; }
+    .btn { padding: .45rem 1rem; border: 0; border-radius: .38rem; font: inherit; font-size: .90rem; font-weight: 650; cursor: pointer; }
     .btn--primary { background: var(--color-accent); color: #fff; }
     .btn--primary:hover { background: var(--color-accent-strong); }
     .btn--ghost { background: var(--color-surface-3); color: var(--color-text-primary); }

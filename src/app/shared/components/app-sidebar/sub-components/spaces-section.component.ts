@@ -55,16 +55,18 @@ import { SpaceContextService } from '../../../../features/space/space-context.se
   `,
   styles: [`
     :host { display: block; }
-    .nav-section { margin: .55rem 0; overflow: visible; }
-    .nav-section > p, .nav-section header p { margin: 0 0 .35rem .55rem; color: var(--color-text-muted); font-size: .61rem; font-weight: 800; letter-spacing: .08em; }
+    .nav-section { margin: .7rem 0; overflow: visible; }
+    .nav-section > p, .nav-section header p { margin: 0 0 .3rem .6rem; color: var(--color-text-secondary); font-size: .84rem; font-weight: 600; }
     .nav-section header { display: flex; align-items: center; justify-content: space-between; }
-    .nav-section header button { width: 1.55rem; height: 1.55rem; display: grid; place-items: center; margin-inline-end: .22rem; border: 0; border-radius: .3rem; color: var(--color-text-muted); background: var(--color-surface-3); cursor: pointer; padding: 0; }
-    .context-nav__item { width: 100%; min-height: 1.9rem; display: flex; align-items: center; gap: .55rem; padding: 0 .55rem; border: 0; border-radius: .35rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .75rem; font-weight: 520; text-align: start; text-decoration: none; cursor: pointer; }
+    .nav-section header p { margin-bottom: 0; }
+    .nav-section header button { width: 1.75rem; height: 1.75rem; display: grid; place-items: center; margin-inline-end: .1rem; margin-bottom: .3rem; border: 0; border-radius: .5rem; color: var(--color-text-secondary); background: var(--color-surface-3); cursor: pointer; padding: 0; }
+    .nav-section header button:hover { color: var(--color-text-primary); filter: brightness(1.2); }
+    .context-nav__item { width: 100%; min-height: 2.1rem; display: flex; align-items: center; gap: .65rem; padding: 0 .6rem; border: 0; border-radius: .5rem; color: var(--color-text-secondary); background: transparent; font: inherit; font-size: .875rem; font-weight: 500; text-align: start; text-decoration: none; cursor: pointer; }
     .context-nav__item:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
-    .context-nav__item em { color: var(--color-text-muted); font-size: .65rem; font-style: normal; }
-    .space-empty { margin: .1rem 0 .3rem .55rem; color: var(--color-text-muted); font-size: .7rem; }
+    .context-nav__item em { color: var(--color-text-muted); font-size: .78rem; font-style: normal; }
+    .space-empty { margin: .1rem 0 .3rem .6rem; color: var(--color-text-muted); font-size: .8rem; }
     .space-empty--error { color: #e05c5c; }
-    .space-child { width: calc(100% - 1.2rem); min-height: 1.65rem; margin-inline-start: 1.2rem; display: flex; align-items: center; gap: .55rem; padding: 0 .55rem; border: 0; border-radius: .35rem; color: var(--color-text-muted); background: transparent; font: inherit; font-size: .68rem; cursor: pointer; }
+    .space-child { width: 100%; min-height: 2.1rem; display: flex; align-items: center; gap: .65rem; padding: 0 .6rem; border: 0; border-radius: .5rem; color: var(--color-text-muted); background: transparent; font: inherit; font-size: .875rem; cursor: pointer; }
     .space-child:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
   `],
 })

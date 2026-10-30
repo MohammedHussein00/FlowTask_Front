@@ -7,11 +7,11 @@
   "more": "More",
   "customizeSidebar": "Customize Sidebar",
 
-  "aiChats": "AI CHATS",
+  "aiChats": "AI Chats",
   "personalOnboarding": "Personal Onboarding Setup",
   "askBuildCreate": "Ask, Build, Create",
 
-  "spaces": "SPACES",
+  "spaces": "Spaces",
   "allTasks": "All Tasks",
   "addSpace": "Add space",
   "newSpace": "New Space",
@@ -19,12 +19,12 @@
   "loadingSpaces": "Loading Spaces…",
   "noSpaces": "No Spaces yet.",
 
-  "channels": "CHANNELS",
+  "channels": "Channels",
   "welcome": "Welcome",
   "general": "General",
   "addChannel": "Add Channel",
 
-  "directMessages": "DIRECT MESSAGES",
+  "directMessages": "Direct Messages",
   "newMessage": "New message",
 
   "favorite": "Favorite",

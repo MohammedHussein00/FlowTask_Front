@@ -3,7 +3,7 @@
   <span auth-subtitle>{{ 'newToApp' | componentT:'login' }} <a routerLink="/auth/register">{{ 'createAccount' | componentT:'login' }}</a></span>
   <div class="login-form">
     @if (generalError) { <app-alert [message]="generalError | componentT:'login'" /> }
-    <div class="oauth-actions"><button class="oauth-button" type="button" [disabled]="loading || !!oauthLoading" (click)="signInWith('google')"><app-oauth-icon provider="google" />{{ 'continueGoogle' | componentT:'login' }}</button><button class="oauth-button" type="button" [disabled]="loading || !!oauthLoading" (click)="signInWith('github')"><app-oauth-icon provider="github" />{{ 'continueGithub' | componentT:'login' }}</button></div>
+    <div class="oauth-actions"><button class="oauth-button" type="button" [disabled]="loading || !!oauthLoading" (click)="signInWith('google')"><span class="oauth-logo oauth-logo--google" aria-hidden="true">G</span>{{ 'continueGoogle' | componentT:'login' }}</button><button class="oauth-button" type="button" [disabled]="loading || !!oauthLoading" (click)="signInWith('github')"><span class="oauth-logo oauth-logo--github" aria-hidden="true">●</span>{{ 'continueGithub' | componentT:'login' }}</button></div>
     @if (providerError) { <app-alert kind="error" [message]="providerError | componentT:'login'" /> }
     <div class="divider"><span></span><small>{{ 'or' | componentT:'login' }}</small><span></span></div>
     <form [formGroup]="form" (ngSubmit)="submit()" novalidate>

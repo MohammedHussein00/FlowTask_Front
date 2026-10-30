@@ -18,7 +18,6 @@
  */
 import { Inject, Injectable, PLATFORM_ID, computed, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { AppStorage } from '../storage/app-storage';
 
 export interface WorkspaceSnapshot {
   id: number;
@@ -30,7 +29,7 @@ export interface WorkspaceSnapshot {
   createdAt: string;
 }
 
-const STORAGE_KEY = 'lastWorkspaceId';
+const STORAGE_KEY = 'flowtask.lastWorkspaceId';
 
 @Injectable({ providedIn: 'root' })
 export class WorkspaceStore {
@@ -111,13 +110,13 @@ export class WorkspaceStore {
 
   private readPersistedId(): number | null {
     if (!this.browser) return null;
-    const raw = AppStorage.getString(STORAGE_KEY);
+    const raw = window.localStorage.getItem(STORAGE_KEY);
     const id = raw !== null ? Number(raw) : NaN;
     return Number.isFinite(id) ? id : null;
   }
 
   private persistId(id: number): void {
     if (!this.browser) return;
-    AppStorage.setString(STORAGE_KEY, String(id));
+    window.localStorage.setItem(STORAGE_KEY, String(id));
   }
 }

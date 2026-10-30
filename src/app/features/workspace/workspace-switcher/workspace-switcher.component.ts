@@ -136,7 +136,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
       width: 1.6rem; height: 1.6rem;
       border-radius: .3rem;
       background: var(--color-accent);
-      color: #fff; font-size: .72rem; font-weight: 700;
+      color: #fff; font-size: .83rem; font-weight: 700;
       overflow: hidden;
     }
     .ws-chip__avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -175,7 +175,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
       border-radius: .35rem;
       background: var(--color-surface-3);
       color: var(--color-text-secondary);
-      font: inherit; font-size: .73rem; font-weight: 500;
+      font: inherit; font-size: .84rem; font-weight: 500;
       text-decoration: none; cursor: pointer;
       justify-content: center;
       transition: color .12s, background .12s;
@@ -189,7 +189,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
 
     .ws-dropdown__section-label {
       margin: 0; padding: .2rem .75rem .15rem;
-      font-size: .62rem; font-weight: 700;
+      font-size: .71rem; font-weight: 700;
       letter-spacing: .06em; text-transform: uppercase;
       color: var(--color-text-muted);
     }
@@ -199,14 +199,14 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
       width: 100%; padding: .42rem .75rem;
       border: 0; background: transparent;
       color: var(--color-text-secondary);
-      font: inherit; font-size: .78rem; text-decoration: none;
+      font: inherit; font-size: .90rem; text-decoration: none;
       cursor: pointer;
     }
     .ws-dropdown__menu-item:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
 
     .ws-dropdown__empty {
       padding: .35rem .75rem;
-      font-size: .75rem; color: var(--color-text-muted);
+      font-size: .86rem; color: var(--color-text-muted);
       margin: 0;
     }
 
@@ -227,7 +227,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
       width: 1.6rem; height: 1.6rem;
       border-radius: .3rem;
       background: var(--color-accent);
-      color: #fff; font-size: .7rem; font-weight: 700; overflow: hidden;
+      color: #fff; font-size: .80rem; font-weight: 700; overflow: hidden;
     }
     .ws-item__avatar img { width: 100%; height: 100%; object-fit: cover; }
     .ws-item__name { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -239,7 +239,7 @@ import { WorkspaceService } from '../../../core/services/workspace.service';
       width: 100%; padding: .42rem .75rem;
       border: 0; background: transparent;
       color: var(--color-text-secondary);
-      font: inherit; font-size: .78rem; cursor: pointer;
+      font: inherit; font-size: .90rem; cursor: pointer;
     }
     .ws-dropdown__create-btn:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
   `],

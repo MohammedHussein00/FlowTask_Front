@@ -13,17 +13,17 @@ import { NzButtonModule }  from 'ng-zorro-antd/button';
 import { NzInputModule }   from 'ng-zorro-antd/input';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
+import { LocaleService, LOCALES } from '../../../core/i18n/locale.service';
 import { ThemeService } from '../../../core/theme/theme.service';
 import { WorkspaceStore } from '../../../core/stores/workspace.store';
 import { AuthService } from '../../../core/auth/auth.service';
 import { AuthSessionStore } from '../../../core/auth/auth-session.store';
 import { ComponentTranslatePipe } from '../../../core/i18n/component-translate.pipe';
 import { AppWorkspaceSwitcherComponent } from '../app-workspace-switcher/app-workspace-switcher.component';
-import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 
 @Component({ selector: 'app-topbar', standalone: true,
   imports: [
-    LucideAngularModule, ComponentTranslatePipe, AppWorkspaceSwitcherComponent, LanguageSwitcherComponent,
+    LucideAngularModule, ComponentTranslatePipe, AppWorkspaceSwitcherComponent,
     NzAvatarModule, NzBadgeModule, NzButtonModule, NzInputModule, NzPopoverModule, NzTooltipModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush, template: `
@@ -46,24 +46,19 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
           (createWorkspace)="createWorkspace.emit()"
           (switchWorkspace)="switchWorkspace($event)" />
       }
-      <button nz-button nzType="text" nzShape="circle" class="icon-btn"
-        nz-tooltip [nzTooltipTitle]="'calendar' | componentT:'topbar'"
-        [attr.aria-label]="'calendar' | componentT:'topbar'">
-        <lucide-icon [img]="Calendar" size="17" />
-      </button>
-      <app-language-switcher [compact]="true" />
     </div>
 
-    <!-- Search bar: pill-shaped, matches sidebar feel -->
-    <label class="search-bar" role="search">
-      <lucide-icon class="search-bar__icon" [img]="Search" size="15" />
-      <input class="search-bar__input" type="search" [placeholder]="'search' | componentT:'topbar'" />
-      <kbd class="search-bar__kbd">Ctrl K</kbd>
-    </label>
-
-    <button nz-button nzType="text" class="ai-trigger" type="button">
-      {{ 'aiChats' | componentT:'topbar' }} <lucide-icon [img]="Sparkles" size="13" />
-    </button>
+    <!-- ClickUp search pill: search on the left, "AI Chats" segment tucked inside on the right -->
+    <div class="search-wrap">
+      <label class="search-bar" role="search">
+        <lucide-icon class="search-bar__icon" [img]="Search" size="16" />
+        <input class="search-bar__input" type="search" [placeholder]="'search' | componentT:'topbar'" />
+        <kbd class="search-bar__kbd">Ctrl K</kbd>
+      </label>
+      <button nz-button nzType="text" class="ai-trigger" type="button">
+        {{ 'aiChats' | componentT:'topbar' }} <lucide-icon [img]="Sparkles" size="14" />
+      </button>
+    </div>
 
     <div class="actions">
       <button nz-button nzType="text" nzShape="circle" class="icon-btn" nz-tooltip [nzTooltipTitle]="'screenRecord' | componentT:'topbar'" [attr.aria-label]="'screenRecord' | componentT:'topbar'"><lucide-icon [img]="Camera" size="17" /></button>
@@ -135,32 +130,38 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
   </header>
 `, styles: [`
   :host { display: block; }
-  .topbar { position: relative; z-index: 10; min-height: 2.7rem; display: grid; grid-template-columns: auto minmax(12rem,19.5rem) auto 1fr auto; align-items: center; gap: .65rem; padding: 0 .8rem; color: var(--color-text-primary); background: var(--color-surface-1); border-bottom: 1px solid var(--color-border); }
-  .topbar__brand { position: relative; display: flex; align-items: center; gap: .2rem; }
-  .workspace-switch.ant-btn { display: inline-flex; align-items: center; gap: .38rem; height: 1.85rem; padding: 0 .4rem; border: 0; border-radius: .4rem; color: var(--color-text-primary); font: inherit; font-size: .74rem; font-weight: 750; }
+  /* ClickUp: header shares the canvas colour (no divider); brand left, search centred, actions right. */
+  .topbar { position: relative; z-index: 10; min-height: 3rem; display: grid; grid-template-columns: minmax(0,1fr) minmax(15rem, 31rem) minmax(0,1fr); align-items: center; gap: .75rem; padding: .3rem .75rem; color: var(--color-text-primary); background: var(--color-topbar); }
+  .topbar__brand { position: relative; display: flex; align-items: center; gap: .2rem; justify-self: start; }
+  .workspace-switch.ant-btn { display: inline-flex; align-items: center; gap: .5rem; height: 2.1rem; padding: 0 .6rem 0 .45rem; border: 1px solid transparent; border-radius: .6rem; color: var(--color-text-primary); background: transparent; font: inherit; font-size: .84rem; font-weight: 600; }
   .workspace-switch.ant-btn:hover { background: var(--color-surface-3); }
-  .workspace-switch__mark.ant-avatar { color: #08341f; background: #35bd7d; font-size: .62rem; font-weight: 800; }
-  .icon-btn.ant-btn { width: 1.85rem; height: 1.85rem; display: grid; place-items: center; color: var(--color-text-muted); }
+  .workspace-switch lucide-icon { color: var(--color-text-muted); }
+  .workspace-switch__mark.ant-avatar { color: #fff; background: var(--cu-teal); border-radius: .35rem; font-size: .7rem; font-weight: 700; }
+  .icon-btn.ant-btn { width: 2.1rem; height: 2.1rem; display: grid; place-items: center; border-radius: .6rem; color: var(--color-text-secondary); }
   .icon-btn.ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
 
-  /* ── Search bar ── */
-  .search-bar { display: flex; align-items: center; gap: .4rem; width: 100%; min-height: 1.8rem; padding: 0 .6rem; border: 1px solid var(--color-border); border-radius: .55rem; background: var(--color-surface-2); cursor: text; transition: border-color .15s; }
-  .search-bar:focus-within { border-color: var(--color-border-strong); }
-  .search-bar__icon { flex: none; color: var(--color-text-muted); display: flex; align-items: center; }
-  .search-bar__input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .72rem; }
-  .search-bar__input::placeholder { color: var(--color-text-muted); }
-  .search-bar__kbd { flex: none; color: var(--color-text-muted); font-size: .61rem; font-family: inherit; }
+  /* ── Search pill (with the AI Chats segment inside) ── */
+  .search-wrap { display: flex; align-items: center; gap: .25rem; width: 100%; min-height: 2.1rem; padding: .15rem .2rem .15rem .7rem; border: 1px solid var(--color-border-strong); border-radius: 999px; background: var(--color-surface-1); transition: border-color .15s, background .15s; }
+  .search-wrap:hover { background: var(--color-surface-2); }
+  .search-wrap:focus-within { border-color: var(--color-text-muted); }
+  .search-bar { display: flex; align-items: center; gap: .45rem; flex: 1; min-width: 0; cursor: text; }
+  .search-bar__icon { flex: none; color: var(--color-text-secondary); display: flex; align-items: center; }
+  .search-bar__input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .84rem; }
+  .search-bar__input::placeholder { color: var(--color-text-secondary); }
+  .search-bar__input::-webkit-search-cancel-button { display: none; }
+  .search-bar__kbd { flex: none; color: var(--color-text-muted); font-size: .72rem; font-family: inherit; }
 
-  .ai-trigger.ant-btn { justify-self: start; display: flex; align-items: center; gap: .3rem; color: var(--color-text-muted); font: inherit; font-size: .68rem; }
+  .ai-trigger.ant-btn { flex: none; display: inline-flex; align-items: center; gap: .35rem; height: 1.75rem; padding: 0 .7rem; border-radius: 999px; color: var(--color-text-secondary); background: var(--color-surface-2); font: inherit; font-size: .78rem; font-weight: 500; }
+  .ai-trigger.ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
   .ai-trigger lucide-icon { color: var(--color-accent-bright); }
-  .actions { justify-self: end; display: flex; align-items: center; gap: .2rem; }
-  .actions > .icon-btn.ant-btn { width: 1.85rem; height: 1.85rem; }
-  .account.ant-btn { position: relative; display: flex !important; align-items: center; justify-content: center; gap: .25rem; width: auto !important; height: auto; padding: 0 .1rem; }
-  .account nz-avatar.ant-avatar { color: #24252a; background: #eeeef0; font-size: .62rem; }
+  .actions { justify-self: end; display: flex; align-items: center; gap: .15rem; }
+  .actions > .icon-btn.ant-btn { width: 2.1rem; height: 2.1rem; }
+  .account.ant-btn { position: relative; display: flex !important; align-items: center; justify-content: center; gap: .25rem; width: auto !important; height: auto; padding: 0 .15rem; margin-inline-start: .2rem; }
+  .account nz-avatar.ant-avatar { color: #111; background: #eee; font-size: .68rem; font-weight: 700; }
 
   /* ── Profile menu ── */
   .profile-menu {
-    width: 17.5rem;
+    width: 18.5rem;
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
     padding: .45rem;
@@ -174,23 +175,23 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
 
   /* Header */
   .pm-header { display: flex; align-items: center; gap: .6rem; padding: .35rem .5rem .7rem; }
-  .pm-avatar.ant-avatar { color: #24252a; background: #eeeef0; font-size: .62rem; flex: none; }
-  .pm-header__info strong { display: block; color: var(--color-text-primary); font-size: .76rem; font-weight: 700; }
+  .pm-avatar.ant-avatar { color: #111; background: #eee; font-size: .62rem; flex: none; }
+  .pm-header__info strong { display: block; color: var(--color-text-primary); font-size: .86rem; font-weight: 700; }
   .pm-header__info small { display: block; margin-top: .1rem; color: var(--color-success-text); font-size: .62rem; }
 
   /* Section + divider */
   .pm-section { display: flex; flex-direction: column; gap: 1px; }
   .pm-divider { height: 1px; margin: .3rem 0; background: var(--color-border); }
-  .pm-label { margin: .5rem .45rem .2rem; color: var(--color-text-muted); font-size: .57rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .pm-label { margin: .5rem .45rem .2rem; color: var(--color-text-muted); font-size: .72rem; font-weight: 600; }
 
   /* Items */
   .pm-item {
     display: flex; align-items: center; gap: 0; width: 100%;
-    min-height: 1.95rem; padding: 0 .4rem;
-    border: 0; border-radius: .35rem;
+    min-height: 2.15rem; padding: 0 .45rem;
+    border: 0; border-radius: .45rem;
     background: transparent;
     color: var(--color-text-secondary);
-    font: inherit; font-size: .74rem;
+    font: inherit; font-size: .82rem;
     text-align: start; cursor: pointer;
     transition: background .1s, color .1s;
   }
@@ -216,16 +217,18 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
   .pm-item--danger:hover { background: var(--color-danger-soft); color: var(--color-danger-text, #ff9a9a); }
   .pm-item--danger .pm-item__icon { color: var(--color-danger-text, #ff9a9a); }
 
-  ::ng-deep .app-profile-popover .ant-popover-inner { padding: 0 !important; border: 1px solid var(--color-border-strong) !important; border-radius: .65rem !important; background: var(--color-surface-2) !important; box-shadow: 0 1.1rem 2.8rem rgb(0 0 0 / .5) !important; overflow: hidden !important; }
+  ::ng-deep .app-profile-popover .ant-popover-inner { padding: 0 !important; border: 1px solid var(--color-border-strong) !important; border-radius: .75rem !important; background: var(--color-surface-2) !important; box-shadow: 0 1.1rem 2.8rem rgb(0 0 0 / .5) !important; overflow: hidden !important; }
   ::ng-deep .app-profile-popover .ant-popover-arrow { display: none !important; }
-  @media (max-width: 720px) { .topbar { grid-template-columns: auto 1fr auto; min-height: 3rem; } .ai-trigger { display: none; } .search-bar { width: 100%; } .actions > button:not(.account) { display: none; } .search-bar__kbd { display: none; } }
+  @media (max-width: 720px) { .topbar { grid-template-columns: auto 1fr auto; min-height: 3rem; } .ai-trigger { display: none; } .search-wrap { width: 100%; } .actions > button:not(.account) { display: none; } .search-bar__kbd { display: none; } }
 `]})
 export class AppTopbarComponent {
+  readonly locale = inject(LocaleService);
   readonly theme = inject(ThemeService);
   readonly workspaceStore = inject(WorkspaceStore);
   private readonly router = inject(Router);
   private readonly auth = inject(AuthService);
   private readonly sessionStore = inject(AuthSessionStore);
+  readonly locales = LOCALES;
   readonly settings = output<void>();
   readonly createWorkspace = output<void>();
   readonly profileOpen = signal(false);

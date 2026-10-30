@@ -119,7 +119,7 @@ import {
     .ovc-card--tall { min-height: 15rem; }
     .ovc-title {
       margin: .9rem 1rem .05rem;
-      font-size: .73rem; font-weight: 600; color: var(--color-text-primary);
+      font-size: .84rem; font-weight: 600; color: var(--color-text-primary);
     }
 
     /* Empty state */
@@ -133,9 +133,9 @@ import {
     .ovc-empty > lucide-icon { opacity: .7; }
     .ovc-empty p {
       margin: 0; max-width: 14rem;
-      color: var(--color-text-secondary); font-size: .64rem; line-height: 1.5;
+      color: var(--color-text-secondary); font-size: .74rem; line-height: 1.5;
     }
-    .ovc-noresults { margin: 0; color: var(--color-text-muted); font-size: .72rem; }
+    .ovc-noresults { margin: 0; color: var(--color-text-muted); font-size: .83rem; }
 
     /* Glyphs */
     .ovc-glyph {
@@ -148,7 +148,7 @@ import {
     .ovc-glyph--bookmark b {
       position: absolute; inset-inline-end: -.5rem; inset-block-end: -.3rem;
       width: 1.1rem; height: 1.1rem; display: grid; place-items: center;
-      border-radius: 50%; background: var(--color-text-muted); color: #fff; font-size: .72rem;
+      border-radius: 50%; background: var(--color-text-muted); color: #fff; font-size: .83rem;
     }
 
     /* Outline button */
@@ -157,7 +157,7 @@ import {
       min-height: 1.85rem; padding: 0 .9rem;
       border: 1px solid var(--color-border-strong); border-radius: .38rem;
       background: var(--color-surface-2); color: var(--color-text-primary);
-      font: inherit; font-size: .68rem; font-weight: 600; cursor: pointer;
+      font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer;
     }
     .ovc-outline-btn:hover { background: var(--color-surface-3); }
 
@@ -173,7 +173,7 @@ import {
       border-bottom: 1px solid var(--color-border);
     }
     .ovc-grip { color: var(--color-text-muted); opacity: .55; cursor: grab; }
-    .ovc-section__title { flex: 1; margin: 0; font-size: .73rem; font-weight: 600; color: var(--color-text-primary); }
+    .ovc-section__title { flex: 1; margin: 0; font-size: .84rem; font-weight: 600; color: var(--color-text-primary); }
     .ovc-section__acts { display: flex; align-items: center; gap: .1rem; }
     .ovc-icon-btn {
       display: grid; place-items: center; width: 1.6rem; height: 1.6rem;
@@ -187,13 +187,13 @@ import {
       gap: .55rem; padding: 2.5rem 1rem; text-align: center; color: var(--color-text-muted);
     }
     .ovc-section__empty > lucide-icon { opacity: .65; }
-    .ovc-section__empty p { margin: 0; color: var(--color-text-secondary); font-size: .68rem; }
+    .ovc-section__empty p { margin: 0; color: var(--color-text-secondary); font-size: .78rem; }
 
     /* Dropzone */
     .ovc-dropzone {
       flex: 1; display: flex; align-items: center; justify-content: center; gap: .4rem;
       margin: .75rem; border: 1px dashed var(--color-border-strong); border-radius: .5rem;
-      background: var(--color-surface-2); color: var(--color-text-muted); font-size: .7rem;
+      background: var(--color-surface-2); color: var(--color-text-muted); font-size: .80rem;
       min-height: 10rem;
     }
     .ovc-dropzone a { color: var(--color-accent-bright, var(--color-accent)); text-decoration: underline; }

@@ -345,22 +345,22 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     /* Tab bar — mirrors SpaceShellComponent */
     .cv-tabbar { display: flex; align-items: center; justify-content: space-between; min-height: 3.6rem; padding: 0 .95rem; border-bottom: 1px solid var(--color-border); flex: none; gap: .5rem; }
     .cv-tabbar__left { display: flex; align-items: flex-end; flex: 1; min-width: 0; overflow: hidden; }
-    .cv-badge-btn { display: inline-flex; align-items: center; gap: .32rem; flex: none; height: 2.1rem; padding: 0 .4rem 0 .2rem; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .74rem; font-weight: 700; cursor: pointer; border-radius: .35rem; margin-bottom: .15rem; }
+    .cv-badge-btn { display: inline-flex; align-items: center; gap: .32rem; flex: none; height: 2.1rem; padding: 0 .4rem 0 .2rem; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; border-radius: .35rem; margin-bottom: .15rem; }
     .cv-badge-btn:hover { background: var(--color-surface-3); }
     .cv-badge { width: 1.15rem; height: 1.15rem; display: grid; place-items: center; border-radius: .3rem; color: #fff; flex: none; }
     .cv-badge-btn__star { color: var(--color-text-muted); }
     .cv-badge-btn__star--on { color: #e8b830; }
 
     .cv-tabs { display: flex; align-items: flex-end; overflow: hidden; }
-    .cv-tab { display: inline-flex; align-items: center; gap: .3rem; height: 2.05rem; padding: 0 .5rem; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .69rem; font-weight: 600; white-space: nowrap; cursor: pointer; text-decoration: none; transition: color .12s; }
+    .cv-tab { display: inline-flex; align-items: center; gap: .3rem; height: 2.05rem; padding: 0 .5rem; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .79rem; font-weight: 600; white-space: nowrap; cursor: pointer; text-decoration: none; transition: color .12s; }
     .cv-tab:hover { color: var(--color-text-primary); }
     .cv-tab--active { color: var(--color-text-primary) !important; border-bottom-color: var(--color-accent) !important; }
 
     .cv-tabbar__right { flex: none; display: flex; align-items: center; gap: .2rem; }
-    .cv-action { height: 1.8rem; display: inline-flex; align-items: center; gap: .28rem; padding: 0 .5rem; border: 0; border-radius: .35rem; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .68rem; font-weight: 600; white-space: nowrap; cursor: pointer; }
+    .cv-action { height: 1.8rem; display: inline-flex; align-items: center; gap: .28rem; padding: 0 .5rem; border: 0; border-radius: .35rem; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .78rem; font-weight: 600; white-space: nowrap; cursor: pointer; }
     .cv-action:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
     .cv-action--icon { width: 1.8rem; padding: 0; }
-    .cv-action sup { font-size: .55rem; }
+    .cv-action sup { font-size: .63rem; }
 
     /* Content — tab bar and composer stay fixed; only .cv-scroll scrolls */
     .cv-content { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
@@ -376,7 +376,7 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     .cv-welcome__inner > p { margin: 0 0 1.1rem; color: var(--color-text-secondary); font-size: .82rem; line-height: 1.5; max-width: 26rem; }
 
     .cv-welcome__actions { display: flex; gap: .5rem; margin-bottom: 1.4rem; }
-    .cv-btn { display: inline-flex; align-items: center; gap: .4rem; height: 2.1rem; padding: 0 .85rem; border: 1px solid var(--color-border-strong); border-radius: .5rem; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .78rem; font-weight: 650; cursor: pointer; }
+    .cv-btn { display: inline-flex; align-items: center; gap: .4rem; height: 2.1rem; padding: 0 .85rem; border: 1px solid var(--color-border-strong); border-radius: .5rem; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .90rem; font-weight: 650; cursor: pointer; }
     .cv-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
 
     .cv-cards { display: flex; flex-direction: column; gap: .4rem; }
@@ -388,22 +388,22 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     .cv-card__icon--green { background: #3fa772; }
     .cv-card > span:last-child { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
     .cv-card b { font-size: .82rem; font-weight: 700; color: var(--color-text-primary); }
-    .cv-card em { font-size: .71rem; font-style: normal; color: var(--color-text-muted); }
+    .cv-card em { font-size: .82rem; font-style: normal; color: var(--color-text-muted); }
 
     /* Messages (once the user has sent something) */
     .cv-messages { flex: 1; padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .9rem; }
     .cv-msg { display: flex; gap: .6rem; }
-    .cv-msg__avatar { flex: none; width: 1.9rem; height: 1.9rem; border-radius: .4rem; display: grid; place-items: center; background: var(--color-accent); color: #fff; font-size: .72rem; font-weight: 700; }
+    .cv-msg__avatar { flex: none; width: 1.9rem; height: 1.9rem; border-radius: .4rem; display: grid; place-items: center; background: var(--color-accent); color: #fff; font-size: .83rem; font-weight: 700; }
     .cv-msg__head { display: flex; align-items: baseline; gap: .5rem; }
     .cv-msg__head b { font-size: .8rem; }
-    .cv-msg__head time { font-size: .66rem; color: var(--color-text-muted); }
-    .cv-msg__tag { font-size: .62rem; font-weight: 700; padding: .05rem .4rem; border-radius: 999px; background: var(--color-surface-3); color: var(--color-text-secondary); }
+    .cv-msg__head time { font-size: .76rem; color: var(--color-text-muted); }
+    .cv-msg__tag { font-size: .71rem; font-weight: 700; padding: .05rem .4rem; border-radius: 999px; background: var(--color-surface-3); color: var(--color-text-secondary); }
     .cv-msg__voice { margin-top: .3rem; }
     .cv-msg__body p { margin: .1rem 0 0; font-size: .82rem; color: var(--color-text-secondary); line-height: 1.45; }
 
     /* Get-started banner */
-    .cv-banner { flex: none; display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin: 0 1.1rem 1rem; padding: .55rem .8rem; border: 1px solid var(--color-border-strong); border-radius: .5rem; background: var(--color-surface-1); font-size: .76rem; color: var(--color-text-secondary); }
-    .cv-banner button { flex: none; border: 0; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .74rem; font-weight: 650; cursor: pointer; }
+    .cv-banner { flex: none; display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin: 0 1.1rem 1rem; padding: .55rem .8rem; border: 1px solid var(--color-border-strong); border-radius: .5rem; background: var(--color-surface-1); font-size: .87rem; color: var(--color-text-secondary); }
+    .cv-banner button { flex: none; border: 0; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .85rem; font-weight: 650; cursor: pointer; }
     .cv-banner button:hover { color: var(--color-text-primary); }
 
     /* Composer */
@@ -418,7 +418,7 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     .cv-tool-divider { width: 1px; align-self: center; height: 1.1rem; margin: 0 .3rem; background: var(--color-border-strong); }
     .cv-tool { width: 1.7rem; height: 1.7rem; display: inline-flex; align-items: center; justify-content: center; gap: .2rem; flex: none; border: 0; border-radius: .35rem; background: transparent; color: var(--color-text-muted); cursor: pointer; }
     .cv-tool:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
-    .cv-tool--wide { width: auto; padding: 0 .4rem; font-size: .68rem; font-weight: 600; }
+    .cv-tool--wide { width: auto; padding: 0 .4rem; font-size: .78rem; font-weight: 600; }
     .cv-tool--caret { width: 1.15rem; }
     .cv-send { flex: none; width: 1.7rem; height: 1.7rem; display: grid; place-items: center; border: 0; border-radius: .4rem; background: var(--color-accent); color: #fff; cursor: pointer; }
     .cv-send:disabled { opacity: .4; cursor: not-allowed; }
@@ -430,35 +430,35 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     .cv-pop { position: absolute; bottom: calc(100% + .4rem); inset-inline-start: 0; z-index: 30; background: var(--color-surface-1); border: 1px solid var(--color-border-strong); border-radius: .6rem; box-shadow: 0 10px 28px rgba(0,0,0,.45); padding: .35rem; }
     .cv-pop--post { width: 12.5rem; }
     .cv-pop--slash { width: min(30rem, 100%); max-height: 25rem; overflow-y: auto; padding: .6rem .5rem; }
-    .cv-pop__label { padding: .3rem .55rem; font-size: .66rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--color-text-muted); }
+    .cv-pop__label { padding: .3rem .55rem; font-size: .76rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--color-text-muted); }
     .cv-pop--post .cv-pop__label { text-transform: none; letter-spacing: 0; }
     .cv-pop__label--spaced { margin-top: .4rem; }
     .cv-pop__sep { height: 1px; margin: .25rem -.35rem; background: var(--color-border); }
-    .cv-pop__item { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .48rem .55rem; border: 0; border-radius: .4rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .78rem; text-align: start; cursor: pointer; }
+    .cv-pop__item { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .48rem .55rem; border: 0; border-radius: .4rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .90rem; text-align: start; cursor: pointer; }
     .cv-pop__item:hover { background: var(--color-surface-3); }
     .cv-pop__item--main { font-weight: 700; }
     .cv-pop__check { margin-inline-start: auto; }
 
     .cv-slash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .1rem .5rem; }
-    .cv-slash-item { display: flex; align-items: center; gap: .55rem; min-width: 0; padding: .35rem .45rem; border: 0; border-radius: .4rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .78rem; text-align: start; cursor: pointer; }
+    .cv-slash-item { display: flex; align-items: center; gap: .55rem; min-width: 0; padding: .35rem .45rem; border: 0; border-radius: .4rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .90rem; text-align: start; cursor: pointer; }
     .cv-slash-item--active, .cv-slash-item:hover { background: var(--color-surface-3); }
     .cv-slash-item__icon { flex: none; width: 1.7rem; height: 1.7rem; display: grid; place-items: center; border: 1px solid var(--color-border-strong); border-radius: .4rem; color: var(--color-text-secondary); }
     .cv-slash-item__label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .cv-slash-item__new { flex: none; padding: .05rem .35rem; border-radius: .25rem; background: var(--color-surface-3); font-size: .58rem; font-weight: 800; letter-spacing: .04em; }
+    .cv-slash-item__new { flex: none; padding: .05rem .35rem; border-radius: .25rem; background: var(--color-surface-3); font-size: .67rem; font-weight: 800; letter-spacing: .04em; }
 
     /* Voice note */
     .cv-voice-pending { display: block; width: fit-content; max-width: calc(100% - 1.4rem); margin: .6rem .7rem 0; }
-    .cv-voice-error { padding: 0 .8rem .4rem; font-size: .7rem; color: #e5484d; }
+    .cv-voice-error { padding: 0 .8rem .4rem; font-size: .80rem; color: #e5484d; }
 
     .cv-rec { display: flex; align-items: center; gap: .5rem; padding: .2rem .55rem .55rem; }
     .cv-rec__cancel { flex: none; width: 1.6rem; height: 1.6rem; display: grid; place-items: center; border: 0; border-radius: 50%; background: var(--color-surface-3); color: var(--color-text-secondary); cursor: pointer; }
     .cv-rec__cancel:hover { color: var(--color-text-primary); }
     .cv-rec__dot { flex: none; width: .5rem; height: .5rem; border-radius: 50%; background: #e5484d; animation: cv-pulse 1.1s ease-in-out infinite; }
-    .cv-rec__time { flex: none; font-size: .72rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+    .cv-rec__time { flex: none; font-size: .83rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
     /* Live level meter: newest sample on the right, older ones scroll left (WhatsApp style) */
     .cv-live { flex: 1; min-width: 1rem; height: 1.8rem; display: flex; align-items: center; justify-content: flex-end; gap: 2px; overflow: hidden; }
     .cv-live i { flex: none; width: 2px; border-radius: 1px; background: var(--color-text-secondary); transition: height 60ms linear; }
-    .cv-rec__btn { flex: none; height: 1.9rem; padding: 0 .8rem; border: 0; border-radius: 999px; background: var(--color-surface-3); color: var(--color-text-primary); font: inherit; font-size: .74rem; font-weight: 650; cursor: pointer; }
+    .cv-rec__btn { flex: none; height: 1.9rem; padding: 0 .8rem; border: 0; border-radius: 999px; background: var(--color-surface-3); color: var(--color-text-primary); font: inherit; font-size: .85rem; font-weight: 650; cursor: pointer; }
     .cv-rec__btn:hover { filter: brightness(1.15); }
     .cv-rec__btn--primary { background: var(--color-text-primary); color: var(--color-canvas); }
     @keyframes cv-pulse { 50% { opacity: .3; } }
@@ -466,7 +466,7 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     /* Coming soon */
     .cv-soon { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem; padding: 3rem 1rem; text-align: center; }
     .cv-soon__title { margin: 0; font-size: .92rem; font-weight: 750; color: var(--color-text-primary); }
-    .cv-soon__desc { margin: 0; font-size: .78rem; color: var(--color-text-muted); }
+    .cv-soon__desc { margin: 0; font-size: .90rem; color: var(--color-text-muted); }
 
     /* Not found */
     .cv-notfound { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; padding: 3rem 1rem; text-align: center; }

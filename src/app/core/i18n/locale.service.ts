@@ -1,7 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AppStorage } from '../storage/app-storage';
 
 export type LocaleCode = 'en' | 'ar' | 'fr';
 export type TextDirection = 'ltr' | 'rtl';
@@ -13,7 +12,7 @@ export interface LocaleOption {
   direction: TextDirection;
 }
 
-const STORAGE_KEY = 'locale';
+const STORAGE_KEY = 'flowtask.locale';
 const DEFAULT_LOCALE: LocaleCode = 'en';
 
 export const LOCALES: readonly LocaleOption[] = [
@@ -54,7 +53,7 @@ export class LocaleService {
     this.locale.set(value);
     this.localeSubject.next(value);
     this.applyDocumentSettings(value);
-    if (this.browser) AppStorage.setString(STORAGE_KEY, value);
+    if (this.browser) localStorage.setItem(STORAGE_KEY, value);
   }
 
   isSupported(value: string): value is LocaleCode {
@@ -62,7 +61,7 @@ export class LocaleService {
   }
 
   private readStoredLocale(): LocaleCode {
-    const value = AppStorage.getString(STORAGE_KEY);
+    const value = localStorage.getItem(STORAGE_KEY);
     return value && this.isSupported(value) ? value : DEFAULT_LOCALE;
   }
 

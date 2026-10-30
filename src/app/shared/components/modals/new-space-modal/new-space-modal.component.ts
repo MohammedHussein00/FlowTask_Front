@@ -200,7 +200,7 @@ interface WorkflowOption { id: WorkflowId; label: string; description: string; }
     .nsm { width: min(34rem, 100%); max-height: min(40rem, calc(100vh - 2rem)); display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--color-border-strong); border-radius: 1rem; color: var(--color-text-primary); background: var(--color-surface-1); box-shadow: 0 2rem 5rem rgb(0 0 0 / .55); }
     .nsm header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.3rem 1.4rem 1rem; }
     .nsm header h2 { margin: 0 0 .35rem; font-size: 1.15rem; }
-    .nsm header p { margin: 0; max-width: 26rem; color: var(--color-text-muted); font-size: .78rem; line-height: 1.45; }
+    .nsm header p { margin: 0; max-width: 26rem; color: var(--color-text-muted); font-size: .90rem; line-height: 1.45; }
     .nsm header > button { flex: none; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border: 0; border-radius: .4rem; color: var(--color-text-muted); background: transparent; cursor: pointer; }
     .nsm header > button:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .nsm-body { flex: 1; overflow-y: auto; padding: 0 1.4rem 1.2rem; scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; }
@@ -224,9 +224,9 @@ interface WorkflowOption { id: WorkflowId; label: string; description: string; }
     .nsm-textarea:focus { outline: 0; border-color: var(--color-accent); }
     .nsm-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-top: 1.3rem; }
     .nsm-row__label { display: inline-flex; align-items: center; gap: .35rem; font-size: .82rem; font-weight: 650; }
-    .nsm-row__hint { margin: .2rem 0 0; color: var(--color-text-muted); font-size: .74rem; }
+    .nsm-row__hint { margin: .2rem 0 0; color: var(--color-text-muted); font-size: .85rem; }
     .nsm-perm-wrap { position: relative; }
-    .nsm-perm-trigger { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.1rem; padding: 0 .8rem; border: 1.5px solid var(--color-border-strong); border-radius: .5rem; color: var(--color-text-primary); background: transparent; font: inherit; font-size: .78rem; font-weight: 650; cursor: pointer; }
+    .nsm-perm-trigger { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.1rem; padding: 0 .8rem; border: 1.5px solid var(--color-border-strong); border-radius: .5rem; color: var(--color-text-primary); background: transparent; font: inherit; font-size: .90rem; font-weight: 650; cursor: pointer; }
     .nsm-perm-trigger:hover { background: var(--color-surface-3); }
     .nsm-perm-panel { position: absolute; z-index: 6; inset-block-start: calc(100% + .4rem); inset-inline-end: 0; width: 17.5rem; overflow: hidden; border: 1px solid var(--color-border-strong); border-radius: .7rem; background: var(--color-surface-2); box-shadow: 0 1.2rem 3rem rgb(0 0 0 / .55); }
     .nsm-perm-option { display: block; width: 100%; padding: .7rem .9rem; border: 0; border-bottom: 1px solid var(--color-border); background: transparent; text-align: start; cursor: pointer; }
@@ -234,18 +234,18 @@ interface WorkflowOption { id: WorkflowId; label: string; description: string; }
     .nsm-perm-option:hover { background: var(--color-surface-3); }
     .nsm-perm-option__head { display: flex; align-items: center; justify-content: space-between; color: var(--color-text-primary); font-size: .8rem; font-weight: 700; }
     .nsm-perm-option__head lucide-icon { color: var(--color-accent); }
-    .nsm-perm-option__desc { display: block; margin-top: .2rem; color: var(--color-text-muted); font-size: .71rem; line-height: 1.4; }
+    .nsm-perm-option__desc { display: block; margin-top: .2rem; color: var(--color-text-muted); font-size: .82rem; line-height: 1.4; }
     .nsm-toggle { flex: none; width: 2.35rem; height: 1.3rem; padding: .15rem; border: 0; border-radius: 1rem; background: var(--color-border-strong); cursor: pointer; }
     .nsm-toggle span { display: block; width: 1rem; height: 1rem; border-radius: 50%; background: #fff; transition: transform .15s ease; }
     .nsm-toggle--on { background: var(--color-accent); }
     .nsm-toggle--on span { transform: translateX(1.05rem); }
-    .nsm-error { margin: 1rem 0 0; color: var(--color-danger, #e5534b); font-size: .78rem; font-weight: 600; }
+    .nsm-error { margin: 1rem 0 0; color: var(--color-danger, #e5534b); font-size: .90rem; font-weight: 600; }
 
     /* Footer */
     footer { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1.4rem; border-top: 1px solid var(--color-border); }
-    .nsm-templates { min-height: 2.15rem; padding: 0 .3rem; border: 0; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .78rem; font-weight: 650; text-decoration: underline; cursor: pointer; }
+    .nsm-templates { min-height: 2.15rem; padding: 0 .3rem; border: 0; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .90rem; font-weight: 650; text-decoration: underline; cursor: pointer; }
     .nsm-templates:disabled { opacity: .5; cursor: not-allowed; }
-    .nsm-continue { min-height: 2.15rem; padding: 0 1.3rem; border: 0; border-radius: .5rem; color: #17181b; background: #fff; font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer; }
+    .nsm-continue { min-height: 2.15rem; padding: 0 1.3rem; border: 0; border-radius: .5rem; color: #191919; background: #fff; font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer; }
     .nsm-continue:disabled { opacity: .45; cursor: not-allowed; }
     .nsm-continue:not(:disabled):hover { filter: brightness(.94); }
 
@@ -255,9 +255,9 @@ interface WorkflowOption { id: WorkflowId; label: string; description: string; }
     .wf-card:hover { background: var(--color-surface-3); }
     .wf-card--active { border-color: var(--color-accent); background: var(--color-accent-soft); }
     .wf-card__title { color: var(--color-text-primary); font-size: .82rem; font-weight: 700; }
-    .wf-card__desc { color: var(--color-text-muted); font-size: .72rem; }
+    .wf-card__desc { color: var(--color-text-muted); font-size: .83rem; }
 
-    .wf-sub-label { margin: 1.1rem 0 .55rem; color: var(--color-text-secondary); font-size: .78rem; }
+    .wf-sub-label { margin: 1.1rem 0 .55rem; color: var(--color-text-secondary); font-size: .90rem; }
     .wf-sub-label strong { color: var(--color-text-primary); }
 
     .wf-detail-list { display: flex; flex-direction: column; gap: .4rem; }
@@ -267,13 +267,13 @@ interface WorkflowOption { id: WorkflowId; label: string; description: string; }
     .wf-detail-item__icon--target { color: var(--color-accent); }
     .wf-detail-item div { flex: 1; min-width: 0; }
     .wf-detail-item__title { display: block; color: var(--color-text-primary); font-size: .8rem; font-weight: 650; }
-    .wf-detail-item__desc { display: flex; align-items: center; flex-wrap: wrap; gap: .25rem; color: var(--color-text-muted); font-size: .71rem; margin-top: .12rem; }
+    .wf-detail-item__desc { display: flex; align-items: center; flex-wrap: wrap; gap: .25rem; color: var(--color-text-muted); font-size: .82rem; margin-top: .12rem; }
     .wf-detail-item__chev { flex: none; color: var(--color-text-muted); margin-inline-start: auto; }
-    .wf-status { padding: .1rem .35rem; border-radius: .25rem; font-size: .65rem; font-weight: 700; letter-spacing: .02em; }
+    .wf-status { padding: .1rem .35rem; border-radius: .25rem; font-size: .75rem; font-weight: 700; letter-spacing: .02em; }
     .wf-status--todo    { background: rgb(110 114 126 / .2); color: var(--color-text-muted); }
     .wf-status--progress { background: rgb(132 87 224 / .18); color: #cba5f7; }
     .wf-status--done    { background: rgb(57 201 138 / .18); color: var(--color-success-text); }
-    .wf-status-arrow    { color: var(--color-text-muted); font-size: .65rem; }
+    .wf-status-arrow    { color: var(--color-text-muted); font-size: .75rem; }
   `],
 })
 export class NewSpaceModalComponent {

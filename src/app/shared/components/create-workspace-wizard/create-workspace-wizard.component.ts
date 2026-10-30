@@ -119,21 +119,21 @@ const STEPS: WizardStep[] = [
     .pill.selected { border-color: var(--color-accent); background: var(--color-accent-soft); color: var(--color-accent-bright); }
     .pill-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .55rem; }
     .pill--tile { position: relative; min-height: 2.4rem; display: flex; align-items: center; justify-content: flex-start; gap: .5rem; padding-inline: .8rem 1.8rem; text-align: start; }
-    .tile-badge { flex: none; width: 1.15rem; height: 1.15rem; display: grid; place-items: center; border-radius: .3rem; color: #fff; background: var(--color-text-muted); font-size: .58rem; font-weight: 800; }
+    .tile-badge { flex: none; width: 1.15rem; height: 1.15rem; display: grid; place-items: center; border-radius: .3rem; color: #fff; background: var(--color-text-muted); font-size: .67rem; font-weight: 800; }
     .tile-radio { position: absolute; inset-inline-end: .7rem; width: .95rem; height: .95rem; display: grid; place-items: center; border: 1.5px solid var(--color-border-strong); border-radius: 50%; color: #fff; }
     .tile-radio.checked { border-color: var(--color-accent); background: var(--color-accent); }
     .text-field { width: 100%; min-height: 2.75rem; padding: 0 .9rem; border: 1.5px solid var(--color-border-strong); border-radius: .55rem; color: var(--color-text-primary); background: var(--color-surface-2); font: inherit; font-size: .85rem; }
     .text-field:focus { outline: 0; border-color: var(--color-accent); }
-    .wizard-tip { display: inline-flex; align-items: center; gap: .4rem; margin: .8rem 0 0; padding: .5rem .75rem; border-radius: .5rem; color: var(--color-success-text); background: var(--color-success-soft); font-size: .74rem; font-weight: 600; }
-    .wizard-hint { margin: .5rem 0 0; color: var(--color-text-muted); font-size: .74rem; }
-    .wizard-error { margin: .6rem 0 0; color: var(--color-danger, #e5534b); font-size: .76rem; font-weight: 600; }
+    .wizard-tip { display: inline-flex; align-items: center; gap: .4rem; margin: .8rem 0 0; padding: .5rem .75rem; border-radius: .5rem; color: var(--color-success-text); background: var(--color-success-soft); font-size: .85rem; font-weight: 600; }
+    .wizard-hint { margin: .5rem 0 0; color: var(--color-text-muted); font-size: .85rem; }
+    .wizard-error { margin: .6rem 0 0; color: var(--color-danger, #e5534b); font-size: .87rem; font-weight: 600; }
     .wizard-progress { height: .22rem; background: var(--color-border); }
     .wizard-progress > i { display: block; height: 100%; background: var(--color-text-primary); transition: width .2s ease; }
     footer { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1.3rem; }
-    footer .ghost { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.15rem; padding: 0 .9rem; border: 1.5px solid var(--color-border-strong); border-radius: .5rem; color: var(--color-text-primary); background: transparent; font: inherit; font-size: .78rem; font-weight: 650; cursor: pointer; }
+    footer .ghost { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.15rem; padding: 0 .9rem; border: 1.5px solid var(--color-border-strong); border-radius: .5rem; color: var(--color-text-primary); background: transparent; font: inherit; font-size: .90rem; font-weight: 650; cursor: pointer; }
     footer .ghost:hover { background: var(--color-surface-3); }
     footer .ghost:disabled { opacity: .45; cursor: not-allowed; }
-    footer .primary { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.15rem; padding: 0 1.1rem; border: 0; border-radius: .5rem; color: #17181b; background: #fff; font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer; }
+    footer .primary { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.15rem; padding: 0 1.1rem; border: 0; border-radius: .5rem; color: #191919; background: #fff; font: inherit; font-size: .90rem; font-weight: 700; cursor: pointer; }
     footer .primary:disabled { opacity: .45; cursor: not-allowed; }
     footer .primary:not(:disabled):hover { filter: brightness(.94); }
     @media (max-width: 640px) { .wizard-body { padding: 1.2rem 1.2rem .8rem; }.pill-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }

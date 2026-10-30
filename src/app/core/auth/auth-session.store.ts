@@ -1,16 +1,4 @@
-/**
- * Flowspace Command Refresh: session persistence via the shared AppStorage wrapper.
- *
- * See app/core/storage/app-storage.ts for the full rationale. Short version:
- * the access token and non-sensitive user/expiry info are still persisted
- * client-side (there's no refresh-token/httpOnly-cookie endpoint on the API
- * yet), but both now go through the same resilient, namespaced storage used
- * by every other preference in the app, and the token/session stay under
- * two separate keys so a corrupt or expired entry in one can't take the
- * other down with it.
- */
 import { Injectable, computed, signal } from '@angular/core';
-import { AppStorage } from '../storage/app-storage';
 
 export interface AuthUser {
   userId: number;
@@ -29,12 +17,12 @@ interface PersistedSession {
   expiresAt: string;
 }
 
-const STORAGE_KEY = 'session';
-const TOKEN_KEY   = 'token';
+const STORAGE_KEY = 'flowtask.session';
+const TOKEN_KEY   = 'flowtask.token';
 
 @Injectable({ providedIn: 'root' })
 export class AuthSessionStore {
-  // Access token restored from storage on boot, then kept in memory.
+  // Access token restored from localStorage on boot, then kept in memory.
   private accessTokenValue: string | null = null;
 
   // user + expiresAt persisted so the guard knows a session exists on boot.
@@ -48,15 +36,19 @@ export class AuthSessionStore {
     this.accessTokenValue = session.accessToken;
     const persisted: PersistedSession = { user: session.user, expiresAt: session.expiresAt };
     this._session.set(persisted);
-    AppStorage.setJSON(STORAGE_KEY, persisted);
-    AppStorage.setString(TOKEN_KEY, session.accessToken);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(persisted));
+      localStorage.setItem(TOKEN_KEY, session.accessToken);
+    } catch { /* quota / private browsing */ }
   }
 
   clear(): void {
     this.accessTokenValue = null;
     this._session.set(null);
-    AppStorage.remove(STORAGE_KEY);
-    AppStorage.remove(TOKEN_KEY);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(TOKEN_KEY);
+    } catch { /* ignore */ }
   }
 
   get accessToken(): string | null {
@@ -64,17 +56,22 @@ export class AuthSessionStore {
   }
 
   private readStorage(): PersistedSession | null {
-    const p = AppStorage.getJSON<PersistedSession>(STORAGE_KEY);
-    if (!p?.user?.userId || !p.expiresAt) return null;
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
 
-    if (new Date(p.expiresAt) <= new Date()) {
-      AppStorage.remove(STORAGE_KEY);
-      AppStorage.remove(TOKEN_KEY);
-      return null;
-    }
+      const p = JSON.parse(raw) as PersistedSession;
+      if (!p?.user?.userId || !p.expiresAt) return null;
 
-    // Restore access token into memory so Apollo can attach it immediately.
-    this.accessTokenValue = AppStorage.getString(TOKEN_KEY);
-    return p;
+      if (new Date(p.expiresAt) <= new Date()) {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(TOKEN_KEY);
+        return null;
+      }
+
+      // Restore access token into memory so Apollo can attach it immediately.
+      this.accessTokenValue = localStorage.getItem(TOKEN_KEY);
+      return p;
+    } catch { return null; }
   }
 }

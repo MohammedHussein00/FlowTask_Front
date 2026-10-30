@@ -16,7 +16,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, HostListener, computed,
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
-import {
+import { Info as InfoLucide,
   LucideAngularModule,
   AtSign, Bell, Bot, BrainCircuit, Bookmark, Calendar, ChartGantt, Check, CheckSquare, ChevronDown,
   Cloud, Download, FileText, Hash, HardDrive, Heading1, Heading2, Image, LayoutDashboard, Lightbulb,
@@ -77,28 +77,29 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
 
           <nav class="cv-tabs">
             <button type="button" class="cv-tab" [class.cv-tab--active]="activeTab() === 'channel'" (click)="activeTab.set('channel')">
-              <lucide-icon [img]="Hash" size="13" />{{ 'channelTab' | componentT:'channel-view' }}
+              <span class="cv-chip cv-chip--plum"><lucide-icon [img]="Hash" size="11" /></span>{{ 'channelTab' | componentT:'channel-view' }}
             </button>
             <button type="button" class="cv-tab" [class.cv-tab--active]="activeTab() === 'overview'" (click)="activeTab.set('overview')">
-              {{ 'overviewTab' | componentT:'channel-view' }}
+              <span class="cv-chip cv-chip--gray"><lucide-icon [img]="InfoIcon" size="11" /></span>{{ 'overviewTab' | componentT:'channel-view' }}
             </button>
+            <span class="cv-tabs__sep" aria-hidden="true"></span>
             <button type="button" class="cv-tab" [class.cv-tab--active]="activeTab() === 'list'" (click)="activeTab.set('list')">
-              <lucide-icon [img]="ListChecks" size="13" />{{ 'listTab' | componentT:'channel-view' }}
+              <span class="cv-chip cv-chip--gray"><lucide-icon [img]="ListChecks" size="11" /></span>{{ 'listTab' | componentT:'channel-view' }}
             </button>
             <button type="button" class="cv-tab" [class.cv-tab--active]="activeTab() === 'board'" (click)="activeTab.set('board')">
-              <lucide-icon [img]="LayoutDashboard" size="13" />{{ 'boardTab' | componentT:'channel-view' }}
+              <span class="cv-chip cv-chip--blue"><lucide-icon [img]="LayoutDashboard" size="11" /></span>{{ 'boardTab' | componentT:'channel-view' }}
             </button>
             <button type="button" class="cv-tab" [class.cv-tab--active]="activeTab() === 'calendar'" (click)="activeTab.set('calendar')">
-              <lucide-icon [img]="Calendar" size="13" />{{ 'calendarTab' | componentT:'channel-view' }}
+              <span class="cv-chip cv-chip--orange"><lucide-icon [img]="Calendar" size="11" /></span>{{ 'calendarTab' | componentT:'channel-view' }}
             </button>
             <button type="button" class="cv-tab" [class.cv-tab--active]="activeTab() === 'gantt'" (click)="activeTab.set('gantt')">
-              <lucide-icon [img]="ChartGantt" size="13" />{{ 'ganttTab' | componentT:'channel-view' }}
+              <span class="cv-chip cv-chip--red"><lucide-icon [img]="ChartGantt" size="11" /></span>{{ 'ganttTab' | componentT:'channel-view' }}
             </button>
             <button type="button" class="cv-tab" [class.cv-tab--active]="activeTab() === 'team'" (click)="activeTab.set('team')">
-              <lucide-icon [img]="Users" size="13" />{{ 'teamTab' | componentT:'channel-view' }}
+              <span class="cv-chip cv-chip--plum"><lucide-icon [img]="Users" size="11" /></span>{{ 'teamTab' | componentT:'channel-view' }}
             </button>
             <button type="button" class="cv-tab">
-              <lucide-icon [img]="Plus" size="13" />{{ 'addViewTab' | componentT:'channel-view' }}
+              <lucide-icon [img]="Plus" size="14" />{{ 'addViewTab' | componentT:'channel-view' }}
             </button>
           </nav>
         </div>
@@ -342,25 +343,30 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     :host { display: block; height: 100%; min-height: 0; overflow: hidden; }
     .cv-shell { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; background: var(--color-canvas); color: var(--color-text-primary); }
 
-    /* Tab bar — mirrors SpaceShellComponent */
-    .cv-tabbar { display: flex; align-items: center; justify-content: space-between; min-height: 3.6rem; padding: 0 .95rem; border-bottom: 1px solid var(--color-border); flex: none; gap: .5rem; }
-    .cv-tabbar__left { display: flex; align-items: flex-end; flex: 1; min-width: 0; overflow: hidden; }
-    .cv-badge-btn { display: inline-flex; align-items: center; gap: .32rem; flex: none; height: 2.1rem; padding: 0 .4rem 0 .2rem; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; border-radius: .35rem; margin-bottom: .15rem; }
+    /* Tab bar — mirrors SpaceShellComponent (two rows: title, then view tabs) */
+    .cv-tabbar { display: flex; align-items: center; justify-content: space-between; min-height: 4.4rem; padding: 0 1rem 0 .75rem; flex: none; gap: .5rem; }
+    .cv-tabbar__left { display: flex; flex-direction: column; justify-content: center; gap: .15rem; flex: 1; min-width: 0; align-self: stretch; padding-top: .45rem; }
+    .cv-badge-btn { display: inline-flex; align-items: center; gap: .4rem; align-self: flex-start; flex: none; height: 2rem; padding: 0 .5rem 0 .25rem; border: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; border-radius: .5rem; }
     .cv-badge-btn:hover { background: var(--color-surface-3); }
-    .cv-badge { width: 1.15rem; height: 1.15rem; display: grid; place-items: center; border-radius: .3rem; color: #fff; flex: none; }
-    .cv-badge-btn__star { color: var(--color-text-muted); }
-    .cv-badge-btn__star--on { color: #e8b830; }
+    .cv-badge-btn b { font-weight: 600; }
+    .cv-badge { width: 1.35rem; height: 1.35rem; display: grid; place-items: center; border-radius: .35rem; color: #fff; flex: none; }
+    .cv-badge-btn lucide-icon { color: var(--color-text-secondary); }
+    .cv-badge-btn__star { color: var(--color-text-secondary); }
+    .cv-badge-btn__star--on { color: #e8b830 !important; }
 
-    .cv-tabs { display: flex; align-items: flex-end; overflow: hidden; }
-    .cv-tab { display: inline-flex; align-items: center; gap: .3rem; height: 2.05rem; padding: 0 .5rem; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .79rem; font-weight: 600; white-space: nowrap; cursor: pointer; text-decoration: none; transition: color .12s; }
+    .cv-tabs { display: flex; align-items: flex-end; overflow: hidden; gap: .05rem; }
+    .cv-tabs__sep { width: 1px; height: 1.1rem; align-self: center; margin: 0 .35rem; background: var(--color-border-strong); flex: none; }
+    .cv-tab { display: inline-flex; align-items: center; gap: .4rem; height: 2.1rem; padding: 0 .5rem; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .8rem; font-weight: 500; white-space: nowrap; cursor: pointer; text-decoration: none; transition: color .12s; }
     .cv-tab:hover { color: var(--color-text-primary); }
-    .cv-tab--active { color: var(--color-text-primary) !important; border-bottom-color: var(--color-accent) !important; }
+    .cv-tab--active { color: var(--color-text-primary) !important; border-bottom-color: var(--color-text-primary) !important; }
+    .cv-chip { width: 1.1rem; height: 1.1rem; display: inline-grid; place-items: center; flex: none; border-radius: .3rem; color: #fff; }
+    .cv-chip--gray { background: var(--cu-gray); } .cv-chip--plum { background: var(--cu-plum); } .cv-chip--blue { background: var(--cu-blue); } .cv-chip--orange { background: var(--cu-orange); } .cv-chip--red { background: var(--cu-red); }
 
-    .cv-tabbar__right { flex: none; display: flex; align-items: center; gap: .2rem; }
-    .cv-action { height: 1.8rem; display: inline-flex; align-items: center; gap: .28rem; padding: 0 .5rem; border: 0; border-radius: .35rem; background: transparent; color: var(--color-text-muted); font: inherit; font-size: .78rem; font-weight: 600; white-space: nowrap; cursor: pointer; }
+    .cv-tabbar__right { flex: none; display: flex; align-items: center; gap: .1rem; align-self: flex-start; padding-top: .45rem; }
+    .cv-action { height: 2rem; display: inline-flex; align-items: center; gap: .4rem; padding: 0 .6rem; border: 0; border-radius: .5rem; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .82rem; font-weight: 600; white-space: nowrap; cursor: pointer; }
     .cv-action:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
-    .cv-action--icon { width: 1.8rem; padding: 0; }
-    .cv-action sup { font-size: .63rem; }
+    .cv-action--icon { width: 2rem; padding: 0; justify-content: center; }
+    .cv-action sup { font-size: .6rem; margin-inline-start: -.2rem; }
 
     /* Content — tab bar and composer stay fixed; only .cv-scroll scrolls */
     .cv-content { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
@@ -368,26 +374,29 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
 
     .cv-welcome { flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 2.6rem 1rem 1rem; }
     .cv-welcome__inner { width: 100%; max-width: 30rem; }
+    .cv-thumb { display: block; }
     .cv-thumb { position: relative; width: 3.4rem; height: 3.4rem; border-radius: .7rem; margin-bottom: 1rem; background: var(--color-surface-3); border: 1px solid var(--color-border-strong); }
     .cv-thumb__dot { position: absolute; width: .95rem; height: .95rem; border-radius: 50%; border: 2px solid var(--color-canvas); bottom: -.25rem; }
     .cv-thumb__dot--a { background: #3fa772; right: .55rem; }
     .cv-thumb__dot--b { background: #5b9bd5; right: -.15rem; }
-    .cv-welcome__inner h1 { margin: 0 0 .4rem; font-size: 1.25rem; font-weight: 800; }
+    .cv-welcome__inner h1 { margin: 0 0 .5rem; color: var(--color-text-primary); font-size: 1.15rem; font-weight: 700; }
     .cv-welcome__inner > p { margin: 0 0 1.1rem; color: var(--color-text-secondary); font-size: .82rem; line-height: 1.5; max-width: 26rem; }
 
-    .cv-welcome__actions { display: flex; gap: .5rem; margin-bottom: 1.4rem; }
-    .cv-btn { display: inline-flex; align-items: center; gap: .4rem; height: 2.1rem; padding: 0 .85rem; border: 1px solid var(--color-border-strong); border-radius: .5rem; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .90rem; font-weight: 650; cursor: pointer; }
+    .cv-welcome__actions { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.4rem; }
+    .cv-btn { display: inline-flex; align-items: center; gap: .4rem; justify-content: center; width: 100%; height: 2.3rem; padding: 0 .85rem; border: 1px solid var(--color-border-strong); border-radius: .6rem; background: var(--color-surface-1); color: var(--color-text-primary); font: inherit; font-size: .90rem; font-weight: 650; cursor: pointer; }
     .cv-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
 
     .cv-cards { display: flex; flex-direction: column; gap: .4rem; }
-    .cv-card { display: flex; align-items: center; gap: .7rem; width: 100%; padding: .7rem .8rem; border: 1px solid var(--color-border); border-radius: .6rem; background: var(--color-surface-1); text-align: start; cursor: pointer; }
-    .cv-card:hover { background: var(--color-surface-3); border-color: var(--color-border-strong); }
+    .cv-card { --tint: var(--cu-plum); display: flex; align-items: center; gap: .75rem; width: 100%; padding: .8rem .9rem; border: 1px solid transparent; border-radius: .7rem; background: color-mix(in srgb, var(--tint) 16%, var(--color-canvas)); text-align: start; cursor: pointer; }
+    .cv-card:hover { background: color-mix(in srgb, var(--tint) 24%, var(--color-canvas)); }
+    .cv-cards .cv-card:nth-child(2) { --tint: var(--cu-blue); }
+    .cv-cards .cv-card:nth-child(3) { --tint: var(--cu-teal); }
     .cv-card__icon { flex: none; width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: .45rem; color: #fff; }
     .cv-card__icon--violet { background: #8e5fe0; }
     .cv-card__icon--blue { background: #5b9bd5; }
     .cv-card__icon--green { background: #3fa772; }
     .cv-card > span:last-child { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
-    .cv-card b { font-size: .82rem; font-weight: 700; color: var(--color-text-primary); }
+    .cv-card b { font-size: .92rem; font-weight: 700; color: var(--color-text-primary); }
     .cv-card em { font-size: .82rem; font-style: normal; color: var(--color-text-muted); }
 
     /* Messages (once the user has sent something) */
@@ -408,7 +417,7 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
 
     /* Composer */
     .cv-composer-wrap { position: relative; flex: none; margin: 0 1.1rem 1.1rem; }
-    .cv-composer { flex: none; border: 1px solid var(--color-border-strong); border-radius: .6rem; background: var(--color-surface-1); }
+    .cv-composer { flex: none; border: 1px solid var(--color-border-strong); border-radius: .75rem; background: var(--color-surface-1); }
     .cv-composer__input { width: 100%; border: 0; background: transparent; padding: .7rem .8rem .35rem; color: var(--color-text-primary); font: inherit; font-size: .82rem; }
     .cv-composer__input::placeholder { color: var(--color-text-muted); }
     .cv-composer__input:focus { outline: none; }
@@ -420,9 +429,9 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     .cv-tool:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
     .cv-tool--wide { width: auto; padding: 0 .4rem; font-size: .78rem; font-weight: 600; }
     .cv-tool--caret { width: 1.15rem; }
-    .cv-send { flex: none; width: 1.7rem; height: 1.7rem; display: grid; place-items: center; border: 0; border-radius: .4rem; background: var(--color-accent); color: #fff; cursor: pointer; }
+    .cv-send { flex: none; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border: 0; border-radius: .5rem; background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text); cursor: pointer; }
     .cv-send:disabled { opacity: .4; cursor: not-allowed; }
-    .cv-send:not(:disabled):hover { background: color-mix(in srgb, var(--color-accent) 80%, #000); }
+    .cv-send:not(:disabled):hover { background: var(--color-btn-primary-bg-hover); }
 
     .cv-composer--rec { border-color: var(--color-accent); }
 
@@ -480,6 +489,7 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
   `],
 })
 export class ChannelViewComponent {
+  readonly InfoIcon = InfoLucide;
   private readonly route          = inject(ActivatedRoute);
   private readonly channelStore   = inject(ChannelStore);
   private readonly workspaceStore = inject(WorkspaceStore);

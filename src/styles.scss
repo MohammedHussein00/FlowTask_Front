@@ -31,6 +31,7 @@ html[data-theme="dark"] body { background: var(--color-canvas); }
 .sb-popover .ant-popover-arrow-content {
   display: none !important;
 }
+h1, h2, h3, h4, h5, h6 { color: inherit; }
 lucide-icon{
   display:flex;
 }

@@ -1,4 +1,5 @@
 import { Component, signal, computed, inject, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { SpaceContextService } from '../space-context.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -682,6 +683,10 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
 
       <!-- ── Status groups ── -->
       <div class="slv-groups">
+        <div class="slv-card__head">
+          <small>{{ ctx.spaceName() }}</small>
+          <div class="slv-card__title"><b>List</b><lucide-icon [img]="MoreHorizontal" size="14" /></div>
+        </div>
         <div class="slv-group">
 
           <!-- Group header -->
@@ -689,8 +694,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
             <button class="slv-group__chevron" type="button" (click)="groupCollapsed.update(v => !v)" aria-label="Collapse group">
               <lucide-icon [img]="groupCollapsed() ? ChevronRight : ChevronDown" size="13" />
             </button>
-            <span class="slv-group__dot"></span>
-            <span class="slv-group__title">TO DO</span>
+            <span class="slv-group__pill"><span class="slv-group__dot"></span><span class="slv-group__title">TO DO</span></span>
             <span class="slv-group__count">{{ tasks().length }}</span>
             <button class="slv-group__icon-btn" type="button" aria-label="Group options" (click)="$event.stopPropagation()">
               <lucide-icon [img]="MoreHorizontal" size="14" />
@@ -896,6 +900,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
                   </button>
                 </div>
 
+                <button class="slv-inline-row__cancel" type="button" (click)="closeInlineAdd()">Cancel</button>
                 <button class="slv-inline-row__save" type="button" [disabled]="!inlineTaskName().trim()" (click)="saveInlineTask()">Save</button>
               </div>
             } @else {
@@ -1633,10 +1638,63 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       color: var(--color-text-muted); font-size: .85rem; font-weight: 700;
     }
     .cz-field-row__label { flex: 1; font-size: .84rem; color: var(--color-text-primary); }
+
+    /* ══════════ ClickUp list look ══════════ */
+    /* Toolbar: every control is a bordered pill */
+    .slv-toolbar { min-height: 3.1rem; padding: 0 1rem; border-bottom: 1px solid var(--color-border); }
+    .slv-pill { height: 1.9rem; padding: 0 .7rem; border-color: var(--color-border-strong); color: var(--color-text-primary); font-size: .78rem; }
+    .slv-pill:hover { background: var(--color-surface-3); border-color: var(--color-border-strong); color: var(--color-text-primary); }
+    .slv-pill--accent { color: var(--color-accent-bright, var(--color-accent)); border-color: color-mix(in srgb, var(--color-accent) 55%, transparent); background: color-mix(in srgb, var(--color-accent) 14%, transparent); }
+    .slv-pill--accent:hover { color: var(--color-accent-bright, var(--color-accent)); background: color-mix(in srgb, var(--color-accent) 24%, transparent); border-color: color-mix(in srgb, var(--color-accent) 70%, transparent); }
+    .slv-action { height: 1.9rem; padding: 0 .7rem; border: 1px solid var(--color-border-strong); border-radius: 999px; color: var(--color-text-primary); font-size: .78rem; }
+    .slv-action:hover { background: var(--color-surface-3); color: var(--color-text-primary); border-color: var(--color-border-strong); }
+    .slv-action--active { background: color-mix(in srgb, var(--color-accent) 16%, transparent); border-color: color-mix(in srgb, var(--color-accent) 50%, transparent); color: var(--color-accent-bright, var(--color-accent)); }
+    .slv-action--icon { width: 1.9rem; padding: 0; justify-content: center; }
+    .slv-toolbar__right { gap: .4rem; }
+    .slv-action-divider { display: none; }
+    .slv-add-task { height: 1.9rem; }
+
+    /* The list is a rounded card with a breadcrumb title */
+    .slv-groups { flex: 0 0 auto; overflow: visible; margin: 1rem 1rem 1.5rem; padding: .75rem 1.1rem 1rem; border: 1px solid var(--color-border); border-radius: .85rem; background: var(--color-canvas); }
+    .slv-card__head { padding: .15rem .25rem 1.4rem; }
+    .slv-card__head small { display: block; color: var(--color-text-muted); font-size: .72rem; }
+    .slv-card__title { display: flex; align-items: center; gap: .6rem; margin-top: .15rem; }
+    .slv-card__title b { font-size: 1.05rem; font-weight: 700; color: var(--color-text-primary); }
+    .slv-card__title lucide-icon { color: var(--color-text-muted); }
+    .slv-groups .slv-group__header, .slv-groups .slv-cols, .slv-groups .slv-row, .slv-groups .slv-inline-row, .slv-groups .slv-add-row { padding-inline: .3rem; }
+
+    /* Status chip, like ClickUp's coloured status labels */
+    .slv-group__pill { display: inline-flex; align-items: center; gap: .35rem; height: 1.45rem; padding: 0 .5rem; border-radius: .4rem; background: var(--color-surface-3); }
+    .slv-group__pill .slv-group__dot { width: .8rem; height: .8rem; border-radius: 50%; border: 1.6px dashed var(--color-text-secondary); background: transparent; }
+    .slv-group__pill .slv-group__title { font-size: .72rem; font-weight: 700; letter-spacing: .01em; color: var(--color-text-primary); }
+    .slv-group__count { font-size: .78rem; }
+
+    /* Add-column "+" is a filled accent circle */
+    .slv-cols__add { width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text); }
+    .slv-cols__add:hover { background: var(--color-btn-primary-bg-hover); color: var(--color-btn-primary-text); }
+    .slv-cols { border-bottom: 1px solid var(--color-border); }
+    .slv-row:hover { background: var(--color-surface-1); }
+    .slv-row__dot { width: .85rem; height: .85rem; border-width: 1.6px; }
+
+    /* Inline "add task" row: bordered icon buttons, Cancel + Save */
+    .slv-inline-row { background: transparent; border-bottom: 1px solid var(--color-border-strong); gap: .45rem; }
+    .slv-inline-icon { width: 1.85rem; height: 1.85rem; border: 1px solid var(--color-border-strong); border-radius: .45rem; color: var(--color-text-secondary); }
+    .slv-inline-icon:hover { background: var(--color-surface-3); color: var(--color-text-primary); border-color: var(--color-border-strong); }
+    .slv-inline-row__cancel { flex: none; height: 1.85rem; padding: 0 .7rem; border: 1px solid var(--color-border-strong); border-radius: .45rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .8rem; font-weight: 600; cursor: pointer; }
+    .slv-inline-row__cancel:hover { background: var(--color-surface-3); }
+    .slv-inline-row__save { height: 1.85rem; border-radius: .45rem; background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text); }
+    .slv-inline-row__save:hover:not(:disabled) { background: var(--color-btn-primary-bg-hover); }
+    .slv-inline-row__save:disabled { opacity: .45; }
+    .slv-add-row:hover { background: var(--color-surface-1); }
+
+    /* Menus */
+    .slv-type-dropdown, .slv-assignee-dropdown { border-radius: .75rem; }
+    .slv-tdd-item:hover { background: var(--color-surface-3); }
   `],
 })
 export class SpaceListViewComponent {
   readonly notifications = inject(NotificationService);
+  readonly ctx = inject(SpaceContextService);
 
   readonly Filter = Filter; readonly CircleOff = CircleOff;
   readonly UserCircle = UserCircle; readonly Search = Search;

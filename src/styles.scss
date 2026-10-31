@@ -107,3 +107,21 @@ lucide-icon{
 ::-webkit-scrollbar-track { background: transparent; }
 :root[data-theme="light"] * { scrollbar-color: #cfd3da transparent; }
 :root[data-theme="light"] ::-webkit-scrollbar-thumb { background: #cfd3da; background-clip: content-box; }
+
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Hover safety net. These controls had a pointer cursor but no hover feedback.
+   ClickUp-style: filled buttons brighten, flat controls get a subtle #292929 fill.
+   (Declared here once instead of in ~25 components; !important so it wins over each
+   component's own base background.)
+   ──────────────────────────────────────────────────────────────────────────── */
+:is(.cw-submit, .we-submit, .acm-create, .aim-btn, .nsm-continue, .wd-btn, footer .primary, .ft-board-actions button):not(:disabled):hover {
+  filter: brightness(1.12);
+}
+:is(.ws-dropdown__ws-item, .ws-dropdown__create-btn, .acm-card, .slv-tdd-tab, .slv-date-field, .slv-logic, .ovt-logic, .ovt-dclear,
+    .slv-group__chevron, .appearance-options button:not(.selected), .accent-grid button:not(.selected), .link-btn, .ft-link-btn, .wd-channel-item,
+    .space-child--list, .toast):not(:disabled):hover {
+  background-color: var(--color-surface-3) !important;
+  color: var(--color-text-primary) !important;
+}
+button:not(:disabled):active, .ant-btn:not([disabled]):active { filter: brightness(.94); }

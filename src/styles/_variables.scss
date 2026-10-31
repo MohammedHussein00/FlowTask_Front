@@ -93,6 +93,8 @@
 }
 
 :root[data-theme="light"] {
+  /* accent-bright is tuned for dark backgrounds; darken it for text on light surfaces */
+  --color-accent-bright: color-mix(in srgb, var(--color-accent) 72%, #000);
   --color-canvas: #f4f5f7;
   --color-sidebar: #ffffff;
   --color-topbar: #f4f5f7;

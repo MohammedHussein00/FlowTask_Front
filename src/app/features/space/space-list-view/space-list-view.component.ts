@@ -11,7 +11,7 @@ import {
   X, Trash2, Link2, Star, Check, Calendar, Flag, MessageSquare, Hash,
   GitBranch, Clock, CheckCircle2, GitPullRequest, TrendingUp, Rocket,
   CalendarClock, CircleDot, Tag, Shapes, Timer, Palette, Heart, AlignLeft,
-  Paperclip, MoreHorizontal,
+  Paperclip, MoreHorizontal, Pencil, CircleChevronUp, EyeOff, CheckCheck, ChevronsUp, Bot,
 } from 'lucide-angular';
 import { NotificationService } from '../../../core/errors/notification.service';
 
@@ -687,18 +687,45 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
           <small>{{ ctx.spaceName() }}</small>
           <div class="slv-card__title"><b>List</b><lucide-icon [img]="MoreHorizontal" size="14" /></div>
         </div>
-        <div class="slv-group">
+        <div class="slv-group" [class.slv-group--hidden]="groupHidden()">
 
           <!-- Group header -->
           <div class="slv-group__header">
             <button class="slv-group__chevron" type="button" (click)="groupCollapsed.update(v => !v)" aria-label="Collapse group">
               <lucide-icon [img]="groupCollapsed() ? ChevronRight : ChevronDown" size="13" />
             </button>
-            <span class="slv-group__pill"><span class="slv-group__dot"></span><span class="slv-group__title">TO DO</span></span>
+            <span class="slv-group__pill">
+              <span class="slv-group__dot"></span>
+              @if (groupRenaming()) {
+                <input class="slv-group__rename" type="text" [value]="groupName()" (click)="$event.stopPropagation()"
+                  (keydown.enter)="commitGroupRename($any($event.target).value)" (keydown.escape)="groupRenaming.set(false)"
+                  (blur)="commitGroupRename($any($event.target).value)" />
+              } @else {
+                <span class="slv-group__title">{{ groupName() }}</span>
+              }
+            </span>
             <span class="slv-group__count">{{ tasks().length }}</span>
-            <button class="slv-group__icon-btn" type="button" aria-label="Group options" (click)="$event.stopPropagation()">
-              <lucide-icon [img]="MoreHorizontal" size="14" />
-            </button>
+            <span class="slv-group__menu-wrap">
+              <button class="slv-group__icon-btn" [class.slv-group__icon-btn--on]="groupMenuOpen()" type="button" aria-label="Group options" (click)="toggleGroupMenu($event)">
+                <lucide-icon [img]="MoreHorizontal" size="14" />
+              </button>
+              @if (groupMenuOpen()) {
+                <div class="slv-gmenu" role="menu" (click)="$event.stopPropagation()">
+                  <p class="slv-gmenu__label">Group options</p>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="startGroupRename()"><lucide-icon [img]="Pencil" size="15" />Rename</button>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="groupMenuSoon('New status')"><lucide-icon [img]="Plus" size="15" />New status</button>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="groupMenuSoon('Edit statuses')"><lucide-icon [img]="Settings2" size="15" />Edit statuses</button>
+                  <div class="slv-gmenu__sep"></div>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="collapseGroupFromMenu()"><lucide-icon [img]="CircleChevronUp" size="15" />{{ groupCollapsed() ? 'Expand group' : 'Collapse group' }}</button>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="hideGroupStatus()"><lucide-icon [img]="EyeOff" size="15" />Hide status</button>
+                  <div class="slv-gmenu__sep"></div>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="groupMenuSoon('Select all')"><lucide-icon [img]="CheckCheck" size="15" />Select all</button>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="collapseAllGroups()"><lucide-icon [img]="ChevronsUp" size="15" />Collapse all groups</button>
+                  <div class="slv-gmenu__sep"></div>
+                  <button class="slv-gmenu__item" type="button" role="menuitem" (click)="groupMenuSoon('Automate status')"><lucide-icon [img]="Bot" size="15" />Automate status</button>
+                </div>
+              }
+            </span>
             <button class="slv-group__icon-btn" type="button" aria-label="Add task" (click)="$event.stopPropagation(); openInlineAdd()">
               <lucide-icon [img]="Plus" size="14" />
             </button>
@@ -910,6 +937,13 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
             }
           }
         </div>
+        @if (groupHidden()) {
+          <div class="slv-hidden-row">
+            <lucide-icon [img]="EyeOff" size="14" />
+            <span>1 hidden status: {{ groupName() }}</span>
+            <button type="button" (click)="groupHidden.set(false)">Show</button>
+          </div>
+        }
       </div>
     </div>
   `,
@@ -1004,7 +1038,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
       border-radius: .5rem 0 0 .5rem;
       white-space: nowrap;
     }
-    .slv-add-task:hover { background: var(--color-btn-primary-bg-hover); }
+    .slv-add-task:hover { filter: brightness(1.1); }
     .slv-add-task--caret {
       padding: 0 .45rem;
       border-left: 1px solid color-mix(in srgb, var(--color-btn-primary-text) 22%, transparent);
@@ -1671,7 +1705,7 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
 
     /* Add-column "+" is a filled accent circle */
     .slv-cols__add { width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text); }
-    .slv-cols__add:hover { background: var(--color-btn-primary-bg-hover); color: var(--color-btn-primary-text); }
+    .slv-cols__add:hover { filter: brightness(1.12); background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text); }
     .slv-cols { border-bottom: 1px solid var(--color-border); }
     .slv-row:hover { background: var(--color-surface-1); }
     .slv-row__dot { width: .85rem; height: .85rem; border-width: 1.6px; }
@@ -1683,13 +1717,53 @@ function quickDateOptions(from: Date): { label: string; day: string; date: Date 
     .slv-inline-row__cancel { flex: none; height: 1.85rem; padding: 0 .7rem; border: 1px solid var(--color-border-strong); border-radius: .45rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .8rem; font-weight: 600; cursor: pointer; }
     .slv-inline-row__cancel:hover { background: var(--color-surface-3); }
     .slv-inline-row__save { height: 1.85rem; border-radius: .45rem; background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text); }
-    .slv-inline-row__save:hover:not(:disabled) { background: var(--color-btn-primary-bg-hover); }
+    .slv-inline-row__save:hover:not(:disabled) { filter: brightness(1.1); }
     .slv-inline-row__save:disabled { opacity: .45; }
     .slv-add-row:hover { background: var(--color-surface-1); }
 
     /* Menus */
     .slv-type-dropdown, .slv-assignee-dropdown { border-radius: .75rem; }
     .slv-tdd-item:hover { background: var(--color-surface-3); }
+
+    /* ── Group options menu ── */
+    .slv-group--hidden { display: none; }
+    .slv-group__menu-wrap { position: relative; display: inline-flex; }
+    .slv-group__icon-btn--on { background: var(--color-surface-3); color: var(--color-text-primary); }
+    .slv-group__rename { width: 7rem; height: 1.2rem; border: 0; outline: 0; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .72rem; font-weight: 700; text-transform: uppercase; }
+    .slv-gmenu { position: absolute; top: calc(100% + .35rem); left: 0; z-index: 120; width: 15rem; padding: .4rem; background: var(--color-surface-2); border: 1px solid var(--color-border-strong); border-radius: .75rem; box-shadow: 0 14px 34px rgba(0,0,0,.5); }
+    .slv-gmenu__label { margin: 0; padding: .35rem .55rem .3rem; color: var(--color-text-muted); font-size: .72rem; font-weight: 500; }
+    .slv-gmenu__item { display: flex; align-items: center; gap: .65rem; width: 100%; min-height: 2rem; padding: 0 .55rem; border: 0; border-radius: .45rem; background: transparent; color: var(--color-text-primary); font: inherit; font-size: .84rem; font-weight: 500; text-align: start; cursor: pointer; }
+    .slv-gmenu__item lucide-icon { color: var(--color-text-secondary); }
+    .slv-gmenu__item:hover { background: var(--color-surface-3); }
+    .slv-gmenu__sep { height: 1px; margin: .3rem .2rem; background: var(--color-border); }
+    .slv-hidden-row { display: flex; align-items: center; gap: .5rem; margin-top: .5rem; padding: .55rem .3rem 0; border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: .8rem; }
+    .slv-hidden-row button { border: 0; background: transparent; color: var(--color-accent-bright, var(--color-accent)); font: inherit; font-weight: 600; cursor: pointer; }
+    .slv-hidden-row button:hover { text-decoration: underline; }
+
+    /* ── Filter: floating popover under the toolbar (was a full-width bar) ── */
+    .slv-filterbar { position: absolute; top: calc(100% + .4rem); right: 1rem; left: auto; z-index: 150; width: min(38rem, calc(100vw - 2rem)); padding: 1rem 1.1rem 1.1rem; background: var(--color-surface-2); border: 1px solid var(--color-border-strong); border-radius: .85rem; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+    .slv-filterbar__head h3 { font-size: .95rem; }
+    .slv-savedfilters { border-color: var(--color-border-strong); border-radius: 999px; height: 1.85rem; padding: 0 .75rem; color: var(--color-text-primary); }
+    .slv-savedfilters:hover { background: var(--color-surface-3); }
+    .slv-frow { max-width: none; margin-bottom: .6rem; }
+    .slv-fselect { height: 2.15rem; border-color: var(--color-border-strong); background: var(--color-surface-1); color: var(--color-text-primary); border-radius: .5rem; font-size: .84rem; }
+    .slv-fselect:hover { background: var(--color-surface-3); }
+    .slv-fdropdown { width: 100%; background: var(--color-surface-2); border-color: var(--color-border-strong); border-radius: .65rem; box-shadow: 0 12px 30px rgba(0,0,0,.5); }
+    .slv-fopt { padding: .45rem .75rem; font-size: .84rem; }
+    .slv-fopt:hover { background: var(--color-surface-3); }
+    .slv-nested { color: var(--color-text-secondary); font-size: .8rem; font-weight: 500; }
+    .slv-nested:hover { color: var(--color-text-primary); text-decoration: none; background: var(--color-surface-3); }
+    .slv-addfilterrow { height: 2rem; padding: 0 .8rem; border-color: var(--color-border-strong); border-radius: 999px; color: var(--color-text-primary); font-size: .8rem; }
+    .slv-addfilterrow:hover { background: var(--color-surface-3); }
+    .slv-logic { border-color: var(--color-border-strong); }
+    .slv-logic:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
+
+    /* ── Add-task popovers open leftwards so they never run off the right edge ── */
+    .slv-inline-icon-wrap .slv-date-dropdown, .slv-inline-icon-wrap .slv-assignee-dropdown, .slv-inline-icon-wrap .slv-type-dropdown--row { left: auto; right: 0; }
+    .slv-date-dropdown { width: min(28.5rem, calc(100vw - 2rem)); border-radius: .85rem; }
+    .slv-date-dropdown__body { align-items: flex-start; }
+    .slv-date-field { color: var(--color-text-secondary); }
+    .slv-date-field:hover { background: var(--color-surface-3); }
   `],
 })
 export class SpaceListViewComponent {
@@ -1710,6 +1784,8 @@ export class SpaceListViewComponent {
   readonly ClipboardList = ClipboardList; readonly FileSignature = FileSignature;
   readonly LayoutTemplate = LayoutTemplate;
   readonly Paperclip = Paperclip; readonly MoreHorizontal = MoreHorizontal;
+  readonly Pencil = Pencil; readonly CircleChevronUp = CircleChevronUp; readonly EyeOff = EyeOff;
+  readonly CheckCheck = CheckCheck; readonly ChevronsUp = ChevronsUp; readonly Bot = Bot;
   readonly Calendar = Calendar; readonly Flag = Flag;
 
   // Expose constants to template
@@ -1726,6 +1802,20 @@ export class SpaceListViewComponent {
 
   // ── Group (single "TO DO" group for now, matching Group: Status) ──
   groupCollapsed = signal(false);
+
+  /* ── Group options menu (Rename / Collapse / Hide …) ── */
+  groupName = signal('TO DO');
+  groupMenuOpen = signal(false);
+  groupRenaming = signal(false);
+  groupHidden = signal(false);
+
+  toggleGroupMenu(e: Event) { e.stopPropagation(); this.groupMenuOpen.update(v => !v); }
+  startGroupRename() { this.groupMenuOpen.set(false); this.groupRenaming.set(true); setTimeout(() => (document.querySelector('.slv-group__rename') as HTMLInputElement | null)?.select()); }
+  commitGroupRename(value: string) { const v = value.trim(); if (v) this.groupName.set(v.toUpperCase()); this.groupRenaming.set(false); }
+  collapseGroupFromMenu() { this.groupMenuOpen.set(false); this.groupCollapsed.update(v => !v); }
+  collapseAllGroups() { this.groupMenuOpen.set(false); this.groupCollapsed.set(true); }
+  hideGroupStatus() { this.groupMenuOpen.set(false); this.groupHidden.set(true); }
+  groupMenuSoon(label: string) { this.groupMenuOpen.set(false); this.notifications.info(label, 'This option is coming soon.'); }
 
   // ── Inline "Add Task" row state ──
   @ViewChild('inlineNameInput') inlineNameInputRef?: ElementRef<HTMLInputElement>;
@@ -2217,5 +2307,6 @@ export class SpaceListViewComponent {
     this.inlineTypeOpen.set(false);
     this.inlineAssigneeOpen.set(false);
     this.inlineDateOpen.set(false);
+    this.groupMenuOpen.set(false);
   }
 }

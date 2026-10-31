@@ -51,11 +51,14 @@ lucide-icon{
   border-radius: .5rem;
 }
 .ant-btn.ant-btn-primary:hover,
+.ant-btn.ant-btn-primary:focus-visible,
 .ant-btn.ant-btn-primary:active {
   color: var(--color-btn-primary-text);
-  background: var(--color-btn-primary-bg-hover);
+  background: var(--color-btn-primary-bg);
   border-color: transparent;
+  filter: brightness(1.1);
 }
+.ant-btn.ant-btn-primary:active { filter: brightness(.95); }
 .ant-btn.ant-btn-primary[disabled],
 .ant-btn.ant-btn-primary[disabled]:hover {
   color: var(--color-text-muted);
@@ -125,3 +128,6 @@ lucide-icon{
   color: var(--color-text-primary) !important;
 }
 button:not(:disabled):active, .ant-btn:not([disabled]):active { filter: brightness(.94); }
+
+/* ng-zorro's click ripple flashes ant-blue around every button; ClickUp has none. */
+[ant-click-animating-without-extra-node='true']::after, .ant-click-animating-node { display: none !important; }

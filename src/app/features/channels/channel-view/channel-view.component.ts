@@ -431,7 +431,7 @@ interface PostTypeItem { id: PostType; labelKey: string; icon: any; color: strin
     .cv-tool--caret { width: 1.15rem; }
     .cv-send { flex: none; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border: 0; border-radius: .5rem; background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text); cursor: pointer; }
     .cv-send:disabled { opacity: .4; cursor: not-allowed; }
-    .cv-send:not(:disabled):hover { background: var(--color-btn-primary-bg-hover); }
+    .cv-send:not(:disabled):hover { filter: brightness(1.1); }
 
     .cv-composer--rec { border-color: var(--color-accent); }
 

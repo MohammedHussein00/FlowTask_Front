@@ -159,7 +159,7 @@ import {
       background: var(--color-cta-bg); color: var(--color-cta-text);
       font: inherit; font-size: .84rem; font-weight: 600; cursor: pointer;
     }
-    .ovc-outline-btn:hover { background: var(--color-cta-bg-hover); }
+    .ovc-outline-btn:hover { background: var(--color-cta-bg); filter: brightness(1.15); }
 
     /* Section card (Folders / Lists) */
     .ovc-section {

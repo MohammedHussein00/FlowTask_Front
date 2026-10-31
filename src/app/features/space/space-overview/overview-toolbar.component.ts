@@ -287,7 +287,7 @@ export interface FilterRow {
       background: var(--color-btn-primary-bg); color: var(--color-btn-primary-text);
       font: inherit; font-size: .84rem; font-weight: 600; cursor: pointer;
     }
-    .btn-accent:hover { background: var(--color-btn-primary-bg-hover); }
+    .btn-accent:hover { filter: brightness(1.1); }
 
     /* ── Filters panel ── */
     .ovt-filters {

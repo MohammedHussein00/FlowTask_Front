@@ -1,7 +1,7 @@
 /* ClickUp-style theme: Inter UI font, neutral gray surfaces, white primary actions, violet accent. */
 @use "styles/variables";
 @use "styles/utilities";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap');
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
 * { box-sizing: border-box; }
 html, body { min-height: 100%; }

@@ -1,0 +1,153 @@
+<!-- src/app/features/admin/notifications/triggers/trigger-list/trigger-list.component.html -->
+<section class="toolbar" [attr.aria-label]="'list.filters' | anT">
+  <label class="search">
+    <lucide-icon [img]="Search" size="16" />
+    <input type="search" [formControl]="search" [placeholder]="'list.search' | anT" [attr.aria-label]="'list.search' | anT" />
+  </label>
+
+  <an-segmented [options]="statusOptions()" [ngModel]="status()" (ngModelChange)="onStatus($event)" [ariaLabel]="'list.status' | anT" />
+
+  <select class="select" [value]="store.query().triggerType" (change)="onType($event)" [attr.aria-label]="'list.type' | anT">
+    <option value="">{{ 'list.allTypes' | anT }}</option>
+    <option value="DatabaseAction">{{ 'type.db' | anT }}</option>
+    <option value="Scheduled">{{ 'type.scheduled' | anT }}</option>
+  </select>
+
+  <select class="select" [value]="store.query().operation" (change)="onOperation($event)" [attr.aria-label]="'list.operation' | anT">
+    <option value="">{{ 'list.allOperations' | anT }}</option>
+    <option value="INSERT">INSERT</option>
+    <option value="UPDATE">UPDATE</option>
+    <option value="DELETE">DELETE</option>
+  </select>
+
+  <div class="toolbar__end">
+    @if (store.hasFilters()) {
+      <button type="button" class="icon-btn icon-btn--text" (click)="clearFilters()">
+        <lucide-icon [img]="FilterX" size="15" /> {{ 'list.clear' | anT }}
+      </button>
+    }
+    <button type="button" class="icon-btn" (click)="store.refresh()" [disabled]="store.loading()" [attr.aria-label]="'list.refresh' | anT" [title]="'list.refresh' | anT">
+      <lucide-icon [img]="RefreshCw" size="16" [class.spin]="store.loading()" />
+    </button>
+  </div>
+</section>
+
+<section class="card" [attr.aria-busy]="store.loading()">
+  @if (store.loading() && store.items().length === 0) {
+    <div class="skeleton" aria-hidden="true">
+      @for (i of [1, 2, 3, 4, 5]; track i) { <div class="skeleton__row"></div> }
+    </div>
+  } @else if (store.error()) {
+    <an-empty-state tone="danger" [icon]="TriangleAlert" [title]="'list.errorTitle' | anT" [text]="store.error() === 'load_failed' ? ('list.errorText' | anT) : store.error()!">
+      <button type="button" class="btn" (click)="store.refresh()">{{ 'common.retry' | anT }}</button>
+    </an-empty-state>
+  } @else if (store.items().length === 0) {
+    @if (store.hasFilters()) {
+      <an-empty-state [icon]="Search" [title]="'list.noMatchTitle' | anT" [text]="'list.noMatchText' | anT">
+        <button type="button" class="btn btn--ghost" (click)="clearFilters()">{{ 'list.clear' | anT }}</button>
+      </an-empty-state>
+    } @else {
+      <an-empty-state [icon]="BellRing" [title]="'list.emptyTitle' | anT" [text]="'list.emptyText' | anT">
+        <a class="btn" routerLink="/admin/notifications/triggers/new"><lucide-icon [img]="Plus" size="15" /> {{ 'shell.newTrigger' | anT }}</a>
+      </an-empty-state>
+    }
+  } @else {
+    <div class="tbl-wrap" [class.is-loading]="store.loading()">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th scope="col">{{ 'list.colTrigger' | anT }}</th>
+            <th scope="col">{{ 'list.colFires' | anT }}</th>
+            <th scope="col">{{ 'list.colChannels' | anT }}</th>
+            <th scope="col">{{ 'list.colAudience' | anT }}</th>
+            <th scope="col">{{ 'list.colRuns' | anT }}</th>
+            <th scope="col">{{ 'list.colStatus' | anT }}</th>
+            <th scope="col" class="col-actions"><span class="sr-only">{{ 'list.colActions' | anT }}</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (t of store.items(); track t.id) {
+            <tr [class.is-paused]="!t.isActive" [class.is-busy]="isBusy(t.id)">
+              <td [attr.data-label]="'list.colTrigger' | anT" class="cell-main">
+                <a class="name" [routerLink]="['/admin/notifications/triggers', t.id, 'edit']">{{ t.name }}</a>
+                @if (t.description) { <p class="desc">{{ t.description }}</p> }
+                <code class="chip">{{ t.notificationType }}</code>
+              </td>
+
+              <td [attr.data-label]="'list.colFires' | anT">
+                @if (t.triggerType === 'DatabaseAction') {
+                  <div class="fires">
+                    <an-badge [tone]="t.triggerOperation === 'DELETE' ? 'danger' : t.triggerOperation === 'UPDATE' ? 'warning' : 'success'">{{ t.triggerOperation }}</an-badge>
+                    <span class="fires__sub"><lucide-icon [img]="Database" size="13" /> <code>{{ t.tableName }}</code></span>
+                    @if (t.conditions) { <span class="fires__cond" [title]="t.conditions">{{ 'list.hasConditions' | anT }}</span> }
+                  </div>
+                } @else {
+                  <div class="fires">
+                    <an-badge tone="accent"><lucide-icon [img]="CalendarClock" size="12" /> {{ 'type.scheduled' | anT }}</an-badge>
+                    <span class="fires__sub">{{ scheduleLabel(t) }}</span>
+                    @if (t.isActive && t.nextRunTime) { <span class="fires__cond">{{ 'list.next' | anT }} {{ rel(t.nextRunTime) }}</span> }
+                    @else if (t.isActive && t.recurrenceType !== 'Once') { <span class="fires__warn" [title]="'list.noNextHint' | anT">{{ 'list.noNext' | anT }}</span> }
+                  </div>
+                }
+              </td>
+
+              <td [attr.data-label]="'list.colChannels' | anT">
+                <div class="channels">
+                  <span class="ch" [class.ch--on]="t.sendToNotificationTable" [title]="'channel.inApp' | anT"><lucide-icon [img]="BellRing" size="14" /></span>
+                  <span class="ch" [class.ch--on]="t.sendPushNotification" [title]="'channel.push' | anT"><lucide-icon [img]="Smartphone" size="14" /></span>
+                  <span class="ch" [class.ch--on]="t.sendEmail" [title]="'channel.email' | anT"><lucide-icon [img]="Mail" size="14" /></span>
+                </div>
+              </td>
+
+              <td [attr.data-label]="'list.colAudience' | anT">
+                @let a = audience(t);
+                @if (a.kind === 'everyone') { <an-badge tone="warning">{{ a.text }}</an-badge> }
+                @else { <span class="aud" [title]="a.text"><small>{{ ('audience.' + a.kind) | anT }}</small> {{ a.text }}</span> }
+              </td>
+
+              <td [attr.data-label]="'list.colRuns' | anT">
+                <strong class="runs">{{ t.executionCount }}</strong>
+                <span class="runs__sub">{{ t.lastExecutedAt ? rel(t.lastExecutedAt) : ('list.never' | anT) }}</span>
+              </td>
+
+              <td [attr.data-label]="'list.colStatus' | anT">
+                <div class="status">
+                  <an-switch [ngModel]="t.isActive" (ngModelChange)="toggle(t, $event)" [disabled]="isBusy(t.id)"
+                    [ariaLabel]="('list.toggleAria' | anT: { name: t.name })" />
+                  <span class="status__txt" [class.status__txt--on]="t.isActive">{{ (t.isActive ? 'list.statusActive' : 'list.statusPaused') | anT }}</span>
+                </div>
+              </td>
+
+              <td class="col-actions">
+                <div class="actions">
+                  <button type="button" class="icon-btn" (click)="edit(t)" [attr.aria-label]="'list.edit' | anT" [title]="'list.edit' | anT"><lucide-icon [img]="Pencil" size="15" /></button>
+                  <button type="button" class="icon-btn" (click)="duplicate(t)" [attr.aria-label]="'list.duplicate' | anT" [title]="'list.duplicate' | anT"><lucide-icon [img]="Copy" size="15" /></button>
+                  <button type="button" class="icon-btn icon-btn--danger" (click)="remove(t)" [disabled]="isBusy(t.id)" [attr.aria-label]="'list.delete' | anT" [title]="'list.delete' | anT"><lucide-icon [img]="Trash2" size="15" /></button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="pager">
+      <p class="pager__range">{{ 'list.range' | anT: { from: range().from, to: range().to, total: range().total } }}</p>
+      <div class="pager__ctl">
+        <label class="pager__size">
+          {{ 'list.perPage' | anT }}
+          <select class="select select--sm" [value]="store.query().pageSize" (change)="onPageSize($event)">
+            @for (s of pageSizes; track s) { <option [value]="s">{{ s }}</option> }
+          </select>
+        </label>
+        <button type="button" class="icon-btn" (click)="store.setPage(store.query().page - 1)" [disabled]="store.query().page <= 1" [attr.aria-label]="'common.prev' | anT">
+          <lucide-icon class="flip-rtl" [img]="ChevronLeft" size="16" />
+        </button>
+        <span class="pager__page">{{ store.query().page }} / {{ store.pageCount() }}</span>
+        <button type="button" class="icon-btn" (click)="store.setPage(store.query().page + 1)" [disabled]="store.query().page >= store.pageCount()" [attr.aria-label]="'common.next' | anT">
+          <lucide-icon class="flip-rtl" [img]="ChevronRight" size="16" />
+        </button>
+      </div>
+    </footer>
+  }
+</section>

@@ -1,0 +1,21 @@
+// src/app/features/admin/notifications/ui/an-badge.component.ts
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+@Component({
+  selector: 'an-badge',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `<span class="badge" [class]="'badge badge--' + tone()"><ng-content /></span>`,
+  styles: [`
+    :host { display: inline-flex; }
+    .badge { display: inline-flex; align-items: center; gap: .3rem; padding: .16rem .55rem; border: 1px solid transparent; border-radius: 999px; font-size: .68rem; font-weight: 750; line-height: 1.3; white-space: nowrap; }
+    .badge--neutral { color: var(--color-text-secondary); background: var(--color-surface-3); }
+    .badge--accent { color: var(--color-accent-bright); background: var(--color-accent-soft); }
+    .badge--success { color: var(--color-success-text); background: var(--color-success-soft); border-color: var(--color-success-border); }
+    .badge--warning { color: var(--color-warning-text); background: var(--color-warning-soft); border-color: var(--color-warning-border); }
+    .badge--danger { color: var(--color-danger-text); background: var(--color-danger-soft); border-color: var(--color-danger-border); }
+  `],
+})
+export class AnBadgeComponent {
+  readonly tone = input<'neutral' | 'accent' | 'success' | 'warning' | 'danger'>('neutral');
+}

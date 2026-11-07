@@ -1,0 +1,291 @@
+<!-- src/app/features/admin/notifications/triggers/trigger-form/trigger-form.component.html -->
+@if (loading()) {
+  <div class="skel-page" aria-hidden="true"><div class="skel"></div><div class="skel"></div><div class="skel skel--tall"></div></div>
+} @else if (loadError()) {
+  <section class="card card--center">
+    <lucide-icon class="err-ico" [img]="TriangleAlert" size="28" />
+    <h2>{{ loadError() }}</h2>
+    <div class="row-actions">
+      <a class="btn btn--ghost" routerLink="/admin/notifications/triggers">{{ 'form.backToList' | anT }}</a>
+      <button type="button" class="btn" (click)="retry()">{{ 'common.retry' | anT }}</button>
+    </div>
+  </section>
+} @else {
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+    <!-- sticky action bar -->
+    <div class="bar">
+      <a class="back" routerLink="/admin/notifications/triggers"><lucide-icon class="flip-rtl" [img]="ArrowLeft" size="16" /> {{ 'form.backToList' | anT }}</a>
+      <h2 class="bar__title">{{ (isEdit() ? 'form.editTitle' : 'form.newTitle') | anT }}</h2>
+      @if (form.dirty) { <span class="dirty">{{ 'form.unsaved' | anT }}</span> }
+      <div class="bar__end">
+        <button type="button" class="btn btn--ghost" (click)="cancel()" [disabled]="saving()">{{ 'common.cancel' | anT }}</button>
+        <button type="submit" class="btn" [disabled]="saving()">
+          @if (saving()) { <span class="spinner" aria-hidden="true"></span> } @else { <lucide-icon [img]="Save" size="15" /> }
+          {{ (saving() ? 'form.saving' : (isEdit() ? 'form.saveChanges' : 'form.create')) | anT }}
+        </button>
+      </div>
+    </div>
+
+    @if (duplicatedFrom(); as src) {
+      <div class="banner banner--info" role="status"><lucide-icon [img]="Info" size="16" /> {{ 'form.duplicatedInfo' | anT: { name: src } }}</div>
+    }
+    @if (serverError()) {
+      <div class="banner banner--error" role="alert"><lucide-icon [img]="TriangleAlert" size="16" /> {{ serverError() }}</div>
+    }
+
+    <div class="layout">
+      <div class="main">
+
+        <!-- 1 · Basics -->
+        <section class="card" aria-labelledby="s1">
+          <header class="card__head"><span class="num">1</span><div><h3 id="s1">{{ 'form.s1' | anT }}</h3><p>{{ 'form.s1Text' | anT }}</p></div></header>
+          <div class="grid">
+            <an-field class="span2" [label]="'f.name' | anT" forId="f-name" [required]="true" [control]="form.controls.name" [forceShow]="submitted()" [hint]="'f.nameHint' | anT">
+              <input id="f-name" class="input" formControlName="name" maxlength="100" autocomplete="off" />
+            </an-field>
+            <an-field class="span2" [label]="'f.description' | anT" forId="f-desc" [optional]="true" [control]="form.controls.description" [forceShow]="submitted()">
+              <textarea id="f-desc" class="input" rows="2" formControlName="description" maxlength="500"></textarea>
+            </an-field>
+            <div class="span2 switch-row">
+              <an-switch formControlName="isActive" [ariaLabel]="'f.active' | anT" />
+              <div><strong>{{ 'f.active' | anT }}</strong><p>{{ 'f.activeHint' | anT }}</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2 · When -->
+        <section class="card" aria-labelledby="s2">
+          <header class="card__head"><span class="num">2</span><div><h3 id="s2">{{ 'form.s2' | anT }}</h3><p>{{ 'form.s2Text' | anT }}</p></div></header>
+
+          <an-segmented class="gap" variant="cards" formControlName="triggerType" [options]="typeOptions()" [ariaLabel]="'form.s2' | anT" />
+
+          @if (value().triggerType === 'DatabaseAction') {
+            <div class="grid">
+              <an-field [label]="'f.table' | anT" forId="f-table" [required]="true" [control]="form.controls.tableName" [forceShow]="submitted()" [hint]="'f.tableHint' | anT">
+                <input id="f-table" class="input input--mono" formControlName="tableName" maxlength="100" placeholder="users" autocomplete="off" spellcheck="false" />
+              </an-field>
+              <an-field [label]="'f.operation' | anT" [required]="true" [control]="form.controls.triggerOperation" [hint]="'f.operationHint' | anT">
+                <an-segmented formControlName="triggerOperation" [options]="operationOptions" [ariaLabel]="'f.operation' | anT" />
+              </an-field>
+              <an-field class="span2" [label]="'f.conditions' | anT" forId="f-cond" [optional]="true" [control]="form.controls.conditions" [forceShow]="submitted()" [hint]="'f.conditionsHint' | anT">
+                <textarea #cond id="f-cond" class="input input--mono" rows="2" formControlName="conditions" maxlength="1000" spellcheck="false" [placeholder]="ph.cond"></textarea>
+                <div class="chips">
+                  @for (s of conditionSnippets; track s.text) {
+                    <button type="button" class="chip" (click)="insert('conditions', s.text, cond)">{{ s.label }}</button>
+                  }
+                </div>
+              </an-field>
+            </div>
+          } @else {
+            <div class="grid">
+              <an-field class="span2" [label]="'f.recurrence' | anT" [required]="true" [control]="form.controls.recurrenceType">
+                <an-segmented formControlName="recurrenceType" [options]="recurrenceOptions()" [ariaLabel]="'f.recurrence' | anT" />
+              </an-field>
+
+              @if (value().recurrenceType === 'Cron') {
+                <an-field class="span2" [label]="'f.cron' | anT" forId="f-cron" [required]="true" [control]="form.controls.cronExpression" [forceShow]="submitted()" [hint]="'f.cronHint' | anT">
+                  <input id="f-cron" class="input input--mono" formControlName="cronExpression" maxlength="100" placeholder="0 0 9 ? * MON-FRI" autocomplete="off" spellcheck="false" />
+                  <div class="chips">
+                    @for (p of cronPresets; track p.cron) {
+                      <button type="button" class="chip" (click)="setCron(p.cron)" [title]="p.cron">{{ p.key | anT }}</button>
+                    }
+                  </div>
+                </an-field>
+              } @else if (value().recurrenceType !== 'Once') {
+                <an-field [label]="'f.time' | anT" forId="f-time" [required]="true" [control]="form.controls.scheduledTime" [forceShow]="submitted()" [hint]="'f.timeHint' | anT">
+                  <input id="f-time" class="input" type="time" formControlName="scheduledTime" />
+                </an-field>
+              }
+
+              <an-field [label]="(value().recurrenceType === 'Once' ? 'f.runAt' : 'f.startDate') | anT" forId="f-start"
+                [required]="value().recurrenceType === 'Once'" [optional]="value().recurrenceType !== 'Once'"
+                [control]="form.controls.scheduleStartDate" [forceShow]="submitted()"
+                [hint]="(value().recurrenceType === 'Weekly' ? 'f.startWeeklyHint' : value().recurrenceType === 'Monthly' ? 'f.startMonthlyHint' : 'f.tzHint') | anT: { tz: tz }">
+                <input id="f-start" class="input" type="datetime-local" formControlName="scheduleStartDate" />
+              </an-field>
+
+              @if (value().recurrenceType !== 'Once') {
+                <an-field [label]="'f.endDate' | anT" forId="f-end" [optional]="true" [control]="form.controls.scheduleEndDate" [forceShow]="submitted()"
+                  [extraError]="form.hasError('endBeforeStart') ? ('v.endBeforeStart' | anT) : ''" [hint]="'f.endHint' | anT">
+                  <input id="f-end" class="input" type="datetime-local" formControlName="scheduleEndDate" />
+                </an-field>
+              }
+            </div>
+            @if (scheduleSummary()) {
+              <p class="sum-pill"><lucide-icon [img]="Info" size="14" /> {{ scheduleSummary() }}</p>
+            }
+          }
+        </section>
+
+        <!-- 3 · Message -->
+        <section class="card" aria-labelledby="s3">
+          <header class="card__head"><span class="num">3</span><div><h3 id="s3">{{ 'form.s3' | anT }}</h3><p>{{ 'form.s3Text' | anT }}</p></div></header>
+
+          <div class="grid">
+            <an-field [label]="'f.type' | anT" forId="f-type" [required]="true" [control]="form.controls.notificationType" [forceShow]="submitted()" [hint]="'f.typeHint' | anT">
+              <input id="f-type" class="input input--mono" formControlName="notificationType" maxlength="100" placeholder="CodeCreated" autocomplete="off" spellcheck="false" />
+            </an-field>
+            <div class="grid grid--2">
+              <an-field [label]="'f.icon' | anT" forId="f-icon" [optional]="true" [control]="form.controls.iconName" [forceShow]="submitted()">
+                <input id="f-icon" class="input" formControlName="iconName" list="an-icons" maxlength="100" autocomplete="off" />
+                <datalist id="an-icons">@for (i of iconPresets; track i) { <option [value]="i"></option> }</datalist>
+              </an-field>
+              <an-field [label]="'f.priority' | anT" forId="f-prio" [control]="form.controls.priority">
+                <select id="f-prio" class="input" formControlName="priority">
+                  <option value="Low">{{ 'prio.low' | anT }}</option>
+                  <option value="Medium">{{ 'prio.medium' | anT }}</option>
+                  <option value="High">{{ 'prio.high' | anT }}</option>
+                </select>
+              </an-field>
+            </div>
+          </div>
+
+          <div class="lang-tabs" role="tablist" [attr.aria-label]="'preview.language' | anT">
+            <button type="button" role="tab" [attr.aria-selected]="msgLang() === 'en'" [class.on]="msgLang() === 'en'" (click)="msgLang.set('en')">
+              English @if (enHasError()) { <i class="dot" aria-hidden="true"></i> }
+            </button>
+            <button type="button" role="tab" [attr.aria-selected]="msgLang() === 'ar'" [class.on]="msgLang() === 'ar'" (click)="msgLang.set('ar')">
+              العربية @if (arHasError()) { <i class="dot" aria-hidden="true"></i> }
+            </button>
+          </div>
+
+          <div class="grid" [hidden]="msgLang() !== 'en'">
+            <an-field class="span2" [label]="'f.title' | anT" forId="f-title" [required]="true" [control]="form.controls.titleTemplate" [forceShow]="submitted()">
+              <input id="f-title" class="input" formControlName="titleTemplate" maxlength="500" autocomplete="off" (focus)="rememberField('titleTemplate', $event)" [placeholder]="'f.titlePh' | anT" />
+            </an-field>
+            <an-field class="span2" [label]="'f.body' | anT" forId="f-body" [required]="true" [control]="form.controls.bodyTemplate" [forceShow]="submitted()">
+              <textarea id="f-body" class="input" rows="4" formControlName="bodyTemplate" (focus)="rememberField('bodyTemplate', $event)" [placeholder]="'f.bodyPh' | anT"></textarea>
+            </an-field>
+          </div>
+          <div class="grid" [hidden]="msgLang() !== 'ar'">
+            <an-field class="span2" [label]="'f.titleAr' | anT" forId="f-title-ar" [optional]="true" [control]="form.controls.titleTemplateAr" [forceShow]="submitted()" [hint]="'f.arHint' | anT">
+              <input id="f-title-ar" class="input" dir="rtl" formControlName="titleTemplateAr" maxlength="500" autocomplete="off" (focus)="rememberField('titleTemplateAr', $event)" />
+            </an-field>
+            <an-field class="span2" [label]="'f.bodyAr' | anT" forId="f-body-ar" [optional]="true" [control]="form.controls.bodyTemplateAr" [forceShow]="submitted()">
+              <textarea id="f-body-ar" class="input" dir="rtl" rows="4" formControlName="bodyTemplateAr" (focus)="rememberField('bodyTemplateAr', $event)"></textarea>
+            </an-field>
+          </div>
+
+          <div class="tokens">
+            <span class="tokens__label">{{ 'f.insertField' | anT }}</span>
+            @for (t of tokenChips(); track t) { <button type="button" class="chip chip--mono" (click)="insertToken(t)">{{ tokenLabel(t) }}</button> }
+          </div>
+
+          <details class="adv">
+            <summary><lucide-icon class="adv__chev" [img]="ChevronDown" size="15" /> {{ 'f.advanced' | anT }}</summary>
+            <div class="grid adv__body">
+              <an-field class="span2" [label]="'f.redirect' | anT" forId="f-redirect" [optional]="true" [control]="form.controls.redirectData" [forceShow]="submitted()" [hint]="'f.redirectHint' | anT">
+                <textarea id="f-redirect" class="input input--mono" rows="2" formControlName="redirectData" spellcheck="false" [placeholder]="ph.redirect"></textarea>
+                <div class="chips"><button type="button" class="chip" (click)="insertExample('redirectData')">{{ 'f.example' | anT }}</button></div>
+              </an-field>
+              <an-field class="span2" [label]="'f.dataMapping' | anT" forId="f-data" [optional]="true" [control]="form.controls.dataMapping" [forceShow]="submitted()" [hint]="'f.dataMappingHint' | anT">
+                <textarea id="f-data" class="input input--mono" rows="2" formControlName="dataMapping" maxlength="1000" spellcheck="false" [placeholder]="ph.data"></textarea>
+                <div class="chips"><button type="button" class="chip" (click)="insertExample('dataMapping')">{{ 'f.example' | anT }}</button></div>
+              </an-field>
+              <an-field [label]="'f.hasFile' | anT" forId="f-hasfile" [optional]="true" [control]="form.controls.hasFileTemplate" [forceShow]="submitted()" [hint]="'f.hasFileHint' | anT">
+                <input id="f-hasfile" class="input input--mono" formControlName="hasFileTemplate" maxlength="500" [placeholder]="ph.hasFile" autocomplete="off" />
+              </an-field>
+              <an-field [label]="'f.fileType' | anT" forId="f-filetype" [optional]="true" [control]="form.controls.fileContentTypeTemplate" [forceShow]="submitted()" [hint]="'f.fileTypeHint' | anT">
+                <input id="f-filetype" class="input input--mono" formControlName="fileContentTypeTemplate" maxlength="500" placeholder="1" autocomplete="off" />
+              </an-field>
+              <an-field class="span2" [label]="'f.fileUrl' | anT" forId="f-fileurl" [optional]="true" [control]="form.controls.fileUrlTemplate" [forceShow]="submitted()"
+                [extraError]="form.hasError('needsFileUrl') && (submitted() || form.controls.hasFileTemplate.touched) ? ('v.needsFileUrl' | anT) : ''">
+                <input id="f-fileurl" class="input input--mono" formControlName="fileUrlTemplate" maxlength="1000" [placeholder]="ph.fileUrl" autocomplete="off" />
+              </an-field>
+            </div>
+          </details>
+        </section>
+
+        <!-- 4 · Recipients -->
+        <section class="card" aria-labelledby="s4">
+          <header class="card__head"><span class="num">4</span><div><h3 id="s4">{{ 'form.s4' | anT }}</h3><p>{{ 'form.s4Text' | anT }}</p></div></header>
+
+          <an-segmented class="gap" variant="cards" formControlName="targetMode" [options]="targetOptions()" [ariaLabel]="'form.s4' | anT" />
+
+          <div class="grid">
+            @if (value().targetMode === 'roles') {
+              <an-field class="span2" [label]="'f.roles' | anT" forId="f-roles" [required]="true" [control]="form.controls.allowedRoles" [forceShow]="submitted()" [hint]="'f.rolesHint' | anT">
+                <input id="f-roles" class="input" formControlName="allowedRoles" maxlength="500" placeholder="Admin, Dispatcher" autocomplete="off" />
+              </an-field>
+            }
+            @if (value().targetMode === 'users') {
+              <an-field class="span2" [label]="'f.users' | anT" forId="f-users" [required]="true" [control]="form.controls.targetUsersQuery" [forceShow]="submitted()" [hint]="'f.usersHint' | anT">
+                <input id="f-users" class="input input--mono" formControlName="targetUsersQuery" maxlength="2000" [placeholder]="ph.users" autocomplete="off" spellcheck="false" />
+              </an-field>
+            }
+            <an-field class="span2" [label]="'f.connection' | anT" forId="f-conn" [control]="form.controls.connectionStateFilter" [hint]="'f.connectionHint' | anT">
+              <select id="f-conn" class="input input--auto" formControlName="connectionStateFilter">
+                <option value="Both">{{ 'conn.both' | anT }}</option>
+                <option value="Connected">{{ 'conn.connected' | anT }}</option>
+                <option value="Disconnected">{{ 'conn.disconnected' | anT }}</option>
+              </select>
+            </an-field>
+          </div>
+        </section>
+
+        <!-- 5 · Channels -->
+        <section class="card" aria-labelledby="s5">
+          <header class="card__head"><span class="num">5</span><div><h3 id="s5">{{ 'form.s5' | anT }}</h3><p>{{ 'form.s5Text' | anT }}</p></div></header>
+
+          <div class="channels">
+            <div class="chan" [class.chan--on]="value().sendToNotificationTable">
+              <span class="chan__ico"><lucide-icon [img]="BellRing" size="18" /></span>
+              <div class="chan__txt"><strong>{{ 'channel.inApp' | anT }}</strong><p>{{ 'channel.inAppHint' | anT }}</p></div>
+              <an-switch formControlName="sendToNotificationTable" [ariaLabel]="'channel.inApp' | anT" />
+            </div>
+            <div class="chan" [class.chan--on]="value().sendPushNotification">
+              <span class="chan__ico"><lucide-icon [img]="Smartphone" size="18" /></span>
+              <div class="chan__txt"><strong>{{ 'channel.push' | anT }}</strong><p>{{ 'channel.pushHint' | anT }}</p></div>
+              <an-switch formControlName="sendPushNotification" [ariaLabel]="'channel.push' | anT" />
+            </div>
+            <div class="chan" [class.chan--on]="value().sendEmail">
+              <span class="chan__ico"><lucide-icon [img]="Mail" size="18" /></span>
+              <div class="chan__txt"><strong>{{ 'channel.email' | anT }}</strong><p>{{ 'channel.emailHint' | anT }}</p></div>
+              <an-switch formControlName="sendEmail" [ariaLabel]="'channel.email' | anT" />
+            </div>
+            <div class="chan chan--disabled">
+              <span class="chan__ico"><lucide-icon [img]="MessageSquare" size="18" /></span>
+              <div class="chan__txt"><strong>SMS</strong><p>{{ 'channel.smsHint' | anT }}</p></div>
+              <span class="soon">{{ 'common.soon' | anT }}</span>
+            </div>
+          </div>
+
+          @if (showPushTarget()) {
+            <an-field class="gap" [label]="'f.pushTarget' | anT" [control]="form.controls.pushTarget" [hint]="'f.pushTargetHint' | anT">
+              <an-segmented formControlName="pushTarget" [options]="pushTargetOptions()" [ariaLabel]="'f.pushTarget' | anT" />
+            </an-field>
+          }
+          @if (channelError()) {
+            <p class="group-error" tabindex="-1" role="alert"><lucide-icon [img]="TriangleAlert" size="14" /> {{ 'v.needsChannel' | anT }}</p>
+          }
+        </section>
+
+        <div class="bottom-actions">
+          <button type="button" class="btn btn--ghost" (click)="cancel()" [disabled]="saving()">{{ 'common.cancel' | anT }}</button>
+          <button type="submit" class="btn" [disabled]="saving()">
+            @if (saving()) { <span class="spinner" aria-hidden="true"></span> } @else { <lucide-icon [img]="Save" size="15" /> }
+            {{ (saving() ? 'form.saving' : (isEdit() ? 'form.saveChanges' : 'form.create')) | anT }}
+          </button>
+        </div>
+      </div>
+
+      <!-- side column -->
+      <aside class="side">
+        <an-trigger-preview [value]="value()" />
+
+        <section class="card card--tight">
+          <h2 class="side__h">{{ 'sum.title' | anT }}</h2>
+          <dl class="sum">
+            @for (r of summaryRows(); track r.k) { <div><dt>{{ r.k | anT }}</dt><dd>{{ r.v }}</dd></div> }
+          </dl>
+          @if (warnings().length) {
+            <ul class="warns">
+              @for (w of warnings(); track w) { <li><lucide-icon [img]="TriangleAlert" size="14" /> <span>{{ w | anT }}</span></li> }
+            </ul>
+          }
+        </section>
+      </aside>
+    </div>
+  </form>
+}

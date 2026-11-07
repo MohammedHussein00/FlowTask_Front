@@ -14,7 +14,7 @@ import { TriggerFormComponent } from './triggers/trigger-form/trigger-form.compo
 import { NotificationsOverviewComponent } from './overview/notifications-overview.component';
 import { NotificationsGuideComponent } from './guide/notifications-guide.component';
 import { ConfirmService } from './ui/confirm.service';
-import { AnConfirmHostComponent } from './ui/an-confirm-host.component';
+import { AnConfirmHostComponent } from './ui/an-confirm-host/an-confirm-host.component';
 
 const toasts: string[] = [];
 const expectMatch = (actual: Record<string, unknown>, expected: Record<string, unknown>) => { for (const [k, v] of Object.entries(expected)) expect(actual[k]).toEqual(v); };

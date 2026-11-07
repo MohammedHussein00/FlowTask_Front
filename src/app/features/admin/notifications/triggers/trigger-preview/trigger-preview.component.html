@@ -1,0 +1,43 @@
+    <section class="card">
+      <header class="card__head">
+        <h2>{{ 'preview.title' | anT }}</h2>
+        <div class="lang" role="group" [attr.aria-label]="'preview.language' | anT">
+          <button type="button" [class.on]="lang() === 'en'" (click)="lang.set('en')">EN</button>
+          <button type="button" [class.on]="lang() === 'ar'" (click)="lang.set('ar')">AR</button>
+        </div>
+      </header>
+
+      <div class="notif" [dir]="lang() === 'ar' ? 'rtl' : 'ltr'">
+        <span class="notif__icon"><lucide-icon [img]="Bell" size="16" /></span>
+        <div class="notif__body">
+          <p class="notif__title">{{ title() || ('preview.placeholderTitle' | anT) }}</p>
+          <p class="notif__text">{{ body() || ('preview.placeholderBody' | anT) }}</p>
+          <span class="notif__time">{{ 'preview.now' | anT }}</span>
+        </div>
+      </div>
+      @if (lang() === 'ar' && !value().titleTemplateAr.trim()) {
+        <p class="note"><lucide-icon [img]="Info" size="13" /> {{ 'preview.arFallback' | anT }}</p>
+      }
+      @if (redirect()) { <p class="redirect"><span>{{ 'preview.redirect' | anT }}</span> <code>{{ redirect() }}</code></p> }
+
+      <div class="verdict" [class.verdict--ok]="verdict().state === 'ok'" [class.verdict--no]="verdict().state === 'no'" [class.verdict--na]="verdict().state === 'na'">
+        @switch (verdict().state) {
+          @case ('ok') { <lucide-icon [img]="CircleCheck" size="16" /> <span>{{ 'preview.wouldFire' | anT }}</span> }
+          @case ('no') { <lucide-icon [img]="CircleX" size="16" /> <span>{{ 'preview.wouldNot' | anT }}@if (verdict().failed) { — <code>{{ verdict().failed }}</code> }</span> }
+          @default { <lucide-icon [img]="Info" size="16" /> <span>{{ 'preview.scheduledNa' | anT }}</span> }
+        }
+      </div>
+
+      <div class="sample">
+        <div class="sample__head">
+          <label for="an-sample">{{ 'preview.sample' | anT }}</label>
+          <button type="button" class="link" (click)="generate()"><lucide-icon [img]="Wand2" size="13" /> {{ 'preview.generate' | anT }}</button>
+        </div>
+        <textarea id="an-sample" rows="6" spellcheck="false" [value]="sampleText()" (input)="sampleText.set($any($event.target).value)"
+          [class.invalid]="!parsed()" [placeholder]="sampleHint"></textarea>
+        @if (!parsed()) { <p class="err" role="alert">{{ 'v.invalidJson' | anT }}</p> }
+        @else if (missing().length) { <p class="note"><lucide-icon [img]="Info" size="13" /> {{ 'preview.missing' | anT: { fields: missing().join(', ') } }}</p> }
+        @else { <p class="hint">{{ 'preview.sampleHint' | anT }}</p> }
+      </div>
+    </section>
+  

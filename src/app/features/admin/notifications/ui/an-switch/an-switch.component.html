@@ -1,0 +1,5 @@
+    <button type="button" role="switch" class="sw" [class.sw--on]="value()"
+      [attr.aria-checked]="value()" [attr.aria-label]="ariaLabel() || null" [disabled]="disabled()" (click)="toggle()">
+      <span class="sw__knob"></span>
+    </button>
+  

@@ -26,7 +26,7 @@ export const routes: Routes = [
 
       // Space overview — navigated to when a space is selected in the sidebar.
       { path: 'spaces/:spaceId', loadChildren: () => import('./features/space/space.routes').then(m => m.SPACE_ROUTES) },
-      { path: 'notifications', loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES) },
+      { path: 'admin', loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES) },
 
       // "Home" widget list destinations (scaffolded — see Customize > Home).
       { path: 'inbox', loadComponent: () => import('./features/inbox/inbox.component').then(m => m.InboxComponent) },

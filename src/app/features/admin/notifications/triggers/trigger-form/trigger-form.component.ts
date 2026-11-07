@@ -14,9 +14,9 @@ import {
   ConnectionFilter, NotificationTrigger, PushTarget, Recurrence, RECURRENCES, TRIGGER_OPERATIONS, TriggerOperation, TriggerType,
 } from '../../models/notification-admin.models';
 import { NotificationAdminApiService } from '../../services/notification-admin-api.service';
-import { AnFieldComponent } from '../../ui/an-field.component';
-import { AnSegmentedComponent, SegmentOption } from '../../ui/an-segmented.component';
-import { AnSwitchComponent } from '../../ui/an-switch.component';
+import { AnFieldComponent } from '../../ui/an-field/an-field.component';
+import { AnSegmentedComponent, SegmentOption } from '../../ui/an-segmented/an-segmented.component';
+import { AnSwitchComponent } from '../../ui/an-switch/an-switch.component';
 import { AnI18n, AnTPipe } from '../../utils/an-i18n';
 import { applyServerErrors, toApiProblem } from '../../utils/api-problem';
 import { browserTimeZone } from '../../utils/format';
@@ -27,7 +27,7 @@ import {
 } from '../../utils/trigger-validators';
 import { HasUnsavedChanges } from '../../utils/unsaved-changes.guard';
 import { EMPTY_FORM, TargetMode, TriggerFormValue, formToCreate, formToUpdate, triggerToForm } from './trigger-form.model';
-import { TriggerPreviewComponent } from './trigger-preview.component';
+import { TriggerPreviewComponent } from '../trigger-preview/trigger-preview.component';
 
 type TemplateField = 'titleTemplate' | 'bodyTemplate' | 'titleTemplateAr' | 'bodyTemplateAr';
 

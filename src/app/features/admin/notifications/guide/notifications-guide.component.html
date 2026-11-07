@@ -1,0 +1,18 @@
+    <div class="cols">
+      @for (s of sections; track s.key) {
+        <section class="card">
+          <h2>{{ ('guide.' + s.key + '.title') | anT }}</h2>
+          <p>{{ ('guide.' + s.key + '.text') | anT }}</p>
+          @for (sn of s.snippets; track sn.id) {
+            <div class="code">
+              <span class="code__label">{{ ('guide.' + s.key + '.' + sn.id) | anT }}</span>
+              <pre><code>{{ sn.code }}</code></pre>
+              <button type="button" class="copy" (click)="copy(s.key + sn.id, sn.code)" [attr.aria-label]="'guide.copy' | anT">
+                <lucide-icon [img]="copied() === s.key + sn.id ? Check : Copy" size="14" />
+              </button>
+            </div>
+          }
+        </section>
+      }
+    </div>
+  

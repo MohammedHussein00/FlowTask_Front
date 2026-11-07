@@ -1,0 +1,31 @@
+    <div class="wrap">
+      <header class="head">
+        <div class="head__title">
+          <span class="head__mark" aria-hidden="true"><lucide-icon [img]="BellRing" size="22" /></span>
+          <div>
+            <p class="head__eyebrow">{{ 'shell.eyebrow' | anT }}</p>
+            <h1>{{ 'shell.title' | anT }}</h1>
+            <p class="head__sub">{{ 'shell.subtitle' | anT }}</p>
+          </div>
+        </div>
+        <a class="cta" routerLink="/admin/notifications/triggers/new">
+          <lucide-icon [img]="Plus" size="16" /> {{ 'shell.newTrigger' | anT }}
+        </a>
+      </header>
+
+      <nav class="tabs" [attr.aria-label]="'shell.navLabel' | anT">
+        <a class="tab" routerLink="/admin/notifications/overview" routerLinkActive="tab--on" ariaCurrentWhenActive="page">
+          <lucide-icon [img]="LayoutDashboard" size="16" /> {{ 'shell.tabOverview' | anT }}
+        </a>
+        <a class="tab" routerLink="/admin/notifications/triggers" routerLinkActive="tab--on" ariaCurrentWhenActive="page">
+          <lucide-icon [img]="ListChecks" size="16" /> {{ 'shell.tabTriggers' | anT }}
+        </a>
+        <a class="tab" routerLink="/admin/notifications/guide" routerLinkActive="tab--on" ariaCurrentWhenActive="page">
+          <lucide-icon [img]="BookOpen" size="16" /> {{ 'shell.tabGuide' | anT }}
+        </a>
+      </nav>
+
+      <router-outlet />
+    </div>
+    <an-confirm-host />
+  

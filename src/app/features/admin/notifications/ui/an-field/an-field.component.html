@@ -1,0 +1,15 @@
+    <div class="field" [class.field--invalid]="!!message()">
+      @if (label()) {
+        <label class="field__label" [attr.for]="forId() || null">
+          {{ label() }}@if (required()) { <span class="field__req" aria-hidden="true">*</span> }
+          @if (optional()) { <span class="field__opt">{{ optionalText() }}</span> }
+        </label>
+      }
+      <ng-content />
+      @if (message()) {
+        <p class="field__error" role="alert">{{ message() }}</p>
+      } @else if (hint()) {
+        <p class="field__hint">{{ hint() }}</p>
+      }
+    </div>
+  

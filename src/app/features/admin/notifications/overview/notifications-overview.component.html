@@ -1,0 +1,106 @@
+    @if (loading()) {
+      <div class="grid4" aria-hidden="true">@for (i of [1,2,3,4]; track i) { <div class="skel skel--stat"></div> }</div>
+      <div class="grid2" aria-hidden="true"><div class="skel skel--panel"></div><div class="skel skel--panel"></div></div>
+    } @else if (error()) {
+      <section class="panel">
+        <an-empty-state tone="danger" [icon]="TriangleAlert" [title]="'list.errorTitle' | anT" [text]="error()!">
+          <button type="button" class="btn" (click)="load()">{{ 'common.retry' | anT }}</button>
+        </an-empty-state>
+      </section>
+    } @else {
+      <div class="grid4">
+        @for (c of cards(); track c.key) {
+          <article class="stat" [class]="'stat stat--' + c.tone">
+            <span class="stat__icon"><lucide-icon [img]="c.icon" size="19" /></span>
+            <div>
+              <p class="stat__label">{{ ('overview.' + c.key) | anT }}</p>
+              <p class="stat__value">{{ c.value }}</p>
+              @if (c.sub) { <p class="stat__sub">{{ c.sub }}</p> }
+            </div>
+          </article>
+        }
+      </div>
+
+      @if ((stats()?.total ?? 0) === 0) {
+        <section class="panel">
+          <an-empty-state [icon]="BellRing" [title]="'overview.emptyTitle' | anT" [text]="'overview.emptyText' | anT">
+            <a class="btn" routerLink="/admin/notifications/triggers/new"><lucide-icon [img]="Plus" size="15" /> {{ 'shell.newTrigger' | anT }}</a>
+            <a class="btn btn--ghost" routerLink="/admin/notifications/guide"><lucide-icon [img]="BookOpen" size="15" /> {{ 'shell.tabGuide' | anT }}</a>
+          </an-empty-state>
+        </section>
+      } @else {
+        <div class="grid2">
+          <section class="panel">
+            <header class="panel__head">
+              <h2>{{ 'overview.mix' | anT }}</h2>
+              @if (sampled()) { <span class="panel__note">{{ 'overview.sampled' | anT: { n: items().length } }}</span> }
+            </header>
+            <div class="bars">
+              <h3>{{ 'overview.byType' | anT }}</h3>
+              @for (b of typeBars(); track b.label) { <div class="bar"><span>{{ b.label }}</span><div class="bar__track"><i [style.width.%]="b.pct"></i></div><b>{{ b.count }}</b></div> }
+              <h3>{{ 'overview.byOperation' | anT }}</h3>
+              @for (b of opBars(); track b.label) { <div class="bar"><span>{{ b.label }}</span><div class="bar__track"><i [style.width.%]="b.pct"></i></div><b>{{ b.count }}</b></div> }
+              <h3>{{ 'overview.byChannel' | anT }}</h3>
+              @for (b of channelBars(); track b.label) { <div class="bar"><span>{{ b.label }}</span><div class="bar__track"><i [style.width.%]="b.pct"></i></div><b>{{ b.count }}</b></div> }
+            </div>
+          </section>
+
+          <div class="stack">
+            <section class="panel">
+              <header class="panel__head"><h2>{{ 'overview.attention' | anT }}</h2></header>
+              @if (attention().length === 0) {
+                <p class="muted pad">{{ 'overview.allGood' | anT }}</p>
+              } @else {
+                <ul class="rows">
+                  @for (a of attention(); track a.trigger.id + a.reason) {
+                    <li>
+                      <a [routerLink]="['/admin/notifications/triggers', a.trigger.id, 'edit']">{{ a.trigger.name }}</a>
+                      <an-badge [tone]="a.reason === 'neverRan' ? 'neutral' : 'warning'">{{ ('overview.reason.' + a.reason) | anT }}</an-badge>
+                    </li>
+                  }
+                </ul>
+              }
+            </section>
+
+            <section class="panel">
+              <header class="panel__head"><h2>{{ 'overview.upcoming' | anT }}</h2></header>
+              @if (upcoming().length === 0) {
+                <p class="muted pad">{{ 'overview.noUpcoming' | anT }}</p>
+              } @else {
+                <ul class="rows">
+                  @for (t of upcoming(); track t.id) {
+                    <li>
+                      <a [routerLink]="['/admin/notifications/triggers', t.id, 'edit']">{{ t.name }}</a>
+                      <span class="when" [title]="fmt(t.nextRunTime)"><lucide-icon [img]="CalendarClock" size="13" /> {{ rel(t.nextRunTime) }}</span>
+                    </li>
+                  }
+                </ul>
+              }
+            </section>
+
+            <section class="panel">
+              <header class="panel__head"><h2>{{ 'overview.recent' | anT }}</h2></header>
+              @if (recent().length === 0) {
+                <p class="muted pad">{{ 'overview.noRecent' | anT }}</p>
+              } @else {
+                <ul class="rows">
+                  @for (t of recent(); track t.id) {
+                    <li>
+                      <a [routerLink]="['/admin/notifications/triggers', t.id, 'edit']">{{ t.name }}</a>
+                      <span class="when" [title]="fmt(t.lastExecutedAt)">{{ t.executionCount }} × · {{ rel(t.lastExecutedAt) }}</span>
+                    </li>
+                  }
+                </ul>
+              }
+            </section>
+          </div>
+        </div>
+      }
+
+      <div class="actions">
+        <a class="btn" routerLink="/admin/notifications/triggers/new"><lucide-icon [img]="Plus" size="15" /> {{ 'shell.newTrigger' | anT }}</a>
+        <a class="btn btn--ghost" routerLink="/admin/notifications/triggers"><lucide-icon [img]="ListChecks" size="15" /> {{ 'overview.manage' | anT }}</a>
+        <button type="button" class="btn btn--ghost" (click)="load()"><lucide-icon [img]="RefreshCw" size="15" /> {{ 'list.refresh' | anT }}</button>
+      </div>
+    }
+  

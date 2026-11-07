@@ -1,0 +1,7 @@
+    <div class="empty">
+      <span class="empty__icon" [class.empty__icon--danger]="tone() === 'danger'"><lucide-icon [img]="icon()" size="26" /></span>
+      <h3 class="empty__title">{{ title() }}</h3>
+      @if (text()) { <p class="empty__text">{{ text() }}</p> }
+      <div class="empty__actions"><ng-content /></div>
+    </div>
+  

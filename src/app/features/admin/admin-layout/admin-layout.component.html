@@ -1,0 +1,22 @@
+<div class="admin-layout">
+  <aside class="admin-nav" aria-label="Administration">
+    <div class="admin-nav__head">
+      <span class="admin-nav__mark" aria-hidden="true"><lucide-icon [img]="ShieldCheck" size="17" /></span>
+      <strong>Administration</strong>
+    </div>
+
+    <nav class="admin-nav__list">
+      @for (item of navItems; track item.route) {
+        <a class="admin-nav__item" [routerLink]="item.route" routerLinkActive="admin-nav__item--active" ariaCurrentWhenActive="page">
+          <lucide-icon [img]="item.icon" size="16" /> {{ item.label }}
+        </a>
+      }
+    </nav>
+
+    <a class="admin-nav__back" routerLink="/dashboard">
+      <lucide-icon [img]="ArrowLeft" size="15" /> Back to app
+    </a>
+  </aside>
+
+  <main class="admin-layout__content"><router-outlet /></main>
+</div>

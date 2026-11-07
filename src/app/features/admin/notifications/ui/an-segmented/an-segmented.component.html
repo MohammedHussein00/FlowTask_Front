@@ -1,0 +1,13 @@
+    <div class="seg" [class.seg--cards]="variant() === 'cards'" role="radiogroup" [attr.aria-label]="ariaLabel() || null">
+      @for (o of options(); track o.value) {
+        <button type="button" role="radio" class="seg__item" [class.seg__item--on]="o.value === value()"
+          [attr.aria-checked]="o.value === value()" [disabled]="disabled()" (click)="select(o.value)">
+          @if (o.icon) { <lucide-icon class="seg__icon" [img]="o.icon" size="17" /> }
+          <span class="seg__text">
+            <span class="seg__label">{{ o.label }}</span>
+            @if (variant() === 'cards' && o.hint) { <span class="seg__hint">{{ o.hint }}</span> }
+          </span>
+        </button>
+      }
+    </div>
+  

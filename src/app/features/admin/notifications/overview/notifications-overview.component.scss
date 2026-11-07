@@ -1,0 +1,47 @@
+:host { display: block; }
+.grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+.stack { display: grid; gap: 1rem; }
+.stat { display: flex; align-items: center; gap: .9rem; padding: 1.05rem 1.15rem; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-1); }
+.stat__icon { display: grid; place-items: center; flex: none; width: 2.7rem; height: 2.7rem; border-radius: .8rem; }
+.stat--accent .stat__icon { color: var(--color-accent-bright); background: var(--color-accent-soft); }
+.stat--success .stat__icon { color: var(--color-success-text); background: var(--color-success-soft); }
+.stat--warning .stat__icon { color: var(--color-warning-text); background: var(--color-warning-soft); }
+.stat--info .stat__icon { color: #7cc0ff; background: rgb(124 192 255 / .14); }
+.stat__label { margin: 0; font-size: .72rem; font-weight: 750; color: var(--color-text-secondary); }
+.stat__value { margin: .1rem 0 0; font-size: 1.7rem; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat__sub { margin: .15rem 0 0; font-size: .7rem; color: var(--color-text-muted); }
+
+.panel { border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-1); overflow: hidden; }
+.panel__head { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .9rem 1.1rem .7rem; }
+.panel__head h2 { margin: 0; font-size: .92rem; font-weight: 800; }
+.panel__note { font-size: .68rem; color: var(--color-text-muted); }
+.muted { color: var(--color-text-muted); font-size: .8rem; }
+.pad { margin: 0; padding: 0 1.1rem 1.1rem; }
+
+.bars { padding: 0 1.1rem 1.1rem; display: grid; gap: .55rem; }
+.bars h3 { margin: .7rem 0 .1rem; font-size: .66rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--color-text-muted); }
+.bars h3:first-child { margin-top: 0; }
+.bar { display: grid; grid-template-columns: 7.5rem 1fr 2rem; align-items: center; gap: .65rem; font-size: .78rem; color: var(--color-text-secondary); }
+.bar b { text-align: end; color: var(--color-text-primary); font-variant-numeric: tabular-nums; }
+.bar__track { height: .5rem; border-radius: 999px; background: var(--color-surface-3); overflow: hidden; }
+.bar__track i { display: block; height: 100%; min-width: 2px; border-radius: 999px; background: linear-gradient(90deg, var(--color-accent), var(--color-accent-bright)); transition: width .4s ease; }
+
+.rows { list-style: none; margin: 0; padding: 0 0 .4rem; }
+.rows li { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .6rem 1.1rem; border-top: 1px solid var(--color-border); font-size: .8rem; }
+.rows a { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-primary); font-weight: 700; text-decoration: none; }
+.rows a:hover { color: var(--color-accent-bright); text-decoration: underline; }
+.when { display: inline-flex; align-items: center; gap: .3rem; flex: none; font-size: .72rem; color: var(--color-text-secondary); }
+
+.actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+.btn { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.3rem; padding: 0 1rem; border-radius: var(--radius-md); color: #fff; background: var(--color-accent); font-size: .8rem; font-weight: 700; text-decoration: none; }
+.btn:hover { background: var(--color-accent-strong); }
+.btn--ghost { color: var(--color-text-secondary); background: transparent; border: 1px solid var(--color-border-strong); }
+.btn--ghost:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
+
+.skel { border-radius: var(--radius-lg); background: linear-gradient(90deg, var(--color-surface-1) 25%, var(--color-surface-2) 50%, var(--color-surface-1) 75%); background-size: 200% 100%; animation: shimmer 1.3s linear infinite; border: 1px solid var(--color-border); }
+.skel--stat { height: 5.4rem; } .skel--panel { height: 18rem; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .skel, .bar__track i { animation: none; transition: none; } }
+  

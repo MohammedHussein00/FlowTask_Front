@@ -1,0 +1,8 @@
+:host { display: block; min-width: 0; }
+.field { display: grid; gap: .38rem; }
+.field__label { font-size: .75rem; font-weight: 700; color: var(--color-text-secondary); letter-spacing: .01em; }
+.field__req { margin-inline-start: .2rem; color: var(--color-danger-text); }
+.field__opt { margin-inline-start: .4rem; font-weight: 500; color: var(--color-text-muted); }
+.field__hint { margin: 0; font-size: .72rem; line-height: 1.45; color: var(--color-text-muted); }
+.field__error { margin: 0; font-size: .74rem; line-height: 1.4; font-weight: 600; color: var(--color-danger-text); }
+  

@@ -1,0 +1,14 @@
+    @if (confirm.pending(); as p) {
+      <div class="backdrop" (click)="confirm.answer(false)">
+        <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="an-confirm-title" aria-describedby="an-confirm-msg"
+          (click)="$event.stopPropagation()">
+          <h2 id="an-confirm-title" class="dialog__title">{{ p.options.title }}</h2>
+          <p id="an-confirm-msg" class="dialog__msg">{{ p.options.message }}</p>
+          <div class="dialog__actions">
+            <button type="button" class="btn btn--ghost" autofocus (click)="confirm.answer(false)">{{ p.options.cancelLabel }}</button>
+            <button type="button" class="btn" [class.btn--danger]="p.options.tone === 'danger'" (click)="confirm.answer(true)">{{ p.options.confirmLabel }}</button>
+          </div>
+        </div>
+      </div>
+    }
+  

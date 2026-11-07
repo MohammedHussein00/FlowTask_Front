@@ -9,8 +9,8 @@ interface AdminNavItem {
 }
 
 /**
- * Layout frame for every /admin/* page: a contextual admin sidebar beside the routed content.
- * It renders inside the main app shell (top bar + global rail), so admin screens keep the same chrome as the rest of the app.
+ * Layout frame for every /admin/* page: own header plus an admin sidebar beside the routed content.
+ * Standalone layout: it is NOT nested in the main app shell (no global top bar / rail) — it brings its own header and sidebar.
  * To add another admin area, append an entry to `navItems` and a child route in admin.routes.ts.
  */
 @Component({

@@ -1,22 +1,23 @@
 <div class="admin-layout">
-  <aside class="admin-nav" aria-label="Administration">
-    <div class="admin-nav__head">
-      <span class="admin-nav__mark" aria-hidden="true"><lucide-icon [img]="ShieldCheck" size="17" /></span>
-      <strong>Administration</strong>
-    </div>
-
-    <nav class="admin-nav__list">
-      @for (item of navItems; track item.route) {
-        <a class="admin-nav__item" [routerLink]="item.route" routerLinkActive="admin-nav__item--active" ariaCurrentWhenActive="page">
-          <lucide-icon [img]="item.icon" size="16" /> {{ item.label }}
-        </a>
-      }
-    </nav>
-
-    <a class="admin-nav__back" routerLink="/dashboard">
+  <header class="admin-topbar">
+    <span class="admin-topbar__mark" aria-hidden="true"><lucide-icon [img]="ShieldCheck" size="17" /></span>
+    <strong class="admin-topbar__title">Administration</strong>
+    <a class="admin-topbar__back" routerLink="/dashboard">
       <lucide-icon [img]="ArrowLeft" size="15" /> Back to app
     </a>
-  </aside>
+  </header>
 
-  <main class="admin-layout__content"><router-outlet /></main>
+  <div class="admin-layout__body">
+    <aside class="admin-nav" aria-label="Administration">
+      <nav class="admin-nav__list">
+        @for (item of navItems; track item.route) {
+          <a class="admin-nav__item" [routerLink]="item.route" routerLinkActive="admin-nav__item--active" ariaCurrentWhenActive="page">
+            <lucide-icon [img]="item.icon" size="16" /> {{ item.label }}
+          </a>
+        }
+      </nav>
+    </aside>
+
+    <main class="admin-layout__content"><router-outlet /></main>
+  </div>
 </div>

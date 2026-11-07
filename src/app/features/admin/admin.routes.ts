@@ -24,13 +24,13 @@ export const ADMIN_ROUTES: Routes = [
       {
         path: 'triggers/new',
         title: 'New trigger',
-        canDeactivate: [unsavedChangesGuard],
+        // canDeactivate: [unsavedChangesGuard],
         loadComponent: () => import('./notifications/triggers/trigger-form/trigger-form.component').then(m => m.TriggerFormComponent),
       },
       {
         path: 'triggers/:id/edit',
         title: 'Edit trigger',
-        canDeactivate: [unsavedChangesGuard],
+        // canDeactivate: [unsavedChangesGuard],
         loadComponent: () => import('./notifications/triggers/trigger-form/trigger-form.component').then(m => m.TriggerFormComponent),
       },
       {

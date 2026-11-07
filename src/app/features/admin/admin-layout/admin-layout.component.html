@@ -1,18 +1,63 @@
-<div class="admin-layout">
+<div class="admin-layout" [class.admin-layout--collapsed]="sidebarCollapsed()">
   <header class="admin-topbar">
-    <span class="admin-topbar__mark" aria-hidden="true"><lucide-icon [img]="ShieldCheck" size="17" /></span>
-    <strong class="admin-topbar__title">Administration</strong>
-    <a class="admin-topbar__back" routerLink="/dashboard">
-      <lucide-icon [img]="ArrowLeft" size="15" /> Back to app
-    </a>
+    <div class="admin-topbar__brand">
+      <button nz-button nzType="text" nzShape="circle" class="icon-btn" type="button"
+        nz-tooltip [nzTooltipTitle]="sidebarCollapsed() ? 'Open menu' : 'Close menu'"
+        [attr.aria-label]="sidebarCollapsed() ? 'Open menu' : 'Close menu'"
+        [attr.aria-expanded]="!sidebarCollapsed()" (click)="toggleSidebar()">
+        <lucide-icon [img]="sidebarCollapsed() ? PanelLeftOpen : PanelLeftClose" size="17" />
+      </button>
+      <span class="admin-topbar__mark" aria-hidden="true"><lucide-icon [img]="ShieldCheck" size="17" /></span>
+      <strong class="admin-topbar__title">Administration</strong>
+    </div>
+
+    <div class="admin-topbar__actions">
+      <button nz-button nzType="text" class="account" type="button"
+        nz-popover [nzPopoverContent]="profileTpl" [nzPopoverVisible]="profileOpen()"
+        (nzPopoverVisibleChange)="profileOpen.set($event)"
+        nzPopoverTrigger="click" nzPopoverPlacement="bottomRight" nzPopoverOverlayClassName="app-profile-popover"
+        aria-label="Account menu">
+        <nz-badge nzStatus="success" [nzDot]="true">
+          <nz-avatar nzText="{{ userInitials() }}" [nzSize]="28" />
+        </nz-badge>
+        <lucide-icon [img]="ChevronDown" size="13" />
+      </button>
+    </div>
+
+    <ng-template #profileTpl>
+      <section class="profile-menu" role="menu">
+        <header class="pm-header">
+          <nz-avatar nzText="{{ userInitials() }}" [nzSize]="32" class="pm-avatar" />
+          <div class="pm-header__info">
+            <strong>{{ userName() }}</strong>
+            <small>Administrator</small>
+          </div>
+        </header>
+
+        <div class="pm-divider"></div>
+        <div class="pm-section">
+          <button class="pm-item" type="button" (click)="goTo('/dashboard')"><span class="pm-item__icon"><lucide-icon [img]="ArrowLeft" size="15" /></span>Back to app</button>
+          <button class="pm-item" type="button" (click)="goTo('/settings')"><span class="pm-item__icon"><lucide-icon [img]="Settings2" size="15" /></span>Settings</button>
+        </div>
+
+        <div class="pm-divider"></div>
+        <div class="pm-section">
+          <button class="pm-item pm-item--danger" type="button" (click)="onLogout()">
+            <span class="pm-item__icon"><lucide-icon [img]="LogOut" size="15" /></span>Log out
+          </button>
+        </div>
+      </section>
+    </ng-template>
   </header>
 
   <div class="admin-layout__body">
     <aside class="admin-nav" aria-label="Administration">
       <nav class="admin-nav__list">
         @for (item of navItems; track item.route) {
-          <a class="admin-nav__item" [routerLink]="item.route" routerLinkActive="admin-nav__item--active" ariaCurrentWhenActive="page">
-            <lucide-icon [img]="item.icon" size="16" /> {{ item.label }}
+          <a class="admin-nav__item" [routerLink]="item.route" routerLinkActive="admin-nav__item--active" ariaCurrentWhenActive="page"
+            [attr.aria-label]="item.label"
+            nz-tooltip [nzTooltipTitle]="sidebarCollapsed() ? item.label : null" nzTooltipPlacement="right">
+            <lucide-icon [img]="item.icon" size="16" /> <span class="admin-nav__label">{{ item.label }}</span>
           </a>
         }
       </nav>

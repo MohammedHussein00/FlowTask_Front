@@ -2,23 +2,53 @@
 
 .admin-layout { height: 100%; display: flex; flex-direction: column; overflow: hidden; color: var(--color-text-primary); background: var(--color-canvas); }
 
-.admin-topbar { flex: none; display: flex; align-items: center; gap: .65rem; height: 3.2rem; padding: 0 1rem; border-bottom: 1px solid var(--color-border); }
-.admin-topbar__mark { display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: .55rem; color: #fff; background: var(--color-accent); }
-.admin-topbar__title { flex: 1; font-size: .92rem; }
-.admin-topbar__back { display: inline-flex; align-items: center; gap: .45rem; padding: .4rem .7rem; border-radius: var(--radius-md); color: var(--color-text-secondary); font-size: .78rem; font-weight: 650; text-decoration: none; }
-.admin-topbar__back:hover { color: var(--color-text-primary); background: var(--color-surface-2); }
+/* ── Header (same look as the main app top bar) ── */
+.admin-topbar { position: relative; z-index: 10; flex: none; min-height: 3rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .3rem .75rem; background: var(--color-topbar, var(--color-canvas)); }
+.admin-topbar__brand { display: flex; align-items: center; gap: .55rem; min-width: 0; }
+.admin-topbar__mark { display: grid; place-items: center; flex: none; width: 1.9rem; height: 1.9rem; border-radius: .55rem; color: #fff; background: var(--color-accent); }
+.admin-topbar__title { font-size: .92rem; white-space: nowrap; }
+.admin-topbar__actions { display: flex; align-items: center; gap: .15rem; }
 
-.admin-layout__body { flex: 1; min-height: 0; display: grid; grid-template-columns: 14.5rem minmax(0, 1fr); }
+.icon-btn.ant-btn { width: 2.1rem; height: 2.1rem; display: grid; place-items: center; border-radius: .6rem; color: var(--color-text-secondary); }
+.icon-btn.ant-btn:hover { color: var(--color-text-primary); background: var(--color-surface-3); }
+.account.ant-btn { position: relative; display: flex !important; align-items: center; justify-content: center; gap: .25rem; width: auto !important; height: auto; padding: 0 .15rem; margin-inline-start: .2rem; }
+.account nz-avatar.ant-avatar { color: #111; background: #eee; font-size: .68rem; font-weight: 700; }
+
+/* ── Body: collapsible sidebar + content ── */
+.admin-layout__body { flex: 1; min-height: 0; display: grid; grid-template-columns: 14.5rem minmax(0, 1fr); transition: grid-template-columns .18s ease; }
+.admin-layout--collapsed .admin-layout__body { grid-template-columns: 4.3rem minmax(0, 1fr); }
 .admin-layout__content { min-width: 0; min-height: 0; overflow: hidden; }
 
-.admin-nav { min-height: 0; overflow-y: auto; padding: .8rem .6rem; border-inline-end: 1px solid var(--color-border); }
+.admin-nav { min-height: 0; overflow-y: auto; overflow-x: hidden; padding: .5rem .6rem .6rem; }
 .admin-nav__list { display: grid; align-content: start; gap: .2rem; }
-.admin-nav__item { display: flex; align-items: center; gap: .55rem; padding: .55rem .65rem; border-radius: var(--radius-md); color: var(--color-text-secondary); font-size: .82rem; font-weight: 650; text-decoration: none; transition: background .14s ease, color .14s ease; }
+.admin-nav__item { display: flex; align-items: center; gap: .55rem; padding: .55rem .65rem; border-radius: var(--radius-md); color: var(--color-text-secondary); font-size: .82rem; font-weight: 650; text-decoration: none; white-space: nowrap; transition: background .14s ease, color .14s ease; }
+.admin-nav__item lucide-icon { flex: none; }
 .admin-nav__item:hover { color: var(--color-text-primary); background: var(--color-surface-2); }
 .admin-nav__item--active { color: var(--color-text-primary); background: var(--color-accent-soft); }
+.admin-layout--collapsed .admin-nav__item { justify-content: center; padding-inline: 0; }
+.admin-layout--collapsed .admin-nav__label { display: none; }
+
+/* ── Account popover (same menu styling as the main app) ── */
+.profile-menu { width: 16rem; max-height: calc(100vh - 4rem); overflow-y: auto; padding: .45rem; scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; }
+.pm-header { display: flex; align-items: center; gap: .6rem; padding: .35rem .5rem .7rem; }
+.pm-avatar.ant-avatar { color: #111; background: #eee; font-size: .62rem; flex: none; }
+.pm-header__info strong { display: block; color: var(--color-text-primary); font-size: .86rem; font-weight: 700; }
+.pm-header__info small { display: block; margin-top: .1rem; color: var(--color-success-text); font-size: .62rem; }
+.pm-section { display: flex; flex-direction: column; gap: 1px; }
+.pm-divider { height: 1px; margin: .3rem 0; background: var(--color-border); }
+.pm-item { display: flex; align-items: center; width: 100%; min-height: 2.15rem; padding: 0 .45rem; border: 0; border-radius: .45rem; background: transparent; color: var(--color-text-secondary); font: inherit; font-size: .82rem; text-align: start; cursor: pointer; transition: background .1s, color .1s; }
+.pm-item:hover { background: var(--color-surface-3); color: var(--color-text-primary); }
+.pm-item__icon { flex: none; width: 1.85rem; height: 1.85rem; display: grid; place-items: center; margin-inline-end: .3rem; color: var(--color-text-muted); border-radius: .3rem; }
+.pm-item:hover .pm-item__icon { color: var(--color-text-secondary); }
+.pm-item--danger { color: var(--color-danger-text, #ff9a9a); }
+.pm-item--danger:hover { background: var(--color-danger-soft); color: var(--color-danger-text, #ff9a9a); }
+.pm-item--danger .pm-item__icon { color: var(--color-danger-text, #ff9a9a); }
+
+::ng-deep .app-profile-popover .ant-popover-inner { padding: 0 !important; border: 1px solid var(--color-border-strong) !important; border-radius: .75rem !important; background: var(--color-surface-2) !important; box-shadow: 0 1.1rem 2.8rem rgb(0 0 0 / .5) !important; overflow: hidden !important; }
+::ng-deep .app-profile-popover .ant-popover-arrow { display: none !important; }
 
 @media (max-width: 860px) {
-  .admin-layout__body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
-  .admin-nav { padding: .4rem .6rem; border-inline-end: 0; border-bottom: 1px solid var(--color-border); }
+  .admin-layout__body, .admin-layout--collapsed .admin-layout__body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
   .admin-nav__list { display: flex; }
+  .admin-layout--collapsed .admin-nav { display: none; }
 }
